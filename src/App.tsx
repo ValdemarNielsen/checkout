@@ -6,9 +6,11 @@ function App() {
   const [count, setCount] = useState(0)
 
   return (
+      <html lang="en">
     <div className="App">
 
     </div>
+      </html>
   )
 }
 
