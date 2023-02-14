@@ -3,14 +3,12 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  background-color: #646cff;
 }
 
 html {
   background-color: #646cff;
 }
-
-
-
 
 .logo {
   height: 6em;
