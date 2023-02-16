@@ -1,6 +1,8 @@
 import {FormEvent, useState} from 'react'
 import reactLogo from './assets/react.svg'
 import './App.css'
+import shop from './pages/shop'
+
 
 function App() {
   const [count, setCount] = useState(0)
