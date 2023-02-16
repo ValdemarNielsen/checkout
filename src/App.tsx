@@ -1,7 +1,9 @@
 import {FormEvent, useState} from 'react'
+import {BrowserRouter as Router, Route, Link} from "react-router-dom"
 import reactLogo from './assets/react.svg'
 import './App.css'
-import shop from './pages/shop'
+import Shop from './pages/shop'
+import Checkoutç from './pages/checkout'
 
 
 function App() {
@@ -11,11 +13,8 @@ function App() {
       <html lang="en">
       
     <div className="App">
-
+    <Shop/>
     </div>
-      <div className="cardDetailsBox">
-
-      </div>
       </html>
   )
 }
