@@ -11,6 +11,9 @@ function App() {
     <div className="App">
 
     </div>
+      <div className="cardDetailsBox">
+
+      </div>
       </html>
   )
 }
