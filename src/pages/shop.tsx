@@ -4,7 +4,7 @@ import products from "../assets/products";
 export default function Shop() {
   return (
 
-    <div>
+    <div className="shopstyle">
       <h1>Welcome To The Shop</h1>
       <div>
         {products.map((product) => (
