@@ -1,6 +1,14 @@
 /* Styling for shop page */
 
 .shopstyle {
-    background-color: #f5f5f5;
+    background-color: mistyrose;
     padding: 20px 0;
 }
+div {
+    background-color: lightgrey;
+}
+
+body {
+    background-color: whitesmoke;
+}
+

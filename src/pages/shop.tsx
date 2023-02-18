@@ -2,18 +2,22 @@
 import React from "react";
 import products from "../assets/products";
 export default function Shop() {
+    
   return (
     <div>
       <h1>Welcome To The Shop</h1>
       <div>
+          
         {products.map((product) => (
           <div key={product.id}>
             <h2>{product.name}</h2>
             <p>
-              {product.price} {product.currency}
+              stk. pris =  {product.price} {product.currency}
             </p>
+              <p> Total pris = </p>
           </div>
         ))}
+
       </div>
     </div>
   );

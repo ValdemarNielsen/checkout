@@ -9,15 +9,14 @@ type Product = {
   quantity: number
 };
 
-function TotalPrice(products: any){
+function TotalPrice(products: any) {
   let total = 0;
-  for (let i = 0; i < products.length-1; i++) {
-    if(products[i].quantity >= products[i].rebateQuantity){
-      products[i].price = products[i].price*(products[i].rebatePercent/100);
+  for (let i = 0; i < products.length - 1; i++) {
+    if (products[i].quantity >= products[i].rebateQuantity) {
+      products[i].price = products[i].price * (products[i].rebatePercent / 100);
     }
     total += products[i].price * products[i].quantity;
   }
-
   return total
 }
 
