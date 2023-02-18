@@ -3,6 +3,7 @@ import React from "react";
 import products from "../assets/products";
 export default function Shop() {
   return (
+
     <div>
       <h1>Welcome To The Shop</h1>
       <div>
@@ -18,3 +19,6 @@ export default function Shop() {
     </div>
   );
 }
+
+
+
