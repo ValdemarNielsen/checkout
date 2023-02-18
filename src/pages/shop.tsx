@@ -5,7 +5,7 @@ export default function Shop() {
     
   return (
 
-    <div className="shopstyle">
+    <div>
       <h1>Welcome To The Shop</h1>
       <div>
           
