@@ -6,7 +6,20 @@ type Product = {
   rebateQuantity: number;
   rebatePercent: number;
   upsellProductId: string | null;
+  quantity: number
 };
+
+function TotalPrice(products: any){
+  let total = 0;
+  for (let i = 0; i < products.length-1; i++) {
+    if(products[i].quantity >= products[i].rebateQuantity){
+      products[i].price = products[i].price*(products[i].rebatePercent/100);
+    }
+    total += products[i].price * products[i].quantity;
+  }
+
+  return total
+}
 
 const products: Product[] = [
   {
@@ -17,6 +30,7 @@ const products: Product[] = [
     rebateQuantity: 3,
     rebatePercent: 10,
     upsellProductId: null,
+    quantity: 1,
   },
   {
     id: "vitamin-c-500-250",
@@ -26,6 +40,7 @@ const products: Product[] = [
     rebateQuantity: 2,
     rebatePercent: 25,
     upsellProductId: "vitamin-c-depot-500-250",
+    quantity: 1,
   },
   {
     id: "vitamin-c-depot-500-250",
@@ -35,6 +50,7 @@ const products: Product[] = [
     rebateQuantity: 3,
     rebatePercent: 10,
     upsellProductId: null,
+    quantity: 1,
   },
   {
     id: "fish-oil-1000-120",
@@ -44,6 +60,7 @@ const products: Product[] = [
     rebateQuantity: 5,
     rebatePercent: 10,
     upsellProductId: null,
+    quantity: 1,
   },
   {
     id: "coffee-grinder",
@@ -53,6 +70,7 @@ const products: Product[] = [
     rebateQuantity: 0,
     rebatePercent: 0,
     upsellProductId: "coffee-grinder-pro",
+    quantity: 1,
   },
   {
     id: "coffee-grinder-pro",
@@ -62,6 +80,7 @@ const products: Product[] = [
     rebateQuantity: 0,
     rebatePercent: 0,
     upsellProductId: null,
+    quantity: 1,
   },
   {
     id: "toothbrush",
@@ -71,6 +90,7 @@ const products: Product[] = [
     rebateQuantity: 0,
     rebatePercent: 0,
     upsellProductId: "toothbrush-bamboo",
+    quantity: 1,
   },
   {
     id: "toothbrush-bamboo",
@@ -80,6 +100,7 @@ const products: Product[] = [
     rebateQuantity: 2,
     rebatePercent: 10,
     upsellProductId: null,
+    quantity: 1,
   },
   {
     id: "trimmer",
@@ -89,6 +110,7 @@ const products: Product[] = [
     rebateQuantity: 0,
     rebatePercent: 0,
     upsellProductId: "trimmer-battery",
+    quantity: 1,
   },
   {
     id: "trimmer-battery",
@@ -98,6 +120,7 @@ const products: Product[] = [
     rebateQuantity: 0,
     rebatePercent: 0,
     upsellProductId: null,
+    quantity: 1,
   },
   {
     id: "hair-clip",
@@ -107,6 +130,7 @@ const products: Product[] = [
     rebateQuantity: 2,
     rebatePercent: 20,
     upsellProductId: "hair-clip-large",
+    quantity: 1,
   },
   {
     id: "hair-clip-large",
@@ -116,6 +140,7 @@ const products: Product[] = [
     rebateQuantity: 0,
     rebatePercent: 0,
     upsellProductId: null,
+    quantity: 1,
   },
   {
     id: "scarf-cotton",
@@ -125,6 +150,7 @@ const products: Product[] = [
     rebateQuantity: 2,
     rebatePercent: 10,
     upsellProductId: "scarf-wool",
+    quantity: 1,
   },
   {
     id: "scarf-wool",
@@ -134,6 +160,7 @@ const products: Product[] = [
     rebateQuantity: 2,
     rebatePercent: 10,
     upsellProductId: "scarf-silk",
+    quantity: 1,
   },
   {
     id: "scarf-silk",
@@ -143,6 +170,7 @@ const products: Product[] = [
     rebateQuantity: 2,
     rebatePercent: 10,
     upsellProductId: null,
+    quantity: 1,
   },
   {
     id: "cap",
@@ -152,6 +180,7 @@ const products: Product[] = [
     rebateQuantity: 2,
     rebatePercent: 10,
     upsellProductId: "cap-flat",
+    quantity: 1,
   },
   {
     id: "cap-flat",
@@ -161,6 +190,7 @@ const products: Product[] = [
     rebateQuantity: 0,
     rebatePercent: 0,
     upsellProductId: null,
+    quantity: 1,
   },
   {
     id: "teddy",
@@ -170,6 +200,7 @@ const products: Product[] = [
     rebateQuantity: 0,
     rebatePercent: 0,
     upsellProductId: "teddy-large",
+    quantity: 1,
   },
   {
     id: "teddy-large",
@@ -179,6 +210,7 @@ const products: Product[] = [
     rebateQuantity: 0,
     rebatePercent: 0,
     upsellProductId: null,
+    quantity: 1,
   },
   {
     id: "kids-songbook",
@@ -188,6 +220,7 @@ const products: Product[] = [
     rebateQuantity: 0,
     rebatePercent: 0,
     upsellProductId: "kids-songbook-hardcover",
+    quantity: 1,
   },
   {
     id: "kids-songbook-hardcover",
@@ -197,6 +230,7 @@ const products: Product[] = [
     rebateQuantity: 0,
     rebatePercent: 0,
     upsellProductId: null,
+    quantity: 1,
   },
   {
     id: "coffeebeans-500g",
@@ -206,6 +240,7 @@ const products: Product[] = [
     rebateQuantity: 4,
     rebatePercent: 25,
     upsellProductId: "coffeebeans-organic-500g",
+    quantity: 1,
   },
   {
     id: "coffeebeans-organic-500g",
@@ -215,6 +250,7 @@ const products: Product[] = [
     rebateQuantity: 2,
     rebatePercent: 10,
     upsellProductId: null,
+    quantity: 1,
   },
   {
     id: "the-english-100g",
@@ -224,6 +260,7 @@ const products: Product[] = [
     rebateQuantity: 4,
     rebatePercent: 25,
     upsellProductId: "the-darjeeling-100g",
+    quantity: 1,
   },
   {
     id: "the-darjeeling-100g",
@@ -233,6 +270,7 @@ const products: Product[] = [
     rebateQuantity: 4,
     rebatePercent: 25,
     upsellProductId: "the-organic-100g",
+    quantity: 1,
   },
   {
     id: "the-organic-100g",
@@ -242,6 +280,7 @@ const products: Product[] = [
     rebateQuantity: 2,
     rebatePercent: 10,
     upsellProductId: null,
+    quantity: 1,
   },
   {
     id: "sugar-white-1kg",
@@ -251,6 +290,7 @@ const products: Product[] = [
     rebateQuantity: 4,
     rebatePercent: 25,
     upsellProductId: "sugar-cane-1kg",
+    quantity: 1,
   },
   {
     id: "sugar-cane-1kg",
@@ -260,6 +300,7 @@ const products: Product[] = [
     rebateQuantity: 4,
     rebatePercent: 25,
     upsellProductId: "sugar-organic-1kg",
+    quantity: 1,
   },
   {
     id: "sugar-organic-1kg",
@@ -269,6 +310,7 @@ const products: Product[] = [
     rebateQuantity: 2,
     rebatePercent: 10,
     upsellProductId: null,
+    quantity: 1,
   },
 ];
 
