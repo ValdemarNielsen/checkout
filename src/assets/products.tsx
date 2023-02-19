@@ -6,19 +6,8 @@ type Product = {
   rebateQuantity: number;
   rebatePercent: number;
   upsellProductId: string | null;
-  quantity: number
+  quantity: number;
 };
-
-function TotalPrice(products: any) {
-  let total = 0;
-  for (let i = 0; i < products.length - 1; i++) {
-    if (products[i].quantity >= products[i].rebateQuantity) {
-      products[i].price = products[i].price * (products[i].rebatePercent / 100);
-    }
-    total += products[i].price * products[i].quantity;
-  }
-  return total
-}
 
 const products: Product[] = [
   {
@@ -314,3 +303,27 @@ const products: Product[] = [
 ];
 
 export default products;
+
+//Create a function that takes the products price for all products and returns the total price of all products.
+
+function totalPrice(product: any) {
+  let total = 0;
+  for (let i = 0; i < products.length; i++) {
+    total += products[i].price;
+  }
+  return total;
+}
+
+//Make the totalPrice function return the total price of all products with a rebate based on correct quantity of products.
+
+function totalPriceRebate(product: any) {
+  let total = 0;
+  for (let i = 0; i < products.length; i++) {
+    if (products[i].quantity >= products[i].rebateQuantity) {
+      total += products[i].price * (1 - products[i].rebatePercent / 100);
+    } else {
+      total += products[i].price;
+    }
+  }
+  return total;
+}
