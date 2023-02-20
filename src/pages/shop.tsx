@@ -18,6 +18,9 @@ export default function Shop() {
                 if (product.quantity >= 1) {
                   product.quantity--;
                 }
+                else {
+                    product.quantity = 0;
+                }
               }}
             >
               -
@@ -44,7 +47,7 @@ function totalPriceRebate(product: any) {
     if (products[i].quantity >= products[i].rebateQuantity) {
       total +=
         products[i].price *
-        (1 - products[i].rebatePercent / 100) *
+        (100 - products[i].rebatePercent / 100) *
         products[i].quantity;
     } else {
       total += products[i].price * products[i].quantity;
