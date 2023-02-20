@@ -47,7 +47,7 @@ function totalPriceRebate(product: any) {
     if (products[i].quantity >= products[i].rebateQuantity) {
       total +=
         products[i].price *
-        (100 - products[i].rebatePercent / 100) *
+        (1 - products[i].rebatePercent / 100) *
         products[i].quantity;
     } else {
       total += products[i].price * products[i].quantity;
