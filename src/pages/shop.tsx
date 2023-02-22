@@ -55,15 +55,30 @@ export default function Shop() {
       <h3>Choose your gains whisely</h3>
       <div>
         {basket.map((product) => (
-          <div key={product.id} className="basketbox">
+          <div
+            style={{ display: "flex", flexDirection: "column" }}
+            key={product.id}
+            className="basketbox"
+          >
             <h2>{product.name}</h2>
 
-            <p>
-              stk. pris = {product.price} {product.currency}
-            </p>
-            <DecrementButton onClick={() => decrementBasketItem(product.id)} />
-            <IncrementButton onClick={() => incrementBasketItem(product.id)} />
-            <p>Quantity = {product.quantity}</p>
+            <div>
+              <div style={{ display: "flex", flexDirection: "row" }}>
+                <DecrementButton
+                  onClick={() => decrementBasketItem(product.id)}
+                />
+                <button className="betweenbuttonstyle">
+                  {" "}
+                  <p>{product.quantity}</p>
+                </button>
+                <IncrementButton
+                  onClick={() => incrementBasketItem(product.id)}
+                />
+              </div>
+              <p>
+                Pris: {product.price} {product.currency}
+              </p>
+            </div>
           </div>
         ))}
         <p>Du sparer = {rebateAmount(basket)},- DKK</p>
@@ -75,11 +90,19 @@ export default function Shop() {
 
 //Use useState to update the quantity of the products when using decrement and increment buttons.
 function DecrementButton({ onClick }: { onClick: () => void }) {
-  return <button onClick={onClick}>-</button>;
+  return (
+    <button onClick={onClick} className="buttonleft">
+      -
+    </button>
+  );
 }
 
 function IncrementButton({ onClick }: { onClick: () => void }) {
-  return <button onClick={onClick}>+</button>;
+  return (
+    <button onClick={onClick} className="buttonright">
+      +
+    </button>
+  );
 }
 
 //Make the totalPriceWRebate function which calculates the total price of the basket and check the quantity of each product to see if the rebate applies.
