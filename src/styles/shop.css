@@ -14,50 +14,63 @@ body {
     border: 1px solid gray;
     background-color: white;
 
-    width: 600px;
-    height: 200px;
+    width: 500px;
+    height: 100px;
     float: inline-start;
-    background-color: rgb(48, 77, 109);
+    background-color: lightblue;
+    margin: 20px;
 }
 
 .buttonright {
-    font-size: 25px;
+    width: 25%;
+    font-size: 20px;
     display: inline-block;
     outline: 0;
     cursor: pointer;
     border: none;
     padding: 0 15px;
-    border-radius: 0px 10px 10px 0px;
+    border-radius: 10px 10px 10px 10px;
     background-color: #0070f3;
     color: white;
     box-shadow: 0 4px 14px 0 rgb(0 118 255 / 39%);
-    transition: background 0.2s ease,color 0.2s ease,box-shadow 0.2s ease;
     }hover{
         background: rgba(0,118,255,0.9);
         box-shadow: 0 6px 20px rgb(0 118 255 / 23%);
     }
     .buttonleft {
-        font-size: 25px;
+        width: 25%;
+        font-size: 20px;
         display: inline-block;
         outline: 0;
         cursor: pointer;
         border: none;
         padding: 0 15px;
-        border-radius: 10px 0px 0px 10px;
+        border-radius: 10px 10px 10px 10px;
         background-color: #0070f3;
         color: white;
-        box-shadow: 0 4px 14px 0 rgb(0 118 255 / 39%);
-        transition: background 0.2s ease,color 0.2s ease,box-shadow 0.2s ease;
+        box-shadow: 0 4px 14px 0 rgba(30, 159, 235, 0.39);
     }hover{
             background: rgba(0,118,255,0.9);
             box-shadow: 0 6px 20px rgb(0 118 255 / 23%);
         }
 
-.betweenbuttonstyle{
-    background-color: #0070f3;
-    box-shadow: 0 4px 14px 0 rgb(0 118 255 / 39%);
-    display: inline-block;
-        outline: 0;
-        cursor: pointer;
-        border: none;
+
+.itempadding{
+    padding-top: 40px;
+    padding-bottom: 40px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.quantityspacer{
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.smallpadding{
+    padding-right: 20px;
+}
+
+.fontface{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }

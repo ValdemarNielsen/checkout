@@ -44,13 +44,13 @@ export default function Shop() {
   const decrementBasketItem = (id: string) => {
     const newBasket = basket.map((item) => {
       if (item.id === id) {
-        if (item.quantity >=1) {
-        return {
+        if (item.quantity >= 1) {
+          return {
             ...item,
             quantity: item.quantity - 1,
-
-        };
-      }}
+          };
+        }
+      }
       return item;
     });
 
@@ -63,29 +63,45 @@ export default function Shop() {
       <h3>Choose your gains wheysely</h3>
       <div>
         {basket.map((product) => (
-          <div
-            style={{ display: "flex", flexDirection: "column" }}
-            key={product.id}
-            className="basketbox"
-          >
-            <h2>{product.name}</h2>
+          <div key={product.id} className="basketbox itempadding">
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between",
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+              >
+                <p> {product.name}</p>
 
-            <div>
-              <div style={{ display: "flex", flexDirection: "row" }}>
-                <DecrementButton
-                  onClick={() => decrementBasketItem(product.id)}
-                />
-                <button className="betweenbuttonstyle">
-                  {" "}
-                  <p>{product.quantity}</p>
-                </button>
-                <IncrementButton
-                  onClick={() => incrementBasketItem(product.id)}
-                />
+                <div>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                    }}
+                  >
+                    <div className="smallpadding">
+                      <p>quantity</p>
+                    </div>
+                    <DecrementButton
+                      onClick={() => decrementBasketItem(product.id)}
+                    />
+                    <div className="quantityspacer">
+                      <p>{product.quantity}</p>
+                    </div>
+                    <IncrementButton
+                      onClick={() => incrementBasketItem(product.id)}
+                    />
+                  </div>
+                </div>
               </div>
-              <p>
-                Pris: {product.price} {product.currency}
-              </p>
+              {product.price} {product.currency}
             </div>
           </div>
         ))}
