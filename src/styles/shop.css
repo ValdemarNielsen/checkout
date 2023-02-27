@@ -56,7 +56,7 @@ body {
     }hover{
             background: rgba(0,118,255,0.9);
 
-.buttondecrement:hover {
+    }hover {
     background-color: black;
 }
 
