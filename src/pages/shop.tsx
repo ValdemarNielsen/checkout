@@ -21,6 +21,11 @@ export default function Shop() {
       quantity: 2,
       giftWrap: false,
     },
+    {
+      ...itemDict["fish-oil-1000-120"],
+      quantity: 1,
+      giftWrap: false,
+    },
   ] as BasketItems[]);
 
   const incrementBasketItem = (id: string) => {
@@ -39,20 +44,23 @@ export default function Shop() {
   const decrementBasketItem = (id: string) => {
     const newBasket = basket.map((item) => {
       if (item.id === id) {
+        if (item.quantity >=1) {
         return {
-          ...item,
-          quantity: item.quantity - 1,
+            ...item,
+            quantity: item.quantity - 1,
+
         };
-      }
+      }}
       return item;
     });
+
     setBasket(newBasket);
   };
 
   return (
     <div>
       <h1 className="shopstyle">Welcome to the House of Protein</h1>
-      <h3>Choose your gains whisely</h3>
+      <h3>Choose your gains wheysely</h3>
       <div>
         {basket.map((product) => (
           <div
