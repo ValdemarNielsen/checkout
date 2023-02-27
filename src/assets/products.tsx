@@ -13,7 +13,6 @@ export type BasketItems = Product & {
   giftWrap: boolean;
 };
 
-
 const products: Product[] = [
   {
     id: "clear-whey-100",

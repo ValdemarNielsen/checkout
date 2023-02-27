@@ -12,11 +12,10 @@ body {
 
 .basketbox {
     border: 1px solid gray;
-    background-color: white;
-
+    border-radius: 5px;
     width: 600px;
     height: 200px;
-    float: inline-start;
+
     background-color: rgb(48, 77, 109);
 }
 
@@ -30,12 +29,13 @@ body {
     border-radius: 0px 10px 10px 0px;
     background-color: #0070f3;
     color: white;
-    box-shadow: 0 4px 14px 0 rgb(0 118 255 / 39%);
+
     transition: background 0.2s ease,color 0.2s ease,box-shadow 0.2s ease;
     }hover{
         background: rgba(0,118,255,0.9);
-        box-shadow: 0 6px 20px rgb(0 118 255 / 23%);
+
     }
+
     .buttonleft {
         font-size: 25px;
         display: inline-block;
@@ -46,18 +46,19 @@ body {
         border-radius: 10px 0px 0px 10px;
         background-color: #0070f3;
         color: white;
-        box-shadow: 0 4px 14px 0 rgb(0 118 255 / 39%);
+
         transition: background 0.2s ease,color 0.2s ease,box-shadow 0.2s ease;
         }hover{
             background: rgba(0,118,255,0.9);
-            box-shadow: 0 6px 20px rgb(0 118 255 / 23%);
+
         }
 
 .betweenbuttonstyle{
     background-color: #0070f3;
-    box-shadow: 0 4px 14px 0 rgb(0 118 255 / 39%);
+
     display: inline-block;
         outline: 0;
         cursor: pointer;
         border: none;
 }
+
