@@ -23,6 +23,7 @@ body {
 }
 
 .buttonright {
+    margin: 10px;
     width: 25%;
     font-size: 20px;
     display: inline-block;
@@ -41,6 +42,7 @@ body {
 }
 
     .buttonleft {
+        margin: 10px;
         width: 25%;
         font-size: 20px;
         display: inline-block;
@@ -66,14 +68,22 @@ body {
 }
 
 .quantityspacer{
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 .smallpadding{
     padding-right: 20px;
 }
 
-.fontface{
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+.font-link-title{
+    font-family: 'Bebas Neue', cursive;
+    font-size: 30px;
 }
+
+.font-link-quantity{
+    font-family: 'Bebas Neue', cursive;
+    font-size: 20px;
+    font-style: thin;
+}
+

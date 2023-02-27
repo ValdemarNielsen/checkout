@@ -58,7 +58,6 @@ export default function Shop() {
   };
 
   return (
-
     <div>
       <h1 className="shopstyle">Welcome to the House of Protein</h1>
       <h3>Choose your gains wheysely</h3>
@@ -78,7 +77,7 @@ export default function Shop() {
                   flexDirection: "column",
                 }}
               >
-                <p> {product.name}</p>
+                <div className="font-link-title">{product.name}</div>
 
                 <div>
                   <div
@@ -87,7 +86,7 @@ export default function Shop() {
                       flexDirection: "row",
                     }}
                   >
-                    <div className="smallpadding">
+                    <div className="smallpadding font-link-quantity">
                       <p>quantity</p>
                     </div>
                     <DecrementButton
