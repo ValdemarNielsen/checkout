@@ -20,7 +20,7 @@ body {
     background-color: rgb(48, 77, 109);
 }
 
-.buttonright {
+.buttonaddition {
     font-size: 25px;
     display: inline-block;
     outline: 0;
@@ -31,36 +31,37 @@ body {
     background-color: #0070f3;
     color: white;
 
-    transition: background 0.2s ease,color 0.2s ease,box-shadow 0.2s ease;
-    }
-
-.buttonright:hover {
-    transform: scale(1.5) perspective(1px)
+    transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
 }
 
-    .buttonleft {
-        font-size: 25px;
-        display: inline-block;
-        outline: 0;
-        cursor: pointer;
-        border: none;
-        padding: 0 15px;
-        border-radius: 10px 0px 0px 10px;
-        background-color: #0070f3;
-        color: white;
+.buttonaddition:hover {
+    background-color: black;
+}
 
-        transition: background 0.2s ease,color 0.2s ease,box-shadow 0.2s ease;
-    }hover{
-            background: rgba(0,118,255,0.9);
+.buttonsubtract {
+    font-size: 25px;
+    display: inline-block;
+    outline: 0;
+    cursor: pointer;
+    border: none;
+    padding: 0 15px;
+    border-radius: 10px 0px 0px 10px;
+    background-color: #0070f3;
+    color: white;
 
-        }
+    transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
 
-.betweenbuttonstyle{
+.buttonsubtract:hover {
+    background-color: black;
+}
+
+.betweenbuttonstyle {
     background-color: #0070f3;
 
     display: inline-block;
-        outline: 0;
-        cursor: pointer;
-        border: none;
+    outline: 0;
+    cursor: pointer;
+    border: none;
 }
 
