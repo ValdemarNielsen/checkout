@@ -49,7 +49,7 @@ body {
         color: white;
         box-shadow: 0 4px 14px 0 rgb(0 118 255 / 39%);
         transition: background 0.2s ease,color 0.2s ease,box-shadow 0.2s ease;
-        }hover{
+    }hover{
             background: rgba(0,118,255,0.9);
             box-shadow: 0 6px 20px rgb(0 118 255 / 23%);
         }
