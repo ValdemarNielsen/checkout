@@ -21,6 +21,11 @@ export default function Shop() {
       quantity: 2,
       giftWrap: false,
     },
+    {
+      ...itemDict["fish-oil-1000-120"],
+      quantity: 1,
+      giftWrap: false,
+    },
   ] as BasketItems[]);
 
   const incrementBasketItem = (id: string) => {
