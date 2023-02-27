@@ -8,6 +8,7 @@
 
 body {
     background-color: rgb(167, 204, 237);
+    max-width: 100%;
 }
 
 .basketbox {
@@ -32,11 +33,13 @@ body {
     border-radius: 10px 10px 10px 10px;
     background-color: #0070f3;
     color: white;
-    box-shadow: 0 4px 14px 0 rgb(0 118 255 / 39%);
-    }hover{
-        background: rgba(0,118,255,0.9);
-        box-shadow: 0 6px 20px rgb(0 118 255 / 23%);
+
     }
+
+.buttonright:hover {
+    transform: scale(1.5) perspective(1px)
+}
+
     .buttonleft {
         width: 25%;
         font-size: 20px;
@@ -51,7 +54,7 @@ body {
         box-shadow: 0 4px 14px 0 rgba(30, 159, 235, 0.39);
     }hover{
             background: rgba(0,118,255,0.9);
-            box-shadow: 0 6px 20px rgb(0 118 255 / 23%);
+
         }
 
 

@@ -58,6 +58,7 @@ export default function Shop() {
   };
 
   return (
+
     <div>
       <h1 className="shopstyle">Welcome to the House of Protein</h1>
       <h3>Choose your gains wheysely</h3>
