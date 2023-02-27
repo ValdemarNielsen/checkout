@@ -13,17 +13,14 @@ body {
 
 .basketbox {
     border: 1px solid gray;
-    background-color: white;
-
     width: 500px;
     height: 100px;
-    float: inline-start;
     background-color: lightblue;
     margin: 20px;
 }
 
-.buttonright {
-    width: 25%;
+.buttonincrement {
+
     font-size: 20px;
     display: inline-block;
     outline: 0;
@@ -33,49 +30,48 @@ body {
     border-radius: 10px 10px 10px 10px;
     background-color: #0070f3;
     color: white;
+    width: 40px;
 
-    }
+}
 
-.buttonaddition:hover {
+.buttonincrement:hover {
     background-color: black;
 }
 
-    .buttonleft {
-        width: 25%;
-        font-size: 20px;
-        display: inline-block;
-        outline: 0;
-        cursor: pointer;
-        border: none;
-        padding: 0 15px;
-        border-radius: 10px 10px 10px 10px;
-        background-color: #0070f3;
-        color: white;
-        box-shadow: 0 4px 14px 0 rgba(30, 159, 235, 0.39);
-    }hover{
-            background: rgba(0,118,255,0.9);
+.buttondecrement {
+    width: 40px;
+    font-size: 20px;
+    display: inline-block;
+    outline: 0;
+    cursor: pointer;
+    border: none;
+    padding: 0 15px;
+    border-radius: 10px 10px 10px 10px;
+    background-color: #0070f3;
+    color: white;
+    box-shadow: 0 4px 14px 0 rgba(30, 159, 235, 0.39);
+}
 
-.buttonsubtract:hover {
+.buttondecrement:hover {
     background-color: black;
 }
 
-
-.itempadding{
+.itempadding {
     padding-top: 40px;
     padding-bottom: 40px;
     padding-left: 20px;
     padding-right: 20px;
 }
 
-.quantityspacer{
+.quantityspacer {
     padding-left: 15px;
     padding-right: 15px;
 }
 
-.smallpadding{
+.smallpadding {
     padding-right: 20px;
 }
 
-.fontface{
+.fontface {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
