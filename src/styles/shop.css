@@ -13,55 +13,69 @@ body {
 
 .basketbox {
     border: 1px solid gray;
-    border-radius: 5px;
-    width: 600px;
-    height: 200px;
+    background-color: white;
 
-    background-color: rgb(48, 77, 109);
+    width: 500px;
+    height: 100px;
+    float: inline-start;
+    background-color: lightblue;
+    margin: 20px;
 }
 
-.buttonaddition {
-    font-size: 25px;
+.buttonright {
+    width: 25%;
+    font-size: 20px;
     display: inline-block;
     outline: 0;
     cursor: pointer;
     border: none;
     padding: 0 15px;
-    border-radius: 0px 10px 10px 0px;
+    border-radius: 10px 10px 10px 10px;
     background-color: #0070f3;
     color: white;
 
-    transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
-}
+    }
 
 .buttonaddition:hover {
     background-color: black;
 }
 
-.buttonsubtract {
-    font-size: 25px;
-    display: inline-block;
-    outline: 0;
-    cursor: pointer;
-    border: none;
-    padding: 0 15px;
-    border-radius: 10px 0px 0px 10px;
-    background-color: #0070f3;
-    color: white;
-
-    transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
-}
+    .buttonleft {
+        width: 25%;
+        font-size: 20px;
+        display: inline-block;
+        outline: 0;
+        cursor: pointer;
+        border: none;
+        padding: 0 15px;
+        border-radius: 10px 10px 10px 10px;
+        background-color: #0070f3;
+        color: white;
+        box-shadow: 0 4px 14px 0 rgba(30, 159, 235, 0.39);
+    }hover{
+            background: rgba(0,118,255,0.9);
 
 .buttonsubtract:hover {
     background-color: black;
 }
 
-.betweenbuttonstyle {
-    background-color: #0070f3;
 
-    display: inline-block;
-    outline: 0;
-    cursor: pointer;
-    border: none;
+.itempadding{
+    padding-top: 40px;
+    padding-bottom: 40px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
+.quantityspacer{
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.smallpadding{
+    padding-right: 20px;
+}
+
+.fontface{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
