@@ -25,7 +25,6 @@ body {
 
 .buttonincrement {
     margin: 10px;
-    width: 25%;
 
     font-size: 20px;
     display: inline-block;
@@ -36,7 +35,7 @@ body {
     border-radius: 10px 10px 10px 10px;
     background-color: #0070f3;
     color: white;
-    width: 40px;
+    width: 50px;
 
 }
 
@@ -46,7 +45,7 @@ body {
 
 .buttondecrement {
     margin: 10px;
-    width: 25%;
+    width: 50px;
         font-size: 20px;
         display: inline-block;
         outline: 0;
@@ -57,10 +56,9 @@ body {
         background-color: #0070f3;
         color: white;
         box-shadow: 0 4px 14px 0 rgba(30, 159, 235, 0.39);
-    }hover{
-            background: rgba(0,118,255,0.9);
+    }
 
-    }hover {
+.buttondecrement:hover {
     background-color: black;
 }
 
