@@ -115,7 +115,7 @@ export default function Shop() {
 //Use useState to update the quantity of the products when using decrement and increment buttons.
 function DecrementButton({ onClick }: { onClick: () => void }) {
   return (
-    <button onClick={onClick} className="buttonleft">
+    <button onClick={onClick} className="buttondecrement">
       -
     </button>
   );
@@ -123,7 +123,7 @@ function DecrementButton({ onClick }: { onClick: () => void }) {
 
 function IncrementButton({ onClick }: { onClick: () => void }) {
   return (
-    <button onClick={onClick} className="buttonright">
+    <button onClick={onClick} className="buttonincrement">
       +
     </button>
   );
