@@ -39,13 +39,16 @@ export default function Shop() {
   const decrementBasketItem = (id: string) => {
     const newBasket = basket.map((item) => {
       if (item.id === id) {
+        if (item.quantity >=1) {
         return {
-          ...item,
-          quantity: item.quantity - 1,
+            ...item,
+            quantity: item.quantity - 1,
+
         };
-      }
+      }}
       return item;
     });
+
     setBasket(newBasket);
   };
 

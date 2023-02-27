@@ -14,8 +14,6 @@ export type BasketItems = Product & {
 };
 
 
-
-
 const products: Product[] = [
   {
     id: "clear-whey-100",
