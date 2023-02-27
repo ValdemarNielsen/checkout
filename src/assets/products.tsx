@@ -6,6 +6,7 @@ type Product = {
   rebateQuantity: number;
   rebatePercent: number;
   upsellProductId: string | null;
+  image: string;
 };
 
 export type BasketItems = Product & {
@@ -22,6 +23,7 @@ const products: Product[] = [
     rebateQuantity: 3,
     rebatePercent: 10,
     upsellProductId: null,
+    image: "/clear_whey.png"
   },
   {
     id: "valle-protion-whey-100-vanilla",
@@ -31,6 +33,7 @@ const products: Product[] = [
     rebateQuantity: 2,
     rebatePercent: 25,
     upsellProductId: "vitamin-c-depot-500-250",
+    image: "/vanilla_whey.png"
   },
   {
     id: "valle-protein-whey-100-chocolate",
@@ -40,6 +43,7 @@ const products: Product[] = [
     rebateQuantity: 3,
     rebatePercent: 10,
     upsellProductId: null,
+    image: "/chocolate_whey.png"
   },
   {
     id: "fish-oil-1000-120",
@@ -49,6 +53,7 @@ const products: Product[] = [
     rebateQuantity: 5,
     rebatePercent: 10,
     upsellProductId: null,
+    image: "/fiske_olie.png"
   },
   {
     id: "sugar-white-1kg",
@@ -58,6 +63,7 @@ const products: Product[] = [
     rebateQuantity: 4,
     rebatePercent: 25,
     upsellProductId: "sugar-cane-1kg",
+    image: "test"
   },
   {
     id: "sugar-cane-1kg",
@@ -67,6 +73,7 @@ const products: Product[] = [
     rebateQuantity: 4,
     rebatePercent: 25,
     upsellProductId: "sugar-organic-1kg",
+    image: "test"
   },
   {
     id: "sugar-organic-1kg",
@@ -76,6 +83,7 @@ const products: Product[] = [
     rebateQuantity: 2,
     rebatePercent: 10,
     upsellProductId: null,
+    image: "test"
   },
 ];
 
