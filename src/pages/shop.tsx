@@ -4,6 +4,7 @@ import products, { BasketItems, itemDict } from "../assets/products";
 import { useState } from "react";
 import "../styles/shop.css";
 
+
 export default function Shop() {
   const [basket, setBasket] = useState<BasketItems[]>([
     {
@@ -71,6 +72,7 @@ export default function Shop() {
                 justifyContent: "space-between",
               }}
             >
+              <img src={product.image}/>
               <div
                 style={{
                   display: "flex",
