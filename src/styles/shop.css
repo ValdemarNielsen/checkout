@@ -24,6 +24,8 @@ body {
 }
 
 .buttonincrement {
+    margin: 10px;
+    width: 25%;
 
     font-size: 20px;
     display: inline-block;
@@ -43,18 +45,20 @@ body {
 }
 
 .buttondecrement {
-    width: 40px;
-    font-size: 20px;
-    display: inline-block;
-    outline: 0;
-    cursor: pointer;
-    border: none;
-    padding: 0 15px;
-    border-radius: 10px 10px 10px 10px;
-    background-color: #0070f3;
-    color: white;
-    box-shadow: 0 4px 14px 0 rgba(30, 159, 235, 0.39);
-}
+    margin: 10px;
+    width: 25%;
+        font-size: 20px;
+        display: inline-block;
+        outline: 0;
+        cursor: pointer;
+        border: none;
+        padding: 0 15px;
+        border-radius: 10px 10px 10px 10px;
+        background-color: #0070f3;
+        color: white;
+        box-shadow: 0 4px 14px 0 rgba(30, 159, 235, 0.39);
+    }hover{
+            background: rgba(0,118,255,0.9);
 
 .buttondecrement:hover {
     background-color: black;
@@ -67,7 +71,7 @@ body {
     padding-right: 20px;
 }
 
-.quantityspacer {
+.quantityspacer{
     padding-left: 15px;
     padding-right: 15px;
 }
@@ -76,6 +80,14 @@ body {
     padding-right: 20px;
 }
 
-.fontface {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+.font-link-title{
+    font-family: 'Bebas Neue', cursive;
+    font-size: 30px;
 }
+
+.font-link-quantity{
+    font-family: 'Bebas Neue', cursive;
+    font-size: 20px;
+    font-style: thin;
+}
+
