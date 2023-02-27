@@ -48,7 +48,7 @@ body {
         color: white;
 
         transition: background 0.2s ease,color 0.2s ease,box-shadow 0.2s ease;
-        }hover{
+    }hover{
             background: rgba(0,118,255,0.9);
 
         }
