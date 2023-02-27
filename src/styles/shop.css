@@ -8,6 +8,7 @@
 
 body {
     background-color: rgb(167, 204, 237);
+    max-width: 100%;
 }
 
 .basketbox {
@@ -31,10 +32,11 @@ body {
     color: white;
 
     transition: background 0.2s ease,color 0.2s ease,box-shadow 0.2s ease;
-    }hover{
-        background: rgba(0,118,255,0.9);
-
     }
+
+.buttonright:active {
+    transform: scale(1.5) perspective(1px)
+}
 
     .buttonleft {
         font-size: 25px;
