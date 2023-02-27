@@ -34,7 +34,7 @@ body {
     transition: background 0.2s ease,color 0.2s ease,box-shadow 0.2s ease;
     }
 
-.buttonright:active {
+.buttonright:hover {
     transform: scale(1.5) perspective(1px)
 }
 
