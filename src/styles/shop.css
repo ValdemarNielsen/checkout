@@ -89,3 +89,6 @@ body {
     font-style: thin;
 }
 
+.invalid-field{
+border-color: red;
+}

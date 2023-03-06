@@ -3,7 +3,7 @@ import React from "react";
 import products, {BasketItems, itemDict} from "../assets/products";
 import {useState} from "react";
 import "../styles/shop.css";
-
+import { Navigate } from "react-router-dom";
 
 export default function Shop() {
     const [basket, setBasket] = useState<BasketItems[]>([
@@ -57,60 +57,67 @@ export default function Shop() {
         setBasket(newBasket);
     };
 
-    return (
-        <div>
-            <h1 className="shopstyle">Welcome to the House of Protein</h1>
-            <h3>Choose your gains wheysely</h3>
-            <div>
-                {basket.map((product) => (
-                    <div key={product.id} className="basketbox itempadding">
-                        <div
-                            style={{
-                                display: "flex",
-                                flexDirection: "row",
-                                justifyContent: "space-between",
-                            }}
-                        >
-                            <img src={product.image}/>
-                            <div
-                                style={{
-                                    display: "flex",
-                                    flexDirection: "column",
-                                }}
-                            >
-                                <div className="font-link-title">{product.name}</div>
+  return (
+    <div>
+      <h1 className="shopstyle">Welcome to the House of Protein</h1>
+      <h3>Choose your gains wheysely</h3>
+      <div>
+        {basket.map((product) => (
+          <div key={product.id} className="basketbox itempadding">
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between",
+              }}
+            >
+              <img src={product.image} />
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+              >
+                <div className="font-link-title">{product.name}</div>
 
-                                <div>
-                                    <div
-                                        style={{
-                                            display: "flex",
-                                            flexDirection: "row",
-                                        }}
-                                    >
-                                        <div className="smallpadding font-link-quantity">
-                                            <p>quantity</p>
-                                        </div>
-                                        <DecrementButton
-                                            onClick={() => decrementBasketItem(product.id)}
-                                        />
-                                        <div className="quantityspacer">
-                                            <p>{product.quantity}</p>
-                                        </div>
-                                        <IncrementButton
-                                            onClick={() => incrementBasketItem(product.id)}
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-                            {product.price} {product.currency}
-                        </div>
+                <div>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                    }}
+                  >
+                    <div className="smallpadding font-link-quantity">
+                      <p>Quantity : </p>
                     </div>
-                ))}
-                <p>Du sparer = {rebateAmount(basket)},- DKK</p>
-                <p>Total beløb = {totalPriceWRebate(basket)},- DKK</p>
+                    <DecrementButton
+                      onClick={() => decrementBasketItem(product.id)}
+                    />
+                    <div className="quantityspacer">
+                      <p>{product.quantity}</p>
+                    </div>
+                    <IncrementButton
+                      onClick={() => incrementBasketItem(product.id)}
+                    />
+                  </div>
+                </div>
+              </div>
+              {product.price} {product.currency}
             </div>
-        </div>
-    );
+          </div>
+        ))}
+
+        <div>{discountBox()}</div>
+        <p>You save = {rebateAmount(basket)},- DKK</p>
+        <p>Total amount = {totalPriceWRebate(basket)},- DKK</p>
+      </div>
+      {/* //Navigate to checkoyt.tsx when the user clicks the checkout button. */}
+      <div>
+        {/* useNavigate or Navigate to, to navigate */}
+        <button onClick={() => {}}>Gå til betaling</button>
+      </div>
+    </div>
+  );
 }
 
 //Use useState to update the quantity of the products when using decrement and increment buttons.
@@ -131,7 +138,6 @@ function IncrementButton({onClick}: { onClick: () => void }) {
 }
 
 //Make the totalPriceWRebate function which calculates the total price of the basket and check the quantity of each product to see if the rebate applies.
-
 
 function totalPriceWRebate(basket: BasketItems[]) {
     let rabatGiven = 0;
@@ -172,4 +178,39 @@ function rebateAmount(basket: BasketItems[]) {
         rabat = 1;
     }
     return rebate + extrarabate;
+}
+
+//Function discountBox, shows a box with a button to apply a discount code from one of the different codes in the discountCodes array.
+function discountBox() {
+  const discountCodes = ["10PERCENT", "20PERCENT", "30PERCENT"];
+  const [discountCode, setDiscountCode] = useState<string>("20");
+
+  const applyDiscount = (discountCode: string) => {
+    setDiscountCode(discountCode);
+  };
+
+  return (
+    //If discountCodes then apply the discount code, else show the discount box.
+    <div>
+      {discountCodes.length > 0 ? (
+        <div>
+          <div className="discountbox">
+            <p>Discount code</p>
+            <input
+              type="text"
+              placeholder="Enter discount code"
+              onChange={(e) => setDiscountCode(e.target.value)}
+            />
+            <button onClick={() => applyDiscount(discountCode)}>
+              Apply discount
+            </button>
+          </div>
+        </div>
+      ) : (
+        <div>
+          <p>Discount code applied</p>
+        </div>
+      )}
+    </div>
+  );
 }
