@@ -15,6 +15,7 @@ export default function Checkout() {
   const [vatNumber, setVatNumber] = useState("");
   const [isValidZip, setIsValidZip] = useState(false);
   const [isValidEmail, setIsValidEmail] = useState(false);
+  const [isCompany, setIsCompany] = useState(false)
   const [isValidVatNumber, setIsValidVatNumber] = useState(false);
   const [isPhoneValid, setIsPhoneValid] = useState(false);
 
@@ -39,6 +40,15 @@ export default function Checkout() {
     }
   };
 
+  const handleCompanyNameChange = (e: {target: {value: string } }) => {
+    const company = e.target.value;
+    setCompanyName(company)
+    if(company != null){
+      setIsCompany(true)
+    }
+      setIsCompany(false)
+  }
+
   const handleEmailChange = (e: { target: { value: any } }) => {
     const newEmail = e.target.value;
     setEmail(newEmail);
@@ -60,6 +70,13 @@ export default function Checkout() {
       setIsPhoneValid(false);
     }
   };
+
+  function handleCompanyName(e: number){
+    if (e > 0){
+      return true
+    }
+    return false
+  }
 
   const handleVatNumberChange = (e: { target: { value: any } }) => {
     const newVatNumber = e.target.value;
@@ -136,7 +153,7 @@ export default function Checkout() {
           value={vatNumber}
           onChange={handleVatNumberChange}
         />
-        {country === "Denmark" && !isValidVatNumber && (
+        {country === "Denmark" && (!isValidVatNumber && handleCompanyName(companyName.length)) &&(
           <p>Please enter a valid Danish VAT number with 8 digits</p>
         )}
         {country !== "Denmark" && <p>VAT number is optional</p>}
