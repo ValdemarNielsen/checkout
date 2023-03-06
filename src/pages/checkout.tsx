@@ -189,7 +189,12 @@ export default function Checkout() {
           onChange={(e) => setAddress2(e.target.value)}
         />
 
-        <button type="submit">Submit</button>
+        {/* If there are any errors/isValid fields that are not true, prompt it to the user */}
+        {isValidEmail && isPhoneValid && isValidVatNumber && isValidZip ? (
+          <button type="submit">Submit</button>
+        ) : (
+          <p>Please fill out all fields</p>
+        )}
       </form>
     </div>
   );
