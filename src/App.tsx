@@ -15,7 +15,7 @@ function App() {
     <html lang="en">
       <link href="shop.css" rel="stylesheet" />
       <div className="App">
-        <Checkout />
+        <Shop />
       </div>
     </html>
   );
