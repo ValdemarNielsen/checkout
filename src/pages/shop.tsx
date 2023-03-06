@@ -3,7 +3,7 @@ import React from "react";
 import products, {BasketItems, itemDict} from "../assets/products";
 import {useState} from "react";
 import "../styles/shop.css";
-import { Navigate } from "react-router-dom";
+import {Navigate} from "react-router-dom";
 
 export default function Shop() {
     const [basket, setBasket] = useState<BasketItems[]>([
@@ -155,6 +155,22 @@ function totalPriceWRebate(basket: BasketItems[]) {
    // return totalPrice;
     return (Math.round(totalPrice * 100) / 100).toFixed(2);
 }
+
+/*
+// function to change go from "shop" to "checkout"
+function changeSite() {
+const [screen, setScreen] = useState(0);
+    if (useState == 1) {
+        site = "Checkout";
+        state == 0;
+    }
+    if (state == 0) {
+        site = "Shop";
+        state == 1;
+    }
+}
+*/
+
 
 //Function that calculates the amount of rebate the user gets.
 function rebateAmount(basket: BasketItems[]) {
