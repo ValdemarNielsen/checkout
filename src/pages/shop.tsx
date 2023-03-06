@@ -152,7 +152,8 @@ function totalPriceWRebate(basket: BasketItems[]) {
         totalPrice = totalPrice * 0.9
         rabatGiven = 1;
     }
-    return totalPrice;
+   // return totalPrice;
+    return (Math.round(totalPrice * 100) / 100).toFixed(2);
 }
 
 //Function that calculates the amount of rebate the user gets.
@@ -166,6 +167,7 @@ function rebateAmount(basket: BasketItems[]) {
             rebate += (item.price * item.quantity * item.rebatePercent) / 100;
         }
     });
+
     basket.forEach((item) => {
         totalPrice += item.price * item.quantity;
         if (item.quantity >= item.rebateQuantity) {
@@ -177,7 +179,8 @@ function rebateAmount(basket: BasketItems[]) {
         extrarabate = totalPrice - (totalPrice * 0.9)
         rabat = 1;
     }
-    return rebate + extrarabate;
+     // return rebate + extrarabate;
+    return (Math.round(rebate+extrarabate * 100) / 100).toFixed(2);
 }
 
 //Function discountBox, shows a box with a button to apply a discount code from one of the different codes in the discountCodes array.
