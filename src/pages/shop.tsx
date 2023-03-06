@@ -3,7 +3,7 @@ import React from "react";
 import products, { BasketItems, itemDict } from "../assets/products";
 import { useState } from "react";
 import "../styles/shop.css";
-
+import { Navigate } from "react-router-dom";
 
 export default function Shop() {
   const [basket, setBasket] = useState<BasketItems[]>([
@@ -72,7 +72,7 @@ export default function Shop() {
                 justifyContent: "space-between",
               }}
             >
-              <img src={product.image}/>
+              <img src={product.image} />
               <div
                 style={{
                   display: "flex",
@@ -107,8 +107,15 @@ export default function Shop() {
             </div>
           </div>
         ))}
+
+        <div>{discountBox()}</div>
         <p>Du sparer = {rebateAmount(basket)},- DKK</p>
         <p>Total beløb = {totalPriceWRebate(basket)},- DKK</p>
+      </div>
+      {/* //Navigate to checkoyt.tsx when the user clicks the checkout button. */}
+      <div>
+        {/* useNavigate or Navigate to, to navigate */}
+        <button onClick={() => {}}>Gå til betaling</button>
       </div>
     </div>
   );
@@ -153,4 +160,39 @@ function rebateAmount(basket: BasketItems[]) {
     }
   });
   return rebate;
+}
+
+//Function discountBox, shows a box with a button to apply a discount code from one of the different codes in the discountCodes array.
+function discountBox() {
+  const discountCodes = ["10PERCENT", "20PERCENT", "30PERCENT"];
+  const [discountCode, setDiscountCode] = useState<string>("20");
+
+  const applyDiscount = (discountCode: string) => {
+    setDiscountCode(discountCode);
+  };
+
+  return (
+    //If discountCodes then apply the discount code, else show the discount box.
+    <div>
+      {discountCodes.length > 0 ? (
+        <div>
+          <div className="discountbox">
+            <p>Discount code</p>
+            <input
+              type="text"
+              placeholder="Enter discount code"
+              onChange={(e) => setDiscountCode(e.target.value)}
+            />
+            <button onClick={() => applyDiscount(discountCode)}>
+              Apply discount
+            </button>
+          </div>
+        </div>
+      ) : (
+        <div>
+          <p>Discount code applied</p>
+        </div>
+      )}
+    </div>
+  );
 }
