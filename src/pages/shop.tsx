@@ -89,7 +89,7 @@ export default function Shop() {
                     }}
                   >
                     <div className="smallpadding font-link-quantity">
-                      <p>quantity</p>
+                      <p>Quantity : </p>
                     </div>
                     <DecrementButton
                       onClick={() => decrementBasketItem(product.id)}
@@ -109,8 +109,8 @@ export default function Shop() {
         ))}
 
         <div>{discountBox()}</div>
-        <p>Du sparer = {rebateAmount(basket)},- DKK</p>
-        <p>Total beløb = {totalPriceWRebate(basket)},- DKK</p>
+        <p>You save = {rebateAmount(basket)},- DKK</p>
+        <p>Total amount = {totalPriceWRebate(basket)},- DKK</p>
       </div>
       {/* //Navigate to checkoyt.tsx when the user clicks the checkout button. */}
       <div>
