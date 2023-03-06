@@ -11,10 +11,12 @@ export default function Checkout() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [companyName, setCompanyName] = useState("");
+  const [phone, setPhone] = useState("");
   const [vatNumber, setVatNumber] = useState("");
   const [isValidZip, setIsValidZip] = useState(false);
   const [isValidEmail, setIsValidEmail] = useState(false);
   const [isValidVatNumber, setIsValidVatNumber] = useState(false);
+  const [isPhoneValid, setIsPhoneValid] = useState(false);
 
   const handleZipChange = (e: { target: { value: any } }) => {
     const newZip = e.target.value;
@@ -45,6 +47,17 @@ export default function Checkout() {
       setIsValidEmail(true);
     } else {
       setIsValidEmail(false);
+    }
+  };
+
+  const handlePhoneChange = (e: { target: { value: any } }) => {
+    const newPhone = e.target.value;
+    setPhone(newPhone);
+
+    if (/^\d{8}$/.test(newPhone)) {
+      setIsPhoneValid(true);
+    } else {
+      setIsPhoneValid(false);
     }
   };
 
@@ -97,6 +110,16 @@ export default function Checkout() {
           className={isValidEmail || email == "" ? "" : "invalid-field"}
         />
 
+        <label htmlFor="phone">Phone number</label>
+        <input
+          type="text"
+          name="phone"
+          id="phone"
+          value={phone}
+          onChange={handlePhoneChange}
+          className={isPhoneValid || phone == "" ? "" : "invalid-field"}
+        />
+
         <label htmlFor="companyName">Company name</label>
         <input
           type="text"
@@ -125,13 +148,10 @@ export default function Checkout() {
           onChange={(e) => setCountry(e.target.value)}
         >
           <option value="Denmark">Denmark</option>
-
           {/* 
-          Mulighed for flere dropdown valgmuligheder
           <option value="Russia">Sweden</option>
           <option value="Ukraine">Norway</option>
           <option value="Poladn">Finland</option> 
-          
           */}
         </select>
         <label htmlFor="zip">Zip code</label>
