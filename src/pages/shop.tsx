@@ -84,7 +84,6 @@ export default function Shop() {
               style={{
                 display: "flex",
                 flexDirection: "row",
-                justifyContent: "space-between",
               }}
             >
               <img src={product.image} className="imagepadding" />
@@ -119,8 +118,9 @@ export default function Shop() {
                   </div>
                 </div>
               </div>
-              {product.price} {product.currency}
             </div>
+            <div></div>
+            {product.price} {product.currency}
           </div>
         ))}
 
