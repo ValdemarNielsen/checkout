@@ -45,7 +45,7 @@ export default function Shop() {
     const decrementBasketItem = (id: string) => {
         const newBasket = basket.map((item) => {
             if (item.id === id) {
-                if (item.quantity >= 1) {
+                if (item.quantity >= 2) {
                     return {
                         ...item,
                         quantity: item.quantity - 1,
@@ -56,6 +56,22 @@ export default function Shop() {
         });
         setBasket(newBasket);
     };
+
+    const removeItem = (id: string) => {
+        const delBasket = basket.map((item) => {
+            let j = 0
+
+            for (let i = 0; i < basket.length; i++) {
+                if (basket[i].id == id){
+                    j = i
+                    break
+                }
+            }
+            delete delBasket[j]
+        })
+
+        return delBasket
+    }
 
   return (
     <div>
