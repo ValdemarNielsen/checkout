@@ -15,7 +15,7 @@ export default function Checkout() {
   const [vatNumber, setVatNumber] = useState("");
   const [isValidZip, setIsValidZip] = useState(false);
   const [isValidEmail, setIsValidEmail] = useState(false);
-  const [isCompany, setIsCompany] = useState(false)
+  const [isCompany, setIsCompany] = useState(false);
   const [isValidVatNumber, setIsValidVatNumber] = useState(false);
   const [isPhoneValid, setIsPhoneValid] = useState(false);
 
@@ -40,14 +40,14 @@ export default function Checkout() {
     }
   };
 
-  const handleCompanyNameChange = (e: {target: {value: string } }) => {
+  const handleCompanyNameChange = (e: { target: { value: string } }) => {
     const company = e.target.value;
-    setCompanyName(company)
-    if(company != null){
-      setIsCompany(true)
+    setCompanyName(company);
+    if (company != null) {
+      setIsCompany(true);
     }
-      setIsCompany(false)
-  }
+    setIsCompany(false);
+  };
 
   const handleEmailChange = (e: { target: { value: any } }) => {
     const newEmail = e.target.value;
@@ -71,11 +71,11 @@ export default function Checkout() {
     }
   };
 
-  function handleCompanyName(e: number){
-    if (e > 0){
-      return true
+  function handleCompanyName(e: number) {
+    if (e > 0) {
+      return true;
     }
-    return false
+    return false;
   }
 
   const handleVatNumberChange = (e: { target: { value: any } }) => {
@@ -145,7 +145,6 @@ export default function Checkout() {
           value={companyName}
           onChange={(e) => setCompanyName(e.target.value)}
         />
-
         <label htmlFor="vatNumber">VAT number</label>
         <input
           type="text"
@@ -154,11 +153,11 @@ export default function Checkout() {
           value={vatNumber}
           onChange={handleVatNumberChange}
         />
-
-        {country === "Denmark" && (!isValidVatNumber && handleCompanyName(companyName.length)) &&(
-          <p>Please enter a valid Danish VAT number with 8 digits</p>
-        )}
-
+        {country === "Denmark" &&
+          !isValidVatNumber &&
+          handleCompanyName(companyName.length) && (
+            <p>Please enter a valid Danish VAT number with 8 digits</p>
+          )}
         {country !== "Denmark" && <p>VAT number is optional</p>}
         <label htmlFor="country">Country</label>
         <select
@@ -182,7 +181,9 @@ export default function Checkout() {
           value={zip}
           onChange={handleZipChange}
         />
-        {country === "Denmark" && !isValidZip && <p>Husk at angive zip-code</p>}
+        {country === "Denmark" && !isValidZip && (
+          <p>Pls enter a valid zip code</p>
+        )}
         {country !== "Denmark" && <p>Zip code is optional</p>}
         <label htmlFor="city">City</label>
         <input
