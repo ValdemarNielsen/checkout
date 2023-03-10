@@ -5,12 +5,17 @@ img{
 }
 
 .shopstyle {
+
+    text-align: center;
     background-color: rgb(99, 173, 242);
     padding: 20px 0;
+    font-size: 30px;
+}
+.secondTitle {
+    text-align: center;
     font-size: 20px;
     
 }
-
 body {
     background-color: rgb(167, 204, 237);
     max-width: 100%;

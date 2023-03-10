@@ -42,25 +42,41 @@ export default function Shop() {
     setBasket(newBasket);
   };
 
-  const decrementBasketItem = (id: string) => {
-    const newBasket = basket.map((item) => {
-      if (item.id === id) {
-        if (item.quantity >= 1) {
-          return {
-            ...item,
-            quantity: item.quantity - 1,
-          };
-        }
-      }
-      return item;
-    });
-    setBasket(newBasket);
-  };
+    const decrementBasketItem = (id: string) => {
+        const newBasket = basket.map((item) => {
+            if (item.id === id) {
+                if (item.quantity >= 2) {
+                    return {
+                        ...item,
+                        quantity: item.quantity - 1,
+                    };
+                }
+            }
+            return item;
+        });
+        setBasket(newBasket);
+    };
+
+    const removeItem = (id: string) => {
+        const delBasket = basket.map((item) => {
+            let j = 0
+
+            for (let i = 0; i < basket.length; i++) {
+                if (basket[i].id == id){
+                    j = i
+                    break
+                }
+            }
+            delete delBasket[j]
+        })
+
+        return delBasket
+    }
 
   return (
     <div>
       <h1 className="shopstyle">Welcome to the House of Protein</h1>
-      <h3>Choose your gains wheysely</h3>
+      <h3 className="secondTitle">Choose your gains wheysely</h3>
       <div>
         {basket.map((product) => (
           <div key={product.id} className="basketbox itempadding">
@@ -168,6 +184,7 @@ const [screen, setScreen] = useState(0);
     }
 }
 */
+
 
 //Function that calculates the amount of rebate the user gets.
 function rebateAmount(basket: BasketItems[]) {
