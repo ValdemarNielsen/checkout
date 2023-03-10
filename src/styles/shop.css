@@ -8,6 +8,7 @@ img{
     background-color: rgb(99, 173, 242);
     padding: 20px 0;
     font-size: 20px;
+    
 }
 
 body {
@@ -17,10 +18,11 @@ body {
 
 .basketbox {
     border: 1px solid gray;
-    width: 500px;
+    width: 600px;
     height: 100px;
     background-color: lightblue;
     margin: 20px;
+    display: flex;
 }
 
 .buttonincrement {
@@ -63,16 +65,12 @@ body {
 }
 
 .itempadding {
-    padding-top: 40px;
-    padding-bottom: 40px;
+    padding-top: 20px;
+    padding-bottom: 20px;
     padding-left: 20px;
-    padding-right: 20px;
+    padding-right: 0px;
 }
 
-.quantityspacer{
-    padding-left: 15px;
-    padding-right: 15px;
-}
 
 .smallpadding {
     padding-right: 20px;
@@ -81,6 +79,9 @@ body {
 .font-link-title{
     font-family: 'Bebas Neue', cursive;
     font-size: 30px;
+    word-break: break-all; 
+
+
 }
 
 .font-link-quantity{
@@ -91,4 +92,8 @@ body {
 
 .invalid-field{
 border-color: red;
+}
+
+.imagepadding {
+    padding-right: 10px;
 }
