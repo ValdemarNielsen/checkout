@@ -5,6 +5,7 @@ import {useState} from "react";
 import "../styles/shop.css";
 import {Navigate} from "react-router-dom";
 
+
 export default function Shop() {
     const [basket, setBasket] = useState<BasketItems[]>([
         {
@@ -60,7 +61,7 @@ export default function Shop() {
   return (
     <div>
       <h1 className="shopstyle">Welcome to the House of Protein</h1>
-      <h3>Choose your gains wheysely</h3>
+      <h3 className="secondTitle">Choose your gains wheysely</h3>
       <div>
         {basket.map((product) => (
           <div key={product.id} className="basketbox itempadding">
@@ -157,6 +158,7 @@ function totalPriceWRebate(basket: BasketItems[]) {
 }
 
 /*
+
 // function to change go from "shop" to "checkout"
 function changeSite() {
 const [screen, setScreen] = useState(0);
@@ -171,6 +173,9 @@ const [screen, setScreen] = useState(0);
 }
 */
 
+function checkoutButton() {
+
+}
 
 //Function that calculates the amount of rebate the user gets.
 function rebateAmount(basket: BasketItems[]) {

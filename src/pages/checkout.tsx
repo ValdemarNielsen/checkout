@@ -145,6 +145,7 @@ export default function Checkout() {
           value={companyName}
           onChange={(e) => setCompanyName(e.target.value)}
         />
+
         <label htmlFor="vatNumber">VAT number</label>
         <input
           type="text"
@@ -153,9 +154,11 @@ export default function Checkout() {
           value={vatNumber}
           onChange={handleVatNumberChange}
         />
+
         {country === "Denmark" && (!isValidVatNumber && handleCompanyName(companyName.length)) &&(
           <p>Please enter a valid Danish VAT number with 8 digits</p>
         )}
+
         {country !== "Denmark" && <p>VAT number is optional</p>}
         <label htmlFor="country">Country</label>
         <select
