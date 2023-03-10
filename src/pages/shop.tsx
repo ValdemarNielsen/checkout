@@ -113,6 +113,9 @@ export default function Shop() {
                     <IncrementButton
                       onClick={() => incrementBasketItem(product.id)}
                     />
+                      <DeleteButton
+                          onClick={() => removeItem(product.id)}
+                      />
                   </div>
                 </div>
               </div>
@@ -149,6 +152,14 @@ function IncrementButton({ onClick }: { onClick: () => void }) {
       +
     </button>
   );
+}
+
+function DeleteButton({ onClick }: { onClick: () => void }) {
+    return (
+        <button onClick={onClick} className="buttondelete">
+            x
+        </button>
+    );
 }
 
 //Make the totalPriceWRebate function which calculates the total price of the basket and check the quantity of each product to see if the rebate applies.
