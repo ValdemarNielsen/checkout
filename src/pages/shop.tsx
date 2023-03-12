@@ -3,7 +3,8 @@ import React from "react";
 import products, {BasketItems, itemDict} from "../assets/products";
 import {useState} from "react";
 import "../styles/shop.css";
-import {Navigate} from "react-router-dom";
+import { Link, Navigate, Routes } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Shop() {
     const [basket, setBasket] = useState<BasketItems[]>([
@@ -42,60 +43,49 @@ export default function Shop() {
         setBasket(newBasket);
     };
 
-    const decrementBasketItem = (id: string) => {
-        const newBasket = basket.map((item) => {
-            if (item.id === id) {
-                if (item.quantity >= 2) {
-                    return {
-                        ...item,
-                        quantity: item.quantity - 1,
-                    };
-                }
-            }
-            return item;
-        });
-        setBasket(newBasket);
-    };
+  const decrementBasketItem = (id: string) => {
+    const newBasket = basket.map((item) => {
+      if (item.id === id) {
+        if (item.quantity >= 2) {
+          return {
+            ...item,
+            quantity: item.quantity - 1,
+          };
+        }
+      }
+      return item;
+    });
+    setBasket(newBasket);
+  };
 
-    const removeItem = (id: string) => {
-        const delBasket = basket.map((item) => {
-            let j = 0
+  const removeItem = (id: string) => {
+    const delBasket = basket.map((item) => {
+      let j = 0;
 
-            for (let i = 0; i < basket.length; i++) {
-                if (basket[i].id == id) {
-                    j = i
-                    break
-                }
-            }
-            delete delBasket[j]
-        })
+      for (let i = 0; i < basket.length; i++) {
+        if (basket[i].id == id) {
+          j = i;
+          break;
+        }
+      }
+      delete delBasket[j];
+    });
 
-        return delBasket
-    }
+    return delBasket;
+  };
 
-    return (
-        <div>
-            <h1 className="shopstyle">Welcome to the House of Protein</h1>
-            <h3 className="secondTitle">Choose your gains wheysely</h3>
+  const navigate = useNavigate();
+  const handleOnClick = () => navigate("/checkout");
 
-            <div className="divProducts">
-                {basket.map((product) => (
-                    <div key={product.id} className="basketbox itempadding">
-                        <div
-                            style={{
-                                display: "flex",
-                                flexDirection: "row",
-                            }}
-                        >
-                            <img src={product.image} className="imagepadding"/>
-                            <div
-                                style={{
-                                    display: "flex",
-                                    flexDirection: "column",
-                                }}
-                            >
-                                <div className="font-link-title">{product.name}</div>
-
+  return (
+    <div>
+      <h1 className="shopstyle">Welcome to the House of Protein</h1>
+      <h3 className="secondTitle">Choose your gains wheysely</h3>
+      <div>
+        {basket.map((product) => (
+          <div>
+            <div key={product.id} className="basketbox itempadding">
+              <div>
                 <div>
                   <div
                     style={{
@@ -103,38 +93,63 @@ export default function Shop() {
                       flexDirection: "row",
                     }}
                   >
-                    <div className="smallpadding font-link-quantity">
-                      <p>Quantity : </p>
+                    <img src={product.image} className="imagepadding" />
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                      }}
+                    >
+                      <div className="font-link-title">{product.name}</div>
+
+                      <div>
+                        <div
+                          style={{
+                            display: "flex",
+                            flexDirection: "row",
+                          }}
+                        >
+                          <div className="smallpadding font-link-quantity">
+                            <p>Quantity : </p>
+                          </div>
+                          <DecrementButton
+                            onClick={() => decrementBasketItem(product.id)}
+                          />
+                          <p>{product.quantity}</p>
+                          <IncrementButton
+                            onClick={() => incrementBasketItem(product.id)}
+                          />
+                          <DeleteButton
+                            onClick={() => removeItem(product.id)}
+                          />
+                        </div>
+                      </div>
                     </div>
-                    <DecrementButton
-                      onClick={() => decrementBasketItem(product.id)}
-                    />
-                    <p>{product.quantity}</p>
-                    <IncrementButton
-                      onClick={() => incrementBasketItem(product.id)}
-                    />
-                      <DeleteButton
-                          onClick={() => removeItem(product.id)}
-                      />
                   </div>
                 </div>
               </div>
+              <div className="price">
+                {product.price} {product.currency}
+              </div>
             </div>
-            {product.price} {product.currency}
           </div>
         ))}
 
-                <div>{discountBox()}</div>
-                <p>You save = {rebateAmount(basket)},- DKK</p>
-                <p>Total amount = {totalPriceWRebate(basket)},- DKK</p>
-                {/* useNavigate or Navigate to, to navigate */}
-                <button onClick={() => {
-                }}>Gå til betaling
-                </button>
-            </div>
-            {/* //Navigate to checkoyt.tsx when the user clicks the checkout button. */}
-        </div>
-    );
+        <div>{discountBox()}</div>
+        <p>You save = {rebateAmount(basket)},- DKK</p>
+        <p>Total amount = {totalPriceWRebate(basket)},- DKK</p>
+      </div>
+      {/* //Navigate to checkoyt.tsx when the user clicks the checkout button. */}
+      <div>
+        {/* useNavigate or Navigate to, to navigate */}
+
+        <button className="checkoutbutton" onClick={handleOnClick}>
+          {" "}
+          Checkout
+        </button>
+      </div>
+    </div>
+  );
 }
 
 //Use useState to update the quantity of the products when using decrement and increment buttons.
@@ -155,11 +170,11 @@ function IncrementButton({onClick}: { onClick: () => void }) {
 }
 
 function DeleteButton({ onClick }: { onClick: () => void }) {
-    return (
-        <button onClick={onClick} className="buttondelete">
-            x
-        </button>
-    );
+  return (
+    <button onClick={onClick} className="buttondelete">
+      x
+    </button>
+  );
 }
 
 //Make the totalPriceWRebate function which calculates the total price of the basket and check the quantity of each product to see if the rebate applies.
@@ -199,62 +214,62 @@ const [screen, setScreen] = useState(0);
 
 //Function that calculates the amount of rebate the user gets.
 function rebateAmount(basket: BasketItems[]) {
-    let rebate = 0;
-    let totalPrice = 0;
-    let rabat = 0;
-    let extrarabate = 0;
-    basket.forEach((item) => {
-        if (item.quantity >= item.rebateQuantity) {
-            rebate += (item.price * item.quantity * item.rebatePercent) / 100;
-        }
-    });
-
-    basket.forEach((item) => {
-        totalPrice += item.price * item.quantity;
-        if (item.quantity >= item.rebateQuantity) {
-            totalPrice -= (item.price * item.quantity * item.rebatePercent) / 100;
-        }
-    });
-
-    if (totalPrice >= 300 && rabat == 0) {
-        extrarabate = totalPrice - totalPrice * 0.9;
-        rabat = 1;
+  let rebate = 0;
+  let totalPrice = 0;
+  let rabat = 0;
+  let extrarabate = 0;
+  basket.forEach((item) => {
+    if (item.quantity >= item.rebateQuantity) {
+      rebate += (item.price * item.quantity * item.rebatePercent) / 100;
     }
-    // return rebate + extrarabate;
-    return (Math.round(rebate + extrarabate * 100) / 100).toFixed(2);
+  });
+
+  basket.forEach((item) => {
+    totalPrice += item.price * item.quantity;
+    if (item.quantity >= item.rebateQuantity) {
+      totalPrice -= (item.price * item.quantity * item.rebatePercent) / 100;
+    }
+  });
+
+  if (totalPrice >= 300 && rabat == 0) {
+    extrarabate = totalPrice - totalPrice * 0.9;
+    rabat = 1;
+  }
+  // return rebate + extrarabate;
+  return (Math.round(rebate + extrarabate * 100) / 100).toFixed(2);
 }
 
 //Function discountBox, shows a box with a button to apply a discount code from one of the different codes in the discountCodes array.
 function discountBox() {
-    const discountCodes = ["10PERCENT", "20PERCENT", "30PERCENT"];
-    const [discountCode, setDiscountCode] = useState<string>("20");
+  const discountCodes = ["10PERCENT", "20PERCENT", "30PERCENT"];
+  const [discountCode, setDiscountCode] = useState<string>("20");
 
-    const applyDiscount = (discountCode: string) => {
-        setDiscountCode(discountCode);
-    };
+  const applyDiscount = (discountCode: string) => {
+    setDiscountCode(discountCode);
+  };
 
-    return (
-        //If discountCodes then apply the discount code, else show the discount box.
+  return (
+    //If discountCodes then apply the discount code, else show the discount box.
+    <div>
+      {discountCodes.length > 0 ? (
         <div>
-            {discountCodes.length > 0 ? (
-                <div>
-                    <div className="discountbox">
-                        <p>Discount code</p>
-                        <input
-                            type="text"
-                            placeholder="Enter discount code"
-                            onChange={(e) => setDiscountCode(e.target.value)}
-                        />
-                        <button onClick={() => applyDiscount(discountCode)}>
-                            Apply discount
-                        </button>
-                    </div>
-                </div>
-            ) : (
-                <div>
-                    <p>Discount code applied</p>
-                </div>
-            )}
+          <div className="discountbox">
+            <p>Discount code</p>
+            <input
+              type="text"
+              placeholder="Enter discount code"
+              onChange={(e) => setDiscountCode(e.target.value)}
+            />
+            <button onClick={() => applyDiscount(discountCode)}>
+              Apply discount
+            </button>
+          </div>
         </div>
-    );
+      ) : (
+        <div>
+          <p>Discount code applied</p>
+        </div>
+      )}
+    </div>
+  );
 }

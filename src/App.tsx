@@ -6,23 +6,25 @@ import { FormEvent, useState } from "react";
 import reactLogo from "./assets/react.svg";
 import "./styles/App.css";
 import Shop from "./pages/shop";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Checkout from "./pages/checkout";
-
 
 function App() {
   const [count, setCount] = useState(0);
-
 
   return (
     <html lang="en">
       <link href="shop.css" rel="stylesheet" />
       <div className="App">
-        <Shop />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Shop />} />
+            <Route path="/checkout" element={<Checkout />} />
+          </Routes>
+        </BrowserRouter>
       </div>
     </html>
   );
 }
-
 
 export default App;
