@@ -119,18 +119,12 @@ export default function Shop() {
                           <IncrementButton
                             onClick={() => incrementBasketItem(product.id)}
                           />
+                          <DeleteButton
+                            onClick={() => removeItem(product.id)}
+                          />
                         </div>
                       </div>
                     </div>
-
-                    <DecrementButton
-                      onClick={() => decrementBasketItem(product.id)}
-                    />
-                    <p>{product.quantity}</p>
-                    <IncrementButton
-                      onClick={() => incrementBasketItem(product.id)}
-                    />
-                    <DeleteButton onClick={() => removeItem(product.id)} />
                   </div>
                 </div>
               </div>
