@@ -58,20 +58,10 @@ export default function Shop() {
     setBasket(newBasket);
   };
 
+  //Remove a product from the basket
   const removeItem = (id: string) => {
-    const delBasket = basket.map((item) => {
-      let j = 0;
-
-      for (let i = 0; i < basket.length; i++) {
-        if (basket[i].id == id) {
-          j = i;
-          break;
-        }
-      }
-      delete delBasket[j];
-    });
-
-    return delBasket;
+    const newBasket = basket.filter((item) => item.id !== id); //filter out the item with the id
+    setBasket(newBasket);
   };
 
   const navigate = useNavigate();
