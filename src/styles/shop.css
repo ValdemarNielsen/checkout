@@ -102,3 +102,9 @@ border-color: red;
 .imagepadding {
     padding-right: 10px;
 }
+
+.price{
+    font-size: 20px;
+display: flex;
+justify-content: end;
+}
