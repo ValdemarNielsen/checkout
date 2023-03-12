@@ -102,16 +102,27 @@ export default function Shop() {
                     >
                       <div className="font-link-title">{product.name}</div>
 
-                <div>
-                  <div
-                    style={{
-                      display: "flex",
-                      flexDirection: "row",
-                    }}
-                  >
-                    <div className="smallpadding font-link-quantity">
-                      <p>Quantity : </p>
+                      <div>
+                        <div
+                          style={{
+                            display: "flex",
+                            flexDirection: "row",
+                          }}
+                        >
+                          <div className="smallpadding font-link-quantity">
+                            <p>Quantity : </p>
+                          </div>
+                          <DecrementButton
+                            onClick={() => decrementBasketItem(product.id)}
+                          />
+                          <p>{product.quantity}</p>
+                          <IncrementButton
+                            onClick={() => incrementBasketItem(product.id)}
+                          />
+                        </div>
+                      </div>
                     </div>
+
                     <DecrementButton
                       onClick={() => decrementBasketItem(product.id)}
                     />
@@ -119,15 +130,14 @@ export default function Shop() {
                     <IncrementButton
                       onClick={() => incrementBasketItem(product.id)}
                     />
-                      <DeleteButton
-                          onClick={() => removeItem(product.id)}
-                      />
+                    <DeleteButton onClick={() => removeItem(product.id)} />
                   </div>
                 </div>
               </div>
+              <div className="price">
+                {product.price} {product.currency}
+              </div>
             </div>
-            <div></div>
-            {product.price} {product.currency}
           </div>
         ))}
 
@@ -166,11 +176,11 @@ function IncrementButton({ onClick }: { onClick: () => void }) {
 }
 
 function DeleteButton({ onClick }: { onClick: () => void }) {
-    return (
-        <button onClick={onClick} className="buttondelete">
-            x
-        </button>
-    );
+  return (
+    <button onClick={onClick} className="buttondelete">
+      x
+    </button>
+  );
 }
 
 //Make the totalPriceWRebate function which calculates the total price of the basket and check the quantity of each product to see if the rebate applies.
