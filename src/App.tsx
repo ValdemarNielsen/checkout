@@ -9,6 +9,13 @@ import Shop from "./pages/shop";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Checkout from "./pages/checkout";
 
+function divide (a: number, b: number): number {
+    if (b === 0){
+        throw new Error("You can't divide by zero.")
+    }
+    return Math.round(a / b);
+}
+
 function App() {
   const [count, setCount] = useState(0);
 
