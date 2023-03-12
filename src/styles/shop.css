@@ -103,8 +103,21 @@ border-color: red;
     padding-right: 10px;
 }
 
-.price{
+.buttondelete {
+    margin: 10px;
+
     font-size: 20px;
-display: flex;
-justify-content: end;
+    display: inline-block;
+    outline: 0;
+    cursor: pointer;
+    border: none;
+    padding: 0 15px;
+    border-radius: 10px 10px 10px 10px;
+    background-color: #0070f3;
+    color: white;
+    width: 50px;
+
+}
+.buttondelete:hover {
+    background-color: black;
 }
