@@ -19,6 +19,15 @@ export default function Checkout() {
   const [isValidVatNumber, setIsValidVatNumber] = useState(false);
   const [isPhoneValid, setIsPhoneValid] = useState(false);
 
+
+  const validSubmit=()=>{
+    if(!isValidZip || !vatNumber || !isValidEmail || !isValidVatNumber || name == ""){
+      return false
+    }
+    return true
+
+  }
+
   const handleZipChange = (e: { target: { value: any } }) => {
     const newZip = e.target.value;
     setZip(newZip);
@@ -82,7 +91,7 @@ export default function Checkout() {
     const newVatNumber = e.target.value;
     setVatNumber(newVatNumber);
 
-    if (country === "Denmark" && /^\d{8}$/.test(newVatNumber)) {
+    if (country === "Denmark" && /^\d{8}$/.test(newVatNumber) || companyName.length == 0) {
       setIsValidVatNumber(true);
     } else {
       setIsValidVatNumber(false);
@@ -152,12 +161,8 @@ export default function Checkout() {
           id="vatNumber"
           value={vatNumber}
           onChange={handleVatNumberChange}
+          className={isValidVatNumber || companyName.length == 0 ? "" : "invalid-field"}
         />
-        {country === "Denmark" &&
-          !isValidVatNumber &&
-          handleCompanyName(companyName.length) && (
-            <p>Please enter a valid Danish VAT number with 8 digits</p>
-          )}
         {country !== "Denmark" && <p>VAT number is optional</p>}
         <label htmlFor="country">Country</label>
         <select
@@ -180,10 +185,8 @@ export default function Checkout() {
           id="zip"
           value={zip}
           onChange={handleZipChange}
+          className={isValidZip || zip == "" ? "" : "invalid-field"}
         />
-        {country === "Denmark" && !isValidZip && (
-          <p>Pls enter a valid zip code</p>
-        )}
         {country !== "Denmark" && <p>Zip code is optional</p>}
         <label htmlFor="city">City</label>
         <input
@@ -210,11 +213,13 @@ export default function Checkout() {
           onChange={(e) => setAddress2(e.target.value)}
         />
 
+
         {/* If there are any errors/isValid fields that are not true, prompt it to the user */}
-        {isValidEmail && isPhoneValid && isValidVatNumber && isValidZip ? (
-          <button type="submit">Submit</button>
+
+        {validSubmit() ? (
+            <p>Please fill out all fields</p>
         ) : (
-          <p>Please fill out all fields</p>
+          <button type="submit">Submit</button>
         )}
       </form>
     </div>
