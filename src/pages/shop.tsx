@@ -65,7 +65,19 @@ export default function Shop() {
   };
 
   const navigate = useNavigate();
-  const handleOnClick = () => navigate("/checkout");
+  const handleOnClick = () => {
+    if(isNotEmpty()) {
+      navigate("/checkout")
+    }
+  };
+
+  const isNotEmpty = () => {
+    if(basket.length == 0){
+     return false
+    }
+    return true
+  }
+
 
   return (
     <div>
@@ -109,9 +121,6 @@ export default function Shop() {
                           <IncrementButton
                             onClick={() => incrementBasketItem(product.id)}
                           />
-                          <DeleteButton
-                            onClick={() => removeItem(product.id)}
-                          />
                         </div>
                       </div>
                     </div>
@@ -120,6 +129,9 @@ export default function Shop() {
               </div>
               <div className="price">
                 {product.price} {product.currency}
+                <DeleteButton
+                  onClick={() => removeItem(product.id)}
+              />
               </div>
             </div>
           </div>
