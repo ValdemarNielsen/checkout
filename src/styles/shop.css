@@ -1,4 +1,25 @@
 /* Styling for shop page */
+
+.row{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+}
+
+.col-1{
+    flex: 1;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.col-2{
+    flex: 2;
+    text-align: right;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
 img{
     max-height: 100px;
     max-width: 100px;
@@ -32,7 +53,6 @@ body {
 
 .buttonincrement {
     margin: 10px;
-
     font-size: 20px;
     display: inline-block;
     outline: 0;
@@ -76,7 +96,6 @@ body {
     padding-right: 0px;
 }
 
-
 .smallpadding {
     padding-right: 20px;
 }
@@ -86,13 +105,11 @@ body {
     font-size: 30px;
     word-break: break-all; 
 
-
 }
 
 .font-link-quantity{
     font-family: 'Bebas Neue', cursive;
     font-size: 20px;
-    font-style: thin;
 }
 
 .invalid-field{
@@ -105,7 +122,6 @@ border-color: red;
 
 .buttondelete {
     margin: 10px;
-
     font-size: 15px;
     display: inline-block;
     outline: 0;

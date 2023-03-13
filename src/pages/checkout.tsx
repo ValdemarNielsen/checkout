@@ -19,7 +19,6 @@ export default function Checkout() {
   const [isValidVatNumber, setIsValidVatNumber] = useState(false);
   const [isPhoneValid, setIsPhoneValid] = useState(false);
 
-
   const validSubmit=()=>{
     if(!isValidZip || !vatNumber || !isValidEmail || !isValidVatNumber || name == ""){
       return false
@@ -40,11 +39,11 @@ export default function Checkout() {
           setIsValidZip(true);
         })
         .catch((error) => {
-          setCity("");
+       //   setCity("");
           setIsValidZip(false);
         });
     } else {
-      setCity("");
+   //   setCity("");
       setIsValidZip(false);
     }
   };

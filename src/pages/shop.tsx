@@ -83,17 +83,16 @@ export default function Shop() {
     <div>
       <h1 className="shopstyle">Welcome to the House of Protein</h1>
       <h3 className="secondTitle">Choose your gains wheysely</h3>
-      <div>
+      <div className = "row">
+        <div className = "col-1">
         {basket.map((product) => (
           <div>
             <div key={product.id} className="basketbox itempadding">
-              <div>
-                <div>
-                  <div
-                    style={{
-                      display: "flex",
-                      flexDirection: "row",
-                    }}
+              <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                      }}
                   >
                     <img src={product.image} className="imagepadding" />
                     <div
@@ -103,7 +102,6 @@ export default function Shop() {
                       }}
                     >
                       <div className="font-link-title">{product.name}</div>
-
                       <div>
                         <div
                           style={{
@@ -123,8 +121,6 @@ export default function Shop() {
                           />
                         </div>
                       </div>
-                    </div>
-                  </div>
                 </div>
               </div>
               <div className="price">
@@ -135,12 +131,14 @@ export default function Shop() {
               </div>
             </div>
           </div>
-        ))}
 
+        ))}
+      </div>
+<div className ="col-2">
         <div>{discountBox()}</div>
         <p>You save = {rebateAmount(basket)},- DKK</p>
         <p>Total amount = {totalPriceWRebate(basket)},- DKK</p>
-      </div>
+
       {/* //Navigate to checkoyt.tsx when the user clicks the checkout button. */}
       <div>
         {/* useNavigate or Navigate to, to navigate */}
@@ -150,6 +148,8 @@ export default function Shop() {
           Checkout
         </button>
       </div>
+    </div>
+    </div>
     </div>
   );
 }
