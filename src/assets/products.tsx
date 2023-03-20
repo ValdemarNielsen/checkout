@@ -47,7 +47,7 @@ const products: Product[] = [
   },
   {
     id: "fish-oil-1000-120",
-    name: "Omega 3 fiskeolie, 1000mg, 120 stk",
+    name: "Omega 3 fish oil, 1000mg, 120 PCS",
     price: 69,
     currency: "DKK",
     rebateQuantity: 5,
@@ -57,7 +57,7 @@ const products: Product[] = [
   },
   {
     id: "sugar-white-1kg",
-    name: "Sukker, hvidt, 1000g",
+    name: "Sugar, white, 1000g",
     price: 30,
     currency: "DKK",
     rebateQuantity: 4,
@@ -67,7 +67,7 @@ const products: Product[] = [
   },
   {
     id: "sugar-cane-1kg",
-    name: "Rørsukker, 1000g",
+    name: "Cane sugar, 1000g",
     price: 40,
     currency: "DKK",
     rebateQuantity: 4,
@@ -77,7 +77,7 @@ const products: Product[] = [
   },
   {
     id: "sugar-organic-1kg",
-    name: "Rørsukker, økologisk, 1000g",
+    name: "Cane sugar, organic, 1000g",
     price: 45,
     currency: "DKK",
     rebateQuantity: 2,
