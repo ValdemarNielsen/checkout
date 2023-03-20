@@ -66,114 +66,128 @@ export default function Shop() {
 
   const navigate = useNavigate();
   const handleOnClick = () => {
-    if(isNotEmpty()) {
-      navigate("/checkout")
+    if (isNotEmpty()) {
+      navigate("/checkout");
     }
   };
 
   const isNotEmpty = () => {
-    if(basket.length == 0){
-     return false
+    if (basket.length == 0) {
+      return false;
     }
-    return true
-  }
+    return true;
+  };
 
   return (
     <div>
       <h1 className="shopstyle">Welcome to the House of Protein</h1>
       <h3 className="secondTitle">Choose your gains wheysely</h3>
-      <div className = "row">
-        <div className = "col-1">
-        {basket.map((product) => (
-          <div>
-            <div key={product.id} className="basketbox itempadding">
-              <div
-                      style={{
-                        display: "flex",
-                        flexDirection: "row",
-                      }}
+      <div className="row">
+        <div className="col-1">
+          {basket.map((product) => (
+            <div>
+              <div key={product.id} className="basketbox itempadding">
+                <div style={{ display: "flex", flexDirection: "row" }}>
+                  <img src={product.image} className="imagepadding" />
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "space-between",
+                    }}
                   >
-                    <img src={product.image} className="imagepadding" />
+                    <div className="font-link-title">{product.name}</div>
+
                     <div
                       style={{
                         display: "flex",
-                        flexDirection: "column",
+                        flexDirection: "row",
+                        justifyContent: "start",
                       }}
                     >
-                      <div className="font-link-title">{product.name}</div>
-                      <div>
-                        <div
-                          style={{
-                            display: "flex",
-                            flexDirection: "row",
-                          }}
-                        >
-                          <div className="smallpadding font-link-quantity">
-                            <p>Quantity : </p>
-                          </div>
-                          <DecrementButton
-                            onClick={() => decrementBasketItem(product.id)}
-                          />
-                          <p>{product.quantity}</p>
-                          <IncrementButton
-                            onClick={() => incrementBasketItem(product.id)}
-                          />
-                        </div>
+                      <div className="smallpadding font-link-quantity">
+                        <span>Quantity: </span>
                       </div>
+                      <div
+                        style={{
+                          display: "flex",
+                          flexDirection: "row",
+                          justifyContent: "space-evenly",
+                          alignContent: "center",
+                        }}
+                      >
+                        <DecrementButton
+                          onClick={() => decrementBasketItem(product.id)}
+                        />
+                        <span>{product.quantity}</span>
+                        <IncrementButton
+                          onClick={() => incrementBasketItem(product.id)}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  className="price"
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyItems: "end",
+                  }}
+                >
+                  <p
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      justifyContent: "end",
+                    }}
+                  >
+                    {product.price} {product.currency}
+                  </p>
+                  <DeleteButton onClick={() => removeItem(product.id)} />
                 </div>
               </div>
-              <div className="price">
-                {product.price} {product.currency}
-                <DeleteButton
-                  onClick={() => removeItem(product.id)}
-              />
-              </div>
             </div>
+          ))}
+        </div>
+        <div className="col-2">
+          <div>{discountBox()}</div>
+          <p>You save = {rebateAmount(basket)},- DKK</p>
+          <p>Total amount = {totalPriceWRebate(basket)},- DKK</p>
+
+          {/* //Navigate to checkoyt.tsx when the user clicks the checkout button. */}
+          <div>
+            {/* useNavigate or Navigate to, to navigate */}
+
+            <button className="checkoutbutton" onClick={handleOnClick}>
+              {" "}
+              Checkout
+            </button>
           </div>
-
-        ))}
+        </div>
       </div>
-<div className ="col-2">
-        <div>{discountBox()}</div>
-        <p>You save = {rebateAmount(basket)},- DKK</p>
-        <p>Total amount = {totalPriceWRebate(basket)},- DKK</p>
-
-      {/* //Navigate to checkoyt.tsx when the user clicks the checkout button. */}
-      <div>
-        {/* useNavigate or Navigate to, to navigate */}
-
-        <button className="checkoutbutton" onClick={handleOnClick}>
-          {" "}
-          Checkout
-        </button>
-      </div>
-    </div>
-    </div>
     </div>
   );
 }
 
 //Use useState to update the quantity of the products when using decrement and increment buttons.
 function DecrementButton({ onClick }: { onClick: () => void }) {
-  return (
-    <button onClick={onClick} className="buttondecrement">
-      -
-    </button>
-  );
+  return <button onClick={onClick}>-</button>;
 }
 
 function IncrementButton({ onClick }: { onClick: () => void }) {
-  return (
-    <button onClick={onClick} className="buttonincrement">
-      +
-    </button>
-  );
+  return <button onClick={onClick}>+</button>;
 }
 //Delete button to remove a product from the basket. The user is prompted a form to confirm the deletion.
 function DeleteButton({ onClick }: { onClick: () => void }) {
-  return <button onClick={onClick}>Remove</button>;
+  return (
+    <button style={{ width: "5rem" }} onClick={onClick}>
+      Remove
+    </button>
+  );
 }
-''
+("");
 //Make the totalPriceWRebate function which calculates the total price of the basket and check the quantity of each product to see if the rebate applies.
 
 function totalPriceWRebate(basket: BasketItems[]) {

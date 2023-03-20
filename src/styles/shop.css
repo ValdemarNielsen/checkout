@@ -1,4 +1,7 @@
 /* Styling for shop page */
+*{
+    outline: 1px solid red;
+}
 
 .row{
     display: flex;
@@ -58,7 +61,6 @@ body {
     outline: 0;
     cursor: pointer;
     border: none;
-    padding: 0 15px;
     border-radius: 10px 10px 10px 10px;
     background-color: #0070f3;
     color: white;
@@ -78,7 +80,6 @@ body {
         outline: 0;
         cursor: pointer;
         border: none;
-        padding: 0 15px;
         border-radius: 10px 10px 10px 10px;
         background-color: #0070f3;
         color: white;
