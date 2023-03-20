@@ -158,15 +158,11 @@ function IncrementButton({ onClick }: { onClick: () => void }) {
     </button>
   );
 }
-
+//Delete button to remove a product from the basket. The user is prompted a form to confirm the deletion.
 function DeleteButton({ onClick }: { onClick: () => void }) {
-  return (
-    <button onClick={onClick} className="buttondelete">
-      x
-    </button>
-  );
+  return <button onClick={onClick}>Remove</button>;
 }
-
+''
 //Make the totalPriceWRebate function which calculates the total price of the basket and check the quantity of each product to see if the rebate applies.
 
 function totalPriceWRebate(basket: BasketItems[]) {
