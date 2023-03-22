@@ -145,7 +145,15 @@ export default function Shop() {
                   >
                     {product.price} {product.currency}
                   </p>
-                  <DeleteButton onClick={() => removeItem(product.id)} />
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      justifyContent: "end",
+                    }}
+                  >
+                    <DeleteButton onClick={() => removeItem(product.id)} />
+                  </div>
                 </div>
               </div>
             </div>
