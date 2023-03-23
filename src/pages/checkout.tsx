@@ -18,7 +18,7 @@ export default function Checkout() {
   const [isCompany, setIsCompany] = useState(false);
   const [isValidVatNumber, setIsValidVatNumber] = useState(false);
   const [isPhoneValid, setIsPhoneValid] = useState(false);
-
+  const [billingaddress, setBillingAddress] = useState("");
 
   const validSubmit=()=>{
     if(!isValidZip || !vatNumber || !isValidEmail || !isValidVatNumber || name == ""){
@@ -40,11 +40,11 @@ export default function Checkout() {
           setIsValidZip(true);
         })
         .catch((error) => {
-          setCity("");
+       //   setCity("");
           setIsValidZip(false);
         });
     } else {
-      setCity("");
+   //   setCity("");
       setIsValidZip(false);
     }
   };
@@ -212,7 +212,14 @@ export default function Checkout() {
           value={address2}
           onChange={(e) => setAddress2(e.target.value)}
         />
-
+        <label htmlFor="billingAddress">Billing address</label>
+        <input
+        type="text"
+        name="billingAddress"
+        id="billingAddress"
+        value={billingaddress}
+        onChange={(e) => setBillingAddress(e.target.value)}
+        />
 
         {/* If there are any errors/isValid fields that are not true, prompt it to the user */}
 

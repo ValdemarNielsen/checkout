@@ -1,47 +1,47 @@
 //Description: This is the shop page, where the user chooses which items they want to proceed to checkout with.
 import React from "react";
-import products, {BasketItems, itemDict} from "../assets/products";
-import {useState} from "react";
+import products, { BasketItems, itemDict } from "../assets/products";
+import { useState } from "react";
 import "../styles/shop.css";
 import { Link, Navigate, Routes } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 export default function Shop() {
-    const [basket, setBasket] = useState<BasketItems[]>([
-        {
-            ...itemDict["clear-whey-100"],
-            quantity: 2,
-            giftWrap: false,
-        },
-        {
-            ...itemDict["valle-protion-whey-100-vanilla"],
-            quantity: 1,
-            giftWrap: true,
-        },
-        {
-            ...itemDict["valle-protein-whey-100-chocolate"],
-            quantity: 2,
-            giftWrap: false,
-        },
-        {
-            ...itemDict["fish-oil-1000-120"],
-            quantity: 1,
-            giftWrap: false,
-        },
-    ] as BasketItems[]);
+  const [basket, setBasket] = useState<BasketItems[]>([
+    {
+      ...itemDict["clear-whey-100"],
+      quantity: 2,
+      giftWrap: false,
+    },
+    {
+      ...itemDict["valle-protion-whey-100-vanilla"],
+      quantity: 1,
+      giftWrap: true,
+    },
+    {
+      ...itemDict["valle-protein-whey-100-chocolate"],
+      quantity: 2,
+      giftWrap: false,
+    },
+    {
+      ...itemDict["fish-oil-1000-120"],
+      quantity: 1,
+      giftWrap: false,
+    },
+  ] as BasketItems[]);
 
-    const incrementBasketItem = (id: string) => {
-        const newBasket = basket.map((item) => {
-            if (item.id === id) {
-                return {
-                    ...item,
-                    quantity: item.quantity + 1,
-                };
-            }
-            return item;
-        });
-        setBasket(newBasket);
-    };
+  const incrementBasketItem = (id: string) => {
+    const newBasket = basket.map((item) => {
+      if (item.id === id) {
+        return {
+          ...item,
+          quantity: item.quantity + 1,
+        };
+      }
+      return item;
+    });
+    setBasket(newBasket);
+  };
 
   const decrementBasketItem = (id: string) => {
     const newBasket = basket.map((item) => {
@@ -65,125 +65,154 @@ export default function Shop() {
   };
 
   const navigate = useNavigate();
-  const handleOnClick = () => navigate("/checkout");
+  const handleOnClick = () => {
+    if (isNotEmpty()) {
+      navigate("/checkout");
+    }
+  };
+
+  const isNotEmpty = () => {
+    if (basket.length == 0) {
+      return false;
+    }
+    return true;
+  };
 
   return (
     <div>
       <h1 className="shopstyle">Welcome to the House of Protein</h1>
       <h3 className="secondTitle">Choose your gains wheysely</h3>
-      <div>
-        {basket.map((product) => (
-          <div>
-            <div key={product.id} className="basketbox itempadding">
-              <div>
-                <div>
+      <div className="row">
+        <div className="col-1">
+          {basket.map((product) => (
+            <div>
+              <div key={product.id} className="basketbox itempadding">
+                <div style={{ display: "flex", flexDirection: "row" }}>
+                  <img src={product.image} className="imagepadding" />
                   <div
                     style={{
                       display: "flex",
-                      flexDirection: "row",
+                      flexDirection: "column",
+                      justifyContent: "space-between",
                     }}
                   >
-                    <img src={product.image} className="imagepadding" />
+                    <div className="font-link-title">{product.name}</div>
+
                     <div
                       style={{
                         display: "flex",
-                        flexDirection: "column",
+                        flexDirection: "row",
+                        justifyContent: "start",
                       }}
                     >
-                      <div className="font-link-title">{product.name}</div>
-
-                      <div>
-                        <div
-                          style={{
-                            display: "flex",
-                            flexDirection: "row",
-                          }}
-                        >
-                          <div className="smallpadding font-link-quantity">
-                            <p>Quantity : </p>
-                          </div>
-                          <DecrementButton
-                            onClick={() => decrementBasketItem(product.id)}
-                          />
-                          <p>{product.quantity}</p>
-                          <IncrementButton
-                            onClick={() => incrementBasketItem(product.id)}
-                          />
-                          <DeleteButton
-                            onClick={() => removeItem(product.id)}
-                          />
-                        </div>
+                      <div className="smallpadding font-link-quantity">
+                        <span>Quantity: </span>
+                      </div>
+                      <div
+                        style={{
+                          display: "flex",
+                          flexDirection: "row",
+                          justifyContent: "space-evenly",
+                          alignContent: "center",
+                        }}
+                      >
+                        <DecrementButton
+                          onClick={() => decrementBasketItem(product.id)}
+                        />
+                        <span>{product.quantity}</span>
+                        <IncrementButton
+                          onClick={() => incrementBasketItem(product.id)}
+                        />
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div className="price">
-                {product.price} {product.currency}
+                <div
+                  className="price"
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyItems: "end",
+                  }}
+                >
+                  <p
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      justifyContent: "end",
+                    }}
+                  >
+                    {product.price} {product.currency}
+                  </p>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      justifyContent: "end",
+                    }}
+                  >
+                    <DeleteButton onClick={() => removeItem(product.id)} />
+                  </div>
+                </div>
               </div>
             </div>
+          ))}
+        </div>
+        <div className="col-2">
+          <div>{discountBox()}</div>
+          <p>You save = {rebateAmount(basket)},- DKK</p>
+          <p>Total amount = {totalPriceWRebate(basket)},- DKK</p>
+
+          {/* //Navigate to checkoyt.tsx when the user clicks the checkout button. */}
+          <div>
+            {/* useNavigate or Navigate to, to navigate */}
+
+            <button className="checkoutbutton" onClick={handleOnClick}>
+              {" "}
+              Checkout
+            </button>
           </div>
-        ))}
-
-        <div>{discountBox()}</div>
-        <p>You save = {rebateAmount(basket)},- DKK</p>
-        <p>Total amount = {totalPriceWRebate(basket)},- DKK</p>
-      </div>
-      {/* //Navigate to checkoyt.tsx when the user clicks the checkout button. */}
-      <div>
-        {/* useNavigate or Navigate to, to navigate */}
-
-        <button className="checkoutbutton" onClick={handleOnClick}>
-          {" "}
-          Checkout
-        </button>
+        </div>
       </div>
     </div>
   );
 }
 
 //Use useState to update the quantity of the products when using decrement and increment buttons.
-function DecrementButton({onClick}: { onClick: () => void }) {
-    return (
-        <button onClick={onClick} className="buttondecrement">
-            -
-        </button>
-    );
+function DecrementButton({ onClick }: { onClick: () => void }) {
+  return <button onClick={onClick}>-</button>;
 }
 
-function IncrementButton({onClick}: { onClick: () => void }) {
-    return (
-        <button onClick={onClick} className="buttonincrement">
-            +
-        </button>
-    );
+function IncrementButton({ onClick }: { onClick: () => void }) {
+  return <button onClick={onClick}>+</button>;
 }
-
+//Delete button to remove a product from the basket. The user is prompted a form to confirm the deletion.
 function DeleteButton({ onClick }: { onClick: () => void }) {
   return (
-    <button onClick={onClick} className="buttondelete">
-      x
+    <button style={{ width: "5rem" }} onClick={onClick}>
+      Remove
     </button>
   );
 }
-
+("");
 //Make the totalPriceWRebate function which calculates the total price of the basket and check the quantity of each product to see if the rebate applies.
 
 function totalPriceWRebate(basket: BasketItems[]) {
-    let rabatGiven = 0;
-    let totalPrice = 0;
-    basket.forEach((item) => {
-        totalPrice += item.price * item.quantity;
-        if (item.quantity >= item.rebateQuantity) {
-            totalPrice -= (item.price * item.quantity * item.rebatePercent) / 100;
-        }
-    });
-    if (totalPrice >= 300 && rabatGiven == 0) {
-        totalPrice = totalPrice * 0.9;
-        rabatGiven = 1;
+  let rabatGiven = 0;
+  let totalPrice = 0;
+  basket.forEach((item) => {
+    totalPrice += item.price * item.quantity;
+    if (item.quantity >= item.rebateQuantity) {
+      totalPrice -= (item.price * item.quantity * item.rebatePercent) / 100;
     }
-    // return totalPrice;
-    return (Math.round(totalPrice * 100) / 100).toFixed(2);
+  });
+  if (totalPrice >= 300 && rabatGiven == 0) {
+    totalPrice = totalPrice * 0.9;
+    rabatGiven = 1;
+  }
+  // return totalPrice;
+  return (Math.round(totalPrice * 100) / 100).toFixed(2);
 }
 
 /*
@@ -200,7 +229,6 @@ const [screen, setScreen] = useState(0);
     }
 }
 */
-
 
 //Function that calculates the amount of rebate the user gets.
 function rebateAmount(basket: BasketItems[]) {
