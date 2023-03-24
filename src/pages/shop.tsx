@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import ProgressBarOnly from "../Progressbar/progressbaronly";
 import StepButtons from "../Progressbar/progressbutton";
 import StepProgress from "../Progressbar/progressbar";
+import { BackButton, NextButton } from "../assets/buttons/custombutton";
 
 export default function Shop() {
   const [basket, setBasket] = useState<BasketItems[]>([
@@ -86,6 +87,9 @@ export default function Shop() {
       <h1 className="shopstyle">Welcome to the House of Protein</h1>
       <h3 className="secondTitle">Choose your gains wheysely</h3>
       <StepProgress />
+      <BackButton disabled={true} />
+      <NextButton disabled={false} />
+
       <div className="row">
         <div className="col-1">
           {basket.map((product) => (

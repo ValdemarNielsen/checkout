@@ -1,58 +1,51 @@
 import React, { useState } from "react";
+import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import "../styles/progressbar.css";
-interface Step {
-  label: string;
-}
-
-const steps: Step[] = [
-  { label: "Basket" },
-  { label: "Delivery" },
-  { label: "Payment" },
-  { label: "Confirmation" },
-];
-
-export const ProgressBar = ({ currentStep }: { currentStep: number }) => {
-  return (
-    <div className="progress-bar">
-      {steps.map((step, index) => (
-        <div
-          key={index}
-          className={`step ${index <= currentStep ? "active" : ""}`}
-        >
-          <div className={`circle ${index === currentStep ? "active" : ""}`}>
-            {index + 1}
-          </div>
-          <div className="label">{step.label}</div>
-        </div>
-      ))}
-    </div>
-  );
-};
 
 const StepProgress = () => {
-  const [currentStep, setCurrentStep] = useState(0);
+  const location = useLocation();
+  const navigate = useNavigate();
 
-  const handleNext = () => {
-    setCurrentStep((prevStep) => prevStep + 1);
-  };
+  const steps = [
+    { label: "Basket", path: "/" },
+    { label: "Delivery", path: "/checkout" },
+    { label: "Payment", path: "/payment" },
+    { label: "Confirmation", path: "/confirmation" },
+  ];
+
+  const currentStep = steps.findIndex(
+    (step) => step.path === location.pathname
+  );
 
   const handleBack = () => {
-    setCurrentStep((prevStep) => prevStep - 1);
+    const prevStep = steps[currentStep - 1];
+    if (prevStep) {
+      navigate(prevStep.path);
+    }
+  };
+
+  const handleNext = () => {
+    const nextStep = steps[currentStep + 1];
+    if (nextStep) {
+      navigate(nextStep.path);
+    }
   };
 
   return (
     <div className="step-progress">
-      <ProgressBar currentStep={currentStep} />
-      <div className="buttons">
-        <button onClick={handleBack} disabled={currentStep === 0}>
-          Back
-        </button>
-        <button
-          onClick={handleNext}
-          disabled={currentStep === steps.length - 1}
-        >
-          Continue
-        </button>
+      <div className="progress-bar">
+        {steps.map((step, index) => (
+          <div
+            key={index}
+            className={`step ${index <= currentStep ? "active" : ""}`}
+            onClick={() => navigate(step.path)}
+          >
+            <div className={`circle ${index === currentStep ? "active" : ""}`}>
+              {index + 1}
+            </div>
+            <div className="label">{step.label}</div>
+          </div>
+        ))}
       </div>
     </div>
   );

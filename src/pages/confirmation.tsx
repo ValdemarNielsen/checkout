@@ -1,11 +1,12 @@
 import React from "react";
+import StepProgress from "../Progressbar/progressbar";
 
 const Confirmation = () => {
   return (
-    <div>
-      <h1>Confirmation comming soon</h1>
-    </div>
+    <>
+      <h1>Confirmation</h1>
+      <StepProgress />
+    </>
   );
 };
-
 export default Confirmation;

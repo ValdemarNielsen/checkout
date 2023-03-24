@@ -1,10 +1,12 @@
 import React from "react";
+import StepProgress from "../Progressbar/progressbar";
 
 const Payment = () => {
   return (
-    <div>
-      <h1>Payment comming soon</h1>
-    </div>
+    <>
+      <h1>Payment</h1>
+      <StepProgress />
+    </>
   );
 };
 

@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import "../styles/shop.css";
 import "../styles/checkout.css";
+import StepProgress from "../Progressbar/progressbar";
 
 export default function Checkout() {
   const [country, setCountry] = useState("Denmark");
@@ -117,6 +118,8 @@ export default function Checkout() {
       style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
       className="shopstyle"
     >
+      <StepProgress />
+
       <h1>Checkout page</h1>
 
       <form
