@@ -1,7 +1,7 @@
 /* Styling for shop page */
-*{
+/* *{
     outline: 1px solid red;
-}
+} */
 
 .row{
     display: flex;
@@ -102,15 +102,28 @@ body {
 }
 
 .font-link-title{
-    font-family: 'Bebas Neue', cursive;
-    font-size: 30px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: normal;
+    font-size: 2rem;
     word-break: break-all; 
+
 
 }
 
 .font-link-quantity{
-    font-family: 'Bebas Neue', cursive;
-    font-size: 20px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: normal;
+    font-size: 15px;
+}
+
+.font-link-price{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: normal;
+    font-size: 15px;
+}
+
+.removebutton{
+    
 }
 
 .invalid-field{
@@ -121,21 +134,3 @@ border-color: red;
     padding-right: 10px;
 }
 
-.buttondelete {
-    margin: 10px;
-    font-size: 15px;
-    display: inline-block;
-    outline: 0;
-    cursor: pointer;
-    border: none;
-    padding: 0px;
-    border-radius: 10px 10px 10px 10px;
-    background-color: #151b25;
-    color: white;
-    width: 20px;
-    height: 20px;
-
-}
-.buttondelete:hover {
-    background-color: black;
-}

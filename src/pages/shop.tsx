@@ -5,6 +5,9 @@ import { useState } from "react";
 import "../styles/shop.css";
 import { Link, Navigate, Routes } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import ProgressBarOnly from "../Progressbar/progressbaronly";
+import StepButtons from "../Progressbar/progressbutton";
+import StepProgress from "../Progressbar/progressbar";
 
 export default function Shop() {
   const [basket, setBasket] = useState<BasketItems[]>([
@@ -82,6 +85,7 @@ export default function Shop() {
     <div>
       <h1 className="shopstyle">Welcome to the House of Protein</h1>
       <h3 className="secondTitle">Choose your gains wheysely</h3>
+      <StepProgress />
       <div className="row">
         <div className="col-1">
           {basket.map((product) => (
@@ -94,6 +98,7 @@ export default function Shop() {
                       display: "flex",
                       flexDirection: "column",
                       justifyContent: "space-between",
+                      width: "25rem",
                     }}
                   >
                     <div className="font-link-title">{product.name}</div>
@@ -106,7 +111,7 @@ export default function Shop() {
                       }}
                     >
                       <div className="smallpadding font-link-quantity">
-                        <span>Quantity: </span>
+                        <span>QUANTITY: </span>
                       </div>
                       <div
                         style={{
