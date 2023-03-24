@@ -87,19 +87,13 @@ export default function Checkout() {
     }
   };
 
-  function handleCompanyName(e: number) {
-    if (e > 0) {
-      return true;
-    }
-    return false;
-  }
 
   const handleVatNumberChange = (e: { target: { value: any } }) => {
     const newVatNumber = e.target.value;
     setVatNumber(newVatNumber);
 
     if (
-      (country === "Denmark" && /^\d{8}$/.test(newVatNumber)) ||
+      (country == "Denmark" && !/^\d{8}$/.test(newVatNumber)) ||
       companyName.length == 0
     ) {
       setIsValidVatNumber(true);
@@ -174,7 +168,7 @@ export default function Checkout() {
           value={vatNumber}
           onChange={handleVatNumberChange}
           className={
-            isValidVatNumber || companyName.length == 0 ? "" : "invalid-field"
+            !isValidVatNumber || companyName.length == 0 ? "" : "invalid-field"
           }
         />
         {country !== "Denmark" && <p>VAT number is optional</p>}
