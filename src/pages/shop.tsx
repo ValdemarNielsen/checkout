@@ -5,6 +5,11 @@ import { useState } from "react";
 import "../styles/shop.css";
 import { Link, Navigate, Routes } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import ProgressBarOnly from "../Progressbar/progressbaronly";
+import StepButtons from "../Progressbar/progressbutton";
+import StepProgress from "../Progressbar/progressbar";
+import { BackButton, NextButton } from "../assets/buttons/custombutton";
+import DeleteButton from "../assets/buttons/DeleteButton";
 
 export default function Shop() {
   const [basket, setBasket] = useState<BasketItems[]>([
@@ -82,6 +87,8 @@ export default function Shop() {
     <div>
       <h1 className="shopstyle">Welcome to the House of Protein</h1>
       <h3 className="secondTitle">Choose your gains wheysely</h3>
+      <StepProgress />
+
       <div className="row">
         <div className="col-1">
           {basket.map((product) => (
@@ -94,6 +101,7 @@ export default function Shop() {
                       display: "flex",
                       flexDirection: "column",
                       justifyContent: "space-between",
+                      width: "25rem",
                     }}
                   >
                     <div className="font-link-title">{product.name}</div>
@@ -106,7 +114,7 @@ export default function Shop() {
                       }}
                     >
                       <div className="smallpadding font-link-quantity">
-                        <span>Quantity: </span>
+                        <span>QUANTITY: </span>
                       </div>
                       <div
                         style={{
@@ -163,17 +171,17 @@ export default function Shop() {
           <div>{discountBox()}</div>
           <p>You save = {rebateAmount(basket)},- DKK</p>
           <p>Total amount = {totalPriceWRebate(basket)},- DKK</p>
-
-          {/* //Navigate to checkoyt.tsx when the user clicks the checkout button. */}
-          <div>
-            {/* useNavigate or Navigate to, to navigate */}
-
-            <button className="checkoutbutton" onClick={handleOnClick}>
-              {" "}
-              Checkout
-            </button>
-          </div>
         </div>
+      </div>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
+        }}
+      >
+        <BackButton disabled={true} />
+        <NextButton disabled={false} />
       </div>
     </div>
   );
@@ -187,14 +195,7 @@ function DecrementButton({ onClick }: { onClick: () => void }) {
 function IncrementButton({ onClick }: { onClick: () => void }) {
   return <button onClick={onClick}>+</button>;
 }
-//Delete button to remove a product from the basket. The user is prompted a form to confirm the deletion.
-function DeleteButton({ onClick }: { onClick: () => void }) {
-  return (
-    <button style={{ width: "5rem" }} onClick={onClick}>
-      Remove
-    </button>
-  );
-}
+
 ("");
 //Make the totalPriceWRebate function which calculates the total price of the basket and check the quantity of each product to see if the rebate applies.
 

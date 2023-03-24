@@ -1,6 +1,8 @@
 //Description: This is the checkout page, where the user corrects/verifies chosen items and proceeds to checkout.
 import React, { useState } from "react";
 import "../styles/shop.css";
+import "../styles/checkout.css";
+import StepProgress from "../Progressbar/progressbar";
 
 export default function Checkout() {
   const [country, setCountry] = useState("Denmark");
@@ -20,13 +22,18 @@ export default function Checkout() {
   const [isPhoneValid, setIsPhoneValid] = useState(false);
   const [billingaddress, setBillingAddress] = useState("");
 
-  const validSubmit=()=>{
-    if(!isValidZip || !vatNumber || !isValidEmail || !isValidVatNumber || name == ""){
-      return false
+  const validSubmit = () => {
+    if (
+      !isValidZip ||
+      !vatNumber ||
+      !isValidEmail ||
+      !isValidVatNumber ||
+      name == ""
+    ) {
+      return false;
     }
-    return true
-
-  }
+    return true;
+  };
 
   const handleZipChange = (e: { target: { value: any } }) => {
     const newZip = e.target.value;
@@ -40,11 +47,11 @@ export default function Checkout() {
           setIsValidZip(true);
         })
         .catch((error) => {
-       //   setCity("");
+          //   setCity("");
           setIsValidZip(false);
         });
     } else {
-   //   setCity("");
+      //   setCity("");
       setIsValidZip(false);
     }
   };
@@ -91,7 +98,10 @@ export default function Checkout() {
     const newVatNumber = e.target.value;
     setVatNumber(newVatNumber);
 
-    if (country === "Denmark" && /^\d{8}$/.test(newVatNumber) || companyName.length == 0) {
+    if (
+      (country === "Denmark" && /^\d{8}$/.test(newVatNumber)) ||
+      companyName.length == 0
+    ) {
       setIsValidVatNumber(true);
     } else {
       setIsValidVatNumber(false);
@@ -108,6 +118,8 @@ export default function Checkout() {
       style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
       className="shopstyle"
     >
+      <StepProgress />
+
       <h1>Checkout page</h1>
 
       <form
@@ -161,7 +173,9 @@ export default function Checkout() {
           id="vatNumber"
           value={vatNumber}
           onChange={handleVatNumberChange}
-          className={isValidVatNumber || companyName.length == 0 ? "" : "invalid-field"}
+          className={
+            isValidVatNumber || companyName.length == 0 ? "" : "invalid-field"
+          }
         />
         {country !== "Denmark" && <p>VAT number is optional</p>}
         <label htmlFor="country">Country</label>
@@ -214,17 +228,17 @@ export default function Checkout() {
         />
         <label htmlFor="billingAddress">Billing address</label>
         <input
-        type="text"
-        name="billingAddress"
-        id="billingAddress"
-        value={billingaddress}
-        onChange={(e) => setBillingAddress(e.target.value)}
+          type="text"
+          name="billingAddress"
+          id="billingAddress"
+          value={billingaddress}
+          onChange={(e) => setBillingAddress(e.target.value)}
         />
 
         {/* If there are any errors/isValid fields that are not true, prompt it to the user */}
 
         {validSubmit() ? (
-            <p>Please fill out all fields</p>
+          <p>Please fill out all fields</p>
         ) : (
           <button type="submit">Submit</button>
         )}
