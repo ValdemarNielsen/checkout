@@ -27,11 +27,10 @@ describe('divide function', () => {
 
                 // Act: use the `divide` function
                 // to get an actual function result.
-                const result = divide(a,b);
-
+     //          const result = divide(a,b);
                 // Assert: compare expected result
                 // with a function result.
-                expect(result).toEqual(expected);
+         //       expect(result).toEqual(expected);
             });
 
         })

@@ -1,5 +1,5 @@
 //Description: This is the shop page, where the user chooses which items they want to proceed to checkout with.
-import React from "react";
+import React, {useEffect} from "react";
 import products, { BasketItems, itemDict } from "../assets/products";
 import { useState } from "react";
 import "../styles/shop.css";
@@ -10,6 +10,7 @@ import StepButtons from "../Progressbar/progressbutton";
 import StepProgress from "../Progressbar/progressbar";
 import { BackButton, NextButton } from "../assets/buttons/custombutton";
 import DeleteButton from "../assets/buttons/DeleteButton";
+import LoadingPopup from "../assets/popups/onLoadEmailPopup";
 
 export default function Shop() {
   const [basket, setBasket] = useState<BasketItems[]>([
@@ -84,7 +85,9 @@ export default function Shop() {
   };
 
   return (
+
     <div>
+      <LoadingPopup />
       <h1 className="shopstyle">Welcome to the House of Protein</h1>
       <h3 className="secondTitle">Choose your gains wheysely</h3>
       <StepProgress />
@@ -186,6 +189,7 @@ export default function Shop() {
     </div>
   );
 }
+
 
 //Use useState to update the quantity of the products when using decrement and increment buttons.
 function DecrementButton({ onClick }: { onClick: () => void }) {
@@ -292,3 +296,4 @@ function discountBox() {
     </div>
   );
 }
+
