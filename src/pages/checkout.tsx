@@ -120,8 +120,6 @@ export default function Checkout() {
             style={{display: "flex", flexDirection: "column", alignItems: "center"}}
             className="shopstyle"
         >
-
-
           <h1>Checkout page</h1>
 
           <form
@@ -136,6 +134,7 @@ export default function Checkout() {
                 name="name"
                 id="name"
                 value={name}
+                className="shippingDetails"
                 onChange={(e) => setName(e.target.value)}/>
 
             {country !== "Denmark" && <p>Phone number is optional</p>}
@@ -146,7 +145,9 @@ export default function Checkout() {
                 id="email"
                 value={email}
                 onChange={handleEmailChange}
-                className={isValidEmail || email == "" ? "" : "invalid-field"}/>
+                className={
+                  `shippingDetails ${isValidEmail || email == "" ? "" : "invalid-field"}`}
+/>
 
             <label htmlFor="phone">Phone number    *</label>
             <input
@@ -155,7 +156,8 @@ export default function Checkout() {
                 id="phone"
                 value={phone}
                 onChange={handlePhoneChange}
-                className={isPhoneValid || phone == "" ? "" : "invalid-field"}/>
+                className={
+                  `shippingDetails ${isPhoneValid || phone == "" ? "" : "invalid-field"}`}/>
 
             <label htmlFor="companyName">Company name</label>
             <input
@@ -163,6 +165,7 @@ export default function Checkout() {
                 name="companyName"
                 id="companyName"
                 value={companyName}
+                className="shippingDetails"
                 onChange={(e) => setCompanyName(e.target.value)}/>
             <label htmlFor="vatNumber">VAT number</label>
             <input
@@ -171,13 +174,16 @@ export default function Checkout() {
                 id="vatNumber"
                 value={vatNumber}
                 onChange={handleVatNumberChange}
-                className={isValidVatNumber || companyName.length == 0 ? "" : "invalid-field"}/>
+                className={
+                  `shippingDetails ${isValidVatNumber || companyName.length == 0 ? "" : "invalid-field"}`
+                }/>
             {country !== "Denmark" && <p>VAT number is optional</p>}
             <label htmlFor="country">Country    *</label>
             <select
                 name="country"
                 id="country"
                 value={country}
+                className="shippingDetails"
                 onChange={(e) => setCountry(e.target.value)}
             >
               <option value="Denmark">Denmark</option>
@@ -194,7 +200,7 @@ export default function Checkout() {
                 id="zip"
                 value={zip}
                 onChange={handleZipChange}
-                className={isValidZip || zip == "" ? "" : "invalid-field"}/>
+                className={`shippingDetails ${isValidZip || zip == "" ? "" : "invalid-field"}`}/>
             {country !== "Denmark" && <p>Zip code is optional</p>}
             <label htmlFor="city">City    *</label>
             <input
@@ -202,6 +208,7 @@ export default function Checkout() {
                 name="city"
                 id="city"
                 value={city}
+                className="shippingDetails"
                 onChange={(e) => setCity(e.target.value)}/>
             <label htmlFor="address1">Address 1    *</label>
             <input
@@ -209,6 +216,7 @@ export default function Checkout() {
                 name="address1"
                 id="address1"
                 value={address1}
+                className="shippingDetails"
                 onChange={(e) => setAddress1(e.target.value)}/>
             <label htmlFor="address2">Address 2</label>
             <input
@@ -216,6 +224,7 @@ export default function Checkout() {
                 name="address2"
                 id="address2"
                 value={address2}
+                className="shippingDetails"
                 onChange={(e) => setAddress2(e.target.value)}/>
             <label htmlFor="billingAddress">Billing address</label>
             <input
@@ -223,6 +232,7 @@ export default function Checkout() {
                 name="billingAddress"
                 id="billingAddress"
                 value={billingaddress}
+                className="shippingDetails"
                 onChange={(e) => setBillingAddress(e.target.value)}/>
             <div className="tacbox">
               <input className="tacinput" id="terms" type="checkbox" onClick={() => handleTerms()}/>
