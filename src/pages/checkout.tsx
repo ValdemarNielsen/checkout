@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import "../styles/shop.css";
 import "../styles/checkout.css";
 import StepProgress from "../Progressbar/progressbar";
+import { BackButton, NextButton, SubmitButton } from "../assets/buttons/custombutton";
 
 export default function Checkout() {
   const [country, setCountry] = useState("Denmark");
@@ -22,6 +23,7 @@ export default function Checkout() {
   const [isPhoneValid, setIsPhoneValid] = useState(false);
   const [billingaddress, setBillingAddress] = useState("");
   const [terms, setTerms] = useState(false);
+
 
 
   const validSubmit = () => {
@@ -250,7 +252,8 @@ export default function Checkout() {
             {validSubmit() ? (
                 <p>Please fill out all fields</p>
             ) : (
-                <button type="submit">Submit</button>
+                <SubmitButton disabled={false} />
+             //   <button type="submit">Submit</button>
             )}
           </form>
         </div>

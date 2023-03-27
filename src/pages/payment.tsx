@@ -7,7 +7,7 @@ import {Link, Navigate, Routes} from "react-router-dom";
 import {useNavigate} from "react-router-dom";
 import ProgressBarOnly from "../Progressbar/progressbaronly";
 import StepButtons from "../Progressbar/progressbutton";
-import {BackButton, NextButton} from "../assets/buttons/custombutton";
+import {BackButton, NextButton, SubmitButton, ConfirmButton} from "../assets/buttons/custombutton";
 import DeleteButton from "../assets/buttons/DeleteButton";
 import LoadingPopup from "../assets/popups/onLoadEmailPopup";
 import Shop from "../pages/shop";
@@ -40,11 +40,14 @@ export default function Payment() {
             <StepProgress/>
             <div className="row">
                 <div className="col-1">
-                    <button>
-                        <p> Chose payment method below</p>
-                        <input
+                        <p> Chose a payment method below</p>
+                        <div>
+                            Mobilepay
+                            <input
                             type="checkbox"
+                            className="checkboxSize"
                         />
+                        </div>
                         <p></p>
                         <label htmlFor="phone">Phone number </label>
                         <input
@@ -55,14 +58,19 @@ export default function Payment() {
                             onChange={handlePhoneChange}
                             className={isPhoneValid || phone == "" ? "" : "invalid-field"}
                         />
-                    </button>
-
                 </div>
                 <div className="col-2">
-                    <button>
+
                         <p>You have saved = 0 DKK</p>
                         <p>Total payment amount = 0 DKK</p>
-                    </button>
+
+                    <div>
+                        Optional order comment:
+                        <input
+                            type="text"
+                    />
+                    </div>
+                    <ConfirmButton disabled={false}/>
                 </div>
             </div>
         </div>
