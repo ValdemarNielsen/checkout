@@ -1,7 +1,8 @@
+
 import React, {useState, useEffect} from 'react';
 import {Modal, Box} from "@mui/material";
 import "../../Styles/shop.css";
-
+/*
 const LoadingPopup = () => {
 
     const [email, setEmail] = useState("");
@@ -72,3 +73,4 @@ const LoadingPopup = () => {
 };
 
 export default LoadingPopup;
+*/
