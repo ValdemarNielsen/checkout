@@ -25,20 +25,19 @@ export default function Checkout() {
   const [terms, setTerms] = useState(false);
 
 
-
   const validSubmit = () => {
     if (
-      !isValidZip ||
-      !vatNumber ||
-      !isValidEmail ||
-      !isValidVatNumber ||
-      name == ""  ||
-        !terms ||
-        !isPhoneValid
+      isValidZip &&
+        isValidEmail &&
+        isValidVatNumber &&
+        name.length != 0 &&
+        isPhoneValid &&
+        terms
     ) {
+      return true;
+    }else{
       return false;
     }
-    return true;
   };
 
   const handleZipChange = (e: { target: { value: any } }) => {
@@ -62,14 +61,6 @@ export default function Checkout() {
     }
   };
 
-  const handleCompanyNameChange = (e: { target: { value: string } }) => {
-    const company = e.target.value;
-    setCompanyName(company);
-    if (company != null) {
-      setIsCompany(true);
-    }
-    setIsCompany(false);
-  };
 
   const handleEmailChange = (e: { target: { value: any } }) => {
     const newEmail = e.target.value;
@@ -99,11 +90,8 @@ export default function Checkout() {
   const handleVatNumberChange = (e: { target: { value: any } }) => {
     const newVatNumber = e.target.value;
     setVatNumber(newVatNumber);
-
-    if (
-      (country == "Denmark" && !/^\d{8}$/.test(newVatNumber)) ||
-      companyName.length == 0
-    ) {
+    if (companyName.length==0 || country == "Denmark" && /^\d{8}$/.test(newVatNumber))
+    {
       setIsValidVatNumber(true);
     } else {
       setIsValidVatNumber(false);
@@ -113,12 +101,11 @@ export default function Checkout() {
 
 
   const handleTerms = () => {
-
     const checkbox = document.getElementById(
-        'terms',
+        "terms",
     ) as HTMLInputElement | null
 
-    if(checkbox?.ariaChecked){
+    if(checkbox?.checked){
       setTerms(true)
     }else {
       setTerms(false)
@@ -146,7 +133,7 @@ export default function Checkout() {
           >
             <h2>Shipping details</h2>
 
-            <label htmlFor="name">Name</label>
+            <label htmlFor="name">Name    *</label>
             <input
                 type="text"
                 name="name"
@@ -155,7 +142,7 @@ export default function Checkout() {
                 onChange={(e) => setName(e.target.value)}/>
 
             {country !== "Denmark" && <p>Phone number is optional</p>}
-            <label htmlFor="email">Email</label>
+            <label htmlFor="email">Email    *</label>
             <input
                 type="text"
                 name="email"
@@ -164,7 +151,7 @@ export default function Checkout() {
                 onChange={handleEmailChange}
                 className={isValidEmail || email == "" ? "" : "invalid-field"}/>
 
-            <label htmlFor="phone">Phone number</label>
+            <label htmlFor="phone">Phone number    *</label>
             <input
                 type="text"
                 name="phone"
@@ -187,9 +174,9 @@ export default function Checkout() {
                 id="vatNumber"
                 value={vatNumber}
                 onChange={handleVatNumberChange}
-                className={!isValidVatNumber || companyName.length == 0 ? "" : "invalid-field"}/>
+                className={isValidVatNumber || companyName.length == 0 ? "" : "invalid-field"}/>
             {country !== "Denmark" && <p>VAT number is optional</p>}
-            <label htmlFor="country">Country</label>
+            <label htmlFor="country">Country    *</label>
             <select
                 name="country"
                 id="country"
@@ -203,7 +190,7 @@ export default function Checkout() {
     <option value="Poladn">Finland</option>
     */}
             </select>
-            <label htmlFor="zip">Zip code</label>
+            <label htmlFor="zip">Zip code    *</label>
             <input
                 type="text"
                 name="zip"
@@ -212,14 +199,14 @@ export default function Checkout() {
                 onChange={handleZipChange}
                 className={isValidZip || zip == "" ? "" : "invalid-field"}/>
             {country !== "Denmark" && <p>Zip code is optional</p>}
-            <label htmlFor="city">City</label>
+            <label htmlFor="city">City    *</label>
             <input
                 type="text"
                 name="city"
                 id="city"
                 value={city}
                 onChange={(e) => setCity(e.target.value)}/>
-            <label htmlFor="address1">Address 1</label>
+            <label htmlFor="address1">Address 1    *</label>
             <input
                 type="text"
                 name="address1"
@@ -241,23 +228,29 @@ export default function Checkout() {
                 value={billingaddress}
                 onChange={(e) => setBillingAddress(e.target.value)}/>
             <div className="tacbox">
-              <input className="tacinput" id="terms" type="checkbox"/>
+              <input className="tacinput" id="terms" type="checkbox" onClick={() => handleTerms()}/>
               <label htmlFor="checkbox" className="tacboxtext"> I agree to these <a href="#">Terms and
                 Conditions</a>.</label>
             </div>
-            <div className="tacbox">
-              <input className="tacinput" id="notification" type="checkbox" style={{alignSelf: "flex-start"}}/>
+            <div className="tacbox" >
+              <input className="tacinput" id="notification" type="checkbox" />
               <label htmlFor="checkbox" className="tacboxtext"> I want to receive Emails about great deals and news
                 about House of Protein</label>
             </div>
 
             {/* If there are any errors/isValid fields that are not true, prompt it to the user */}
-            {validSubmit() ? (
-                <p>Please fill out all fields</p>
-            ) : (
-                <SubmitButton disabled={false} />
-             //   <button type="submit">Submit</button>
-            )}
+
+            <button type="submit" onClick={() =>{
+              if(!validSubmit()){
+                var fill = document.getElementById("fill") as HTMLInputElement
+                fill.innerHTML = "Please fill out all fields"
+              }else{
+                var fill = document.getElementById("fill") as HTMLInputElement
+                fill.innerHTML = ""
+              }
+            }}>Submit</button>
+
+            <p id="fill"></p>
           </form>
         </div>
       </>
