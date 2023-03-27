@@ -108,12 +108,13 @@ export default function Checkout() {
   };
 
   return (
+
     <div
       style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
       className="shopstyle"
     >
-      <StepProgress />
 
+      <StepProgress />
       <h1>Checkout page</h1>
 
       <form
