@@ -90,7 +90,7 @@ export default function Checkout() {
   const handleVatNumberChange = (e: { target: { value: any } }) => {
     const newVatNumber = e.target.value;
     setVatNumber(newVatNumber);
-    if (companyName.length==0 || country == "Denmark" && /^\d{8}$/.test(newVatNumber))
+    if (companyName.length == 0 || country == "Denmark" && /^\d{8}$/.test(newVatNumber))
     {
       setIsValidVatNumber(true);
     } else {
@@ -258,6 +258,7 @@ export default function Checkout() {
                 var fill = document.getElementById("fill") as HTMLInputElement
                 fill.innerHTML = ""
               }
+
             }}>Submit</button>
 
             <p id="fill"></p>
