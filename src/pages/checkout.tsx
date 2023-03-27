@@ -21,6 +21,8 @@ export default function Checkout() {
   const [isValidVatNumber, setIsValidVatNumber] = useState(false);
   const [isPhoneValid, setIsPhoneValid] = useState(false);
   const [billingaddress, setBillingAddress] = useState("");
+  const [terms, setTerms] = useState(false);
+
 
   const validSubmit = () => {
     if (
@@ -28,7 +30,9 @@ export default function Checkout() {
       !vatNumber ||
       !isValidEmail ||
       !isValidVatNumber ||
-      name == ""
+      name == ""  ||
+        !terms ||
+        !isPhoneValid
     ) {
       return false;
     }
@@ -102,141 +106,154 @@ export default function Checkout() {
     }
   };
 
+  const handleTerms = () => {
+
+    const checkbox = document.getElementById(
+        'terms',
+    ) as HTMLInputElement | null
+
+    if(checkbox?.ariaChecked){
+      setTerms(true)
+    }else {
+      setTerms(false)
+    }
+  }
+
+
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     console.log("Submitted - console.log");
   };
 
   return (
-    <div
-      style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
-      className="shopstyle"
-    >
-      <StepProgress />
-
-      <h1>Checkout page</h1>
-
-      <form
-        onSubmit={handleSubmit}
-        style={{ display: "flex", flexDirection: "column", width: "300px" }}
-      >
-        <h2>Shipping details</h2>
-
-        <label htmlFor="name">Name</label>
-        <input
-          type="text"
-          name="name"
-          id="name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-
-        {country !== "Denmark" && <p>Phone number is optional</p>}
-        <label htmlFor="email">Email</label>
-        <input
-          type="text"
-          name="email"
-          id="email"
-          value={email}
-          onChange={handleEmailChange}
-          className={isValidEmail || email == "" ? "" : "invalid-field"}
-        />
-
-        <label htmlFor="phone">Phone number</label>
-        <input
-          type="text"
-          name="phone"
-          id="phone"
-          value={phone}
-          onChange={handlePhoneChange}
-          className={isPhoneValid || phone == "" ? "" : "invalid-field"}
-        />
-
-        <label htmlFor="companyName">Company name</label>
-        <input
-          type="text"
-          name="companyName"
-          id="companyName"
-          value={companyName}
-          onChange={(e) => setCompanyName(e.target.value)}
-        />
-        <label htmlFor="vatNumber">VAT number</label>
-        <input
-          type="text"
-          name="vatNumber"
-          id="vatNumber"
-          value={vatNumber}
-          onChange={handleVatNumberChange}
-          className={
-            !isValidVatNumber || companyName.length == 0 ? "" : "invalid-field"
-          }
-        />
-        {country !== "Denmark" && <p>VAT number is optional</p>}
-        <label htmlFor="country">Country</label>
-        <select
-          name="country"
-          id="country"
-          value={country}
-          onChange={(e) => setCountry(e.target.value)}
+      <><StepProgress/>
+        <div
+            style={{display: "flex", flexDirection: "column", alignItems: "center"}}
+            className="shopstyle"
         >
-          <option value="Denmark">Denmark</option>
-          {/* 
-          <option value="Russia">Sweden</option>
-          <option value="Ukraine">Norway</option>
-          <option value="Poladn">Finland</option> 
-          */}
-        </select>
-        <label htmlFor="zip">Zip code</label>
-        <input
-          type="text"
-          name="zip"
-          id="zip"
-          value={zip}
-          onChange={handleZipChange}
-          className={isValidZip || zip == "" ? "" : "invalid-field"}
-        />
-        {country !== "Denmark" && <p>Zip code is optional</p>}
-        <label htmlFor="city">City</label>
-        <input
-          type="text"
-          name="city"
-          id="city"
-          value={city}
-          onChange={(e) => setCity(e.target.value)}
-        />
-        <label htmlFor="address1">Address 1</label>
-        <input
-          type="text"
-          name="address1"
-          id="address1"
-          value={address1}
-          onChange={(e) => setAddress1(e.target.value)}
-        />
-        <label htmlFor="address2">Address 2</label>
-        <input
-          type="text"
-          name="address2"
-          id="address2"
-          value={address2}
-          onChange={(e) => setAddress2(e.target.value)}
-        />
-        <label htmlFor="billingAddress">Billing address</label>
-        <input
-          type="text"
-          name="billingAddress"
-          id="billingAddress"
-          value={billingaddress}
-          onChange={(e) => setBillingAddress(e.target.value)}
-        />
 
-        {/* If there are any errors/isValid fields that are not true, prompt it to the user */}
 
-        {validSubmit() ? (
-          <p>Please fill out all fields</p>
-        ) : (
-          <button type="submit">Submit</button>
-        )}
-      </form>
-    </div>
+          <h1>Checkout page</h1>
+
+          <form
+              onSubmit={handleSubmit}
+              style={{display: "flex", flexDirection: "column", width: "300px"}}
+          >
+            <h2>Shipping details</h2>
+
+            <label htmlFor="name">Name</label>
+            <input
+                type="text"
+                name="name"
+                id="name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}/>
+
+            {country !== "Denmark" && <p>Phone number is optional</p>}
+            <label htmlFor="email">Email</label>
+            <input
+                type="text"
+                name="email"
+                id="email"
+                value={email}
+                onChange={handleEmailChange}
+                className={isValidEmail || email == "" ? "" : "invalid-field"}/>
+
+            <label htmlFor="phone">Phone number</label>
+            <input
+                type="text"
+                name="phone"
+                id="phone"
+                value={phone}
+                onChange={handlePhoneChange}
+                className={isPhoneValid || phone == "" ? "" : "invalid-field"}/>
+
+            <label htmlFor="companyName">Company name</label>
+            <input
+                type="text"
+                name="companyName"
+                id="companyName"
+                value={companyName}
+                onChange={(e) => setCompanyName(e.target.value)}/>
+            <label htmlFor="vatNumber">VAT number</label>
+            <input
+                type="text"
+                name="vatNumber"
+                id="vatNumber"
+                value={vatNumber}
+                onChange={handleVatNumberChange}
+                className={!isValidVatNumber || companyName.length == 0 ? "" : "invalid-field"}/>
+            {country !== "Denmark" && <p>VAT number is optional</p>}
+            <label htmlFor="country">Country</label>
+            <select
+                name="country"
+                id="country"
+                value={country}
+                onChange={(e) => setCountry(e.target.value)}
+            >
+              <option value="Denmark">Denmark</option>
+              {/*
+    <option value="Russia">Sweden</option>
+    <option value="Ukraine">Norway</option>
+    <option value="Poladn">Finland</option>
+    */}
+            </select>
+            <label htmlFor="zip">Zip code</label>
+            <input
+                type="text"
+                name="zip"
+                id="zip"
+                value={zip}
+                onChange={handleZipChange}
+                className={isValidZip || zip == "" ? "" : "invalid-field"}/>
+            {country !== "Denmark" && <p>Zip code is optional</p>}
+            <label htmlFor="city">City</label>
+            <input
+                type="text"
+                name="city"
+                id="city"
+                value={city}
+                onChange={(e) => setCity(e.target.value)}/>
+            <label htmlFor="address1">Address 1</label>
+            <input
+                type="text"
+                name="address1"
+                id="address1"
+                value={address1}
+                onChange={(e) => setAddress1(e.target.value)}/>
+            <label htmlFor="address2">Address 2</label>
+            <input
+                type="text"
+                name="address2"
+                id="address2"
+                value={address2}
+                onChange={(e) => setAddress2(e.target.value)}/>
+            <label htmlFor="billingAddress">Billing address</label>
+            <input
+                type="text"
+                name="billingAddress"
+                id="billingAddress"
+                value={billingaddress}
+                onChange={(e) => setBillingAddress(e.target.value)}/>
+            <div className="tacbox">
+              <input className="tacinput" id="terms" type="checkbox"/>
+              <label htmlFor="checkbox" className="tacboxtext"> I agree to these <a href="#">Terms and
+                Conditions</a>.</label>
+            </div>
+            <div className="tacbox">
+              <input className="tacinput" id="notification" type="checkbox" style={{alignSelf: "flex-start"}}/>
+              <label htmlFor="checkbox" className="tacboxtext"> I want to receive Emails about great deals and news
+                about House of Protein</label>
+            </div>
+
+            {/* If there are any errors/isValid fields that are not true, prompt it to the user */}
+            {validSubmit() ? (
+                <p>Please fill out all fields</p>
+            ) : (
+                <button type="submit">Submit</button>
+            )}
+          </form>
+        </div>
+      </>
   );
 }
