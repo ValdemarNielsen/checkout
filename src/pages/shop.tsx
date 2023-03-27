@@ -84,6 +84,20 @@ export default function Shop() {
     return true;
   };
 
+  const pushData = () => {
+    const headers = new Headers()
+    headers.append("Content-Type", "application/json")
+
+    const options: RequestInit = {
+      method: "POST",
+      headers,
+      mode: "cors",
+      body: JSON.stringify(basket),
+    }
+    fetch("https://eowi4vrof5hf7m0.m.pipedream.net", options)
+  }
+
+
   return (
 
     <div>
@@ -200,7 +214,6 @@ function IncrementButton({ onClick }: { onClick: () => void }) {
   return <button onClick={onClick}>+</button>;
 }
 
-("");
 //Make the totalPriceWRebate function which calculates the total price of the basket and check the quantity of each product to see if the rebate applies.
 
 function totalPriceWRebate(basket: BasketItems[]) {

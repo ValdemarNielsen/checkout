@@ -129,7 +129,7 @@ export default function Checkout() {
           >
             <h2>Shipping details</h2>
 
-            <label htmlFor="name">Name</label>
+            <label htmlFor="name">Name    *</label>
             <input
                 type="text"
                 name="name"
@@ -138,7 +138,7 @@ export default function Checkout() {
                 onChange={(e) => setName(e.target.value)}/>
 
             {country !== "Denmark" && <p>Phone number is optional</p>}
-            <label htmlFor="email">Email</label>
+            <label htmlFor="email">Email    *</label>
             <input
                 type="text"
                 name="email"
@@ -147,7 +147,7 @@ export default function Checkout() {
                 onChange={handleEmailChange}
                 className={isValidEmail || email == "" ? "" : "invalid-field"}/>
 
-            <label htmlFor="phone">Phone number</label>
+            <label htmlFor="phone">Phone number    *</label>
             <input
                 type="text"
                 name="phone"
@@ -172,7 +172,7 @@ export default function Checkout() {
                 onChange={handleVatNumberChange}
                 className={isValidVatNumber || companyName.length == 0 ? "" : "invalid-field"}/>
             {country !== "Denmark" && <p>VAT number is optional</p>}
-            <label htmlFor="country">Country</label>
+            <label htmlFor="country">Country    *</label>
             <select
                 name="country"
                 id="country"
@@ -186,7 +186,7 @@ export default function Checkout() {
     <option value="Poladn">Finland</option>
     */}
             </select>
-            <label htmlFor="zip">Zip code</label>
+            <label htmlFor="zip">Zip code    *</label>
             <input
                 type="text"
                 name="zip"
@@ -195,14 +195,14 @@ export default function Checkout() {
                 onChange={handleZipChange}
                 className={isValidZip || zip == "" ? "" : "invalid-field"}/>
             {country !== "Denmark" && <p>Zip code is optional</p>}
-            <label htmlFor="city">City</label>
+            <label htmlFor="city">City    *</label>
             <input
                 type="text"
                 name="city"
                 id="city"
                 value={city}
                 onChange={(e) => setCity(e.target.value)}/>
-            <label htmlFor="address1">Address 1</label>
+            <label htmlFor="address1">Address 1    *</label>
             <input
                 type="text"
                 name="address1"
