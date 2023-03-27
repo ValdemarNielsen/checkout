@@ -82,6 +82,8 @@ export default function Checkout() {
     }
   };
 
+
+
   const handlePhoneChange = (e: { target: { value: any } }) => {
     const newPhone = e.target.value;
     setPhone(newPhone);
@@ -108,6 +110,8 @@ export default function Checkout() {
     }
   };
 
+
+
   const handleTerms = () => {
 
     const checkbox = document.getElementById(
@@ -120,7 +124,6 @@ export default function Checkout() {
       setTerms(false)
     }
   }
-
 
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();

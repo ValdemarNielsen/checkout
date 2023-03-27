@@ -21,7 +21,6 @@ const LoadingPopup = () => {
    //     }, 3000); // simulate a 3 second loading time
  //   }, []);
 
-
     return (
         <>
             {loading && (
@@ -43,9 +42,9 @@ const LoadingPopup = () => {
                         padding: '20px',
                         borderRadius: '10px'
                     }}>
-                        <h2>Loading...</h2>
+                        <h2>Sign up for our newsletter to recieve a 5% rabat </h2>
                         <button className="incrementButton" onClick={() => setLoading(false)}>
-                            Hide
+                            No thanks
                         </button>
                     </div>
                 </div>
