@@ -3,23 +3,29 @@ import {Modal, Box} from "@mui/material";
 import "../../Styles/shop.css";
 
 const LoadingPopup = () => {
+
+    const [email, setEmail] = useState("");
+    const [isValidEmail, setIsValidEmail] = useState(false);
+    const handleEmailChange = (e: { target: { value: any } }) => {
+        const newEmail = e.target.value;
+        setEmail(newEmail);
+
+        if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(newEmail)) {
+            setIsValidEmail(true);
+        } else {
+            setIsValidEmail(false);
+        }
+    };
     const [loading, setLoading] = useState<boolean>(true);
 
     useEffect(() => {
-    const data = window.localStorage.getItem("My_APP_STAGE");
-    if (data !== null) setLoading(JSON.parse(data));
+        const data = window.localStorage.getItem("My_APP_STAGE");
+        if (data !== null) setLoading(JSON.parse(data));
     }, []);
 
     useEffect(() => {
         window.localStorage.setItem('MY_APP_STATE', JSON.stringify(loading));
     }, [loading]);
-
-
-  //  useEffect(() => {
-  //      setTimeout(() => {
-   //         setLoading(false);
-   //     }, 3000); // simulate a 3 second loading time
- //   }, []);
 
     return (
         <>
@@ -42,7 +48,19 @@ const LoadingPopup = () => {
                         padding: '20px',
                         borderRadius: '10px'
                     }}>
-                        <h2>Sign up for our newsletter to recieve a 5% rabat </h2>
+
+                        <h2>Sign up for our newsletter to recieve a 5% rebate code! </h2>
+                        <input type="text" placeholder="Enter email here"
+                               name="email"
+                               id="email"
+                               value={email}
+                               onChange={handleEmailChange}
+                               className={isValidEmail || email == "" ? "" : "invalid-field"}
+                        />
+                        <button className="incrementButton" onClick={() => setLoading(false)}>
+                            Submit
+                        </button>
+                        <p></p>
                         <button className="incrementButton" onClick={() => setLoading(false)}>
                             No thanks
                         </button>

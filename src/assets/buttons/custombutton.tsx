@@ -14,6 +14,7 @@ const CustomButton = ({ label, disabled, onClick }: CustomButtonProps) => {
     </button>
   );
 };
+
 export const SubmitButton = ({ disabled }: { disabled: boolean }) => {
   const navigate = useNavigate();
   const handleOnClick = () => {
