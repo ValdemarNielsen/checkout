@@ -42,6 +42,10 @@ export default function Payment() {
                 <div className="col-1">
                     <button>
                         <p> Chose payment method below</p>
+                        <input
+                            type="checkbox"
+                        />
+                        <p></p>
                         <label htmlFor="phone">Phone number </label>
                         <input
                             type="text"
