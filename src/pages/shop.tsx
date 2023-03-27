@@ -200,6 +200,9 @@ export default function Shop() {
       >
         <BackButton disabled={true} />
         <NextButton disabled={false} />
+        <button onClick={pushData}>
+          Submit Order
+        </button>
       </div>
     </div>
   );
