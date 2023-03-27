@@ -94,7 +94,7 @@ export default function Checkout() {
       setIsValidVatNumber(false);
     }
   };
-
+//111
   const handleTerms = () => {
     const checkbox = document.getElementById(
         "terms",
@@ -238,10 +238,10 @@ export default function Checkout() {
 
             <button type="submit" onClick={() =>{
               if(!validSubmit()){
-                var fill = document.getElementById("fill")
+                var fill = document.getElementById("fill") as HTMLInputElement
                 fill.innerHTML = "Please fill out all fields"
               }else{
-                var fill = document.getElementById("fill")
+                var fill = document.getElementById("fill") as HTMLInputElement
                 fill.innerHTML = ""
               }
             }}>Submit</button>
