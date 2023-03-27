@@ -14,14 +14,45 @@ const CustomButton = ({ label, disabled, onClick }: CustomButtonProps) => {
     </button>
   );
 };
-
-export const NextButton = ({ disabled }: { disabled: boolean }) => {
+export const SubmitButton = ({ disabled }: { disabled: boolean }) => {
   const navigate = useNavigate();
-
   const handleOnClick = () => {
     if (!disabled) {
       navigate("/payment");
     }
+  };
+
+  return (
+      <CustomButton
+          label="Submit"
+          disabled={disabled}
+          onClick={handleOnClick}
+      />
+  );
+};
+export const ConfirmButton = ({ disabled }: { disabled: boolean }) => {
+  const navigate = useNavigate();
+  const handleOnClick = () => {
+    if (!disabled) {
+      navigate("/confirmation");
+    }
+  };
+
+  return (
+      <CustomButton
+          label="Confirm"
+          disabled={disabled}
+          onClick={handleOnClick}
+      />
+  );
+};
+
+export const NextButton = ({ disabled }: { disabled: boolean }) => {
+  const navigate = useNavigate();
+  const handleOnClick = () => {
+    if (!disabled) {
+        navigate("/checkout");
+          }
   };
 
   return (

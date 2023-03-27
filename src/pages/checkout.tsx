@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import "../styles/shop.css";
 import "../styles/checkout.css";
 import StepProgress from "../Progressbar/progressbar";
+import { BackButton, NextButton, SubmitButton } from "../assets/buttons/custombutton";
 
 export default function Checkout() {
   const [country, setCountry] = useState("Denmark");
@@ -94,7 +95,7 @@ export default function Checkout() {
       setIsValidVatNumber(false);
     }
   };
-//111
+
   const handleTerms = () => {
     const checkbox = document.getElementById(
         "terms",
