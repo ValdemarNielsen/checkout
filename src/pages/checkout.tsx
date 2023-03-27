@@ -247,7 +247,6 @@ export default function Checkout() {
             }}>Submit</button>
 
             <p id="fill"></p>
-
           </form>
         </div>
       </>
