@@ -10,7 +10,7 @@ import StepButtons from "../Progressbar/progressbutton";
 import StepProgress from "../Progressbar/progressbar";
 import { BackButton, NextButton } from "../assets/buttons/custombutton";
 import DeleteButton from "../assets/buttons/DeleteButton";
-import LoadingPopup from "../assets/popups/onLoadEmailPopup";
+// import LoadingPopup from "../assets/popups/onLoadEmailPopup";
 
 export default function Shop() {
   const [basket, setBasket] = useState<BasketItems[]>([

@@ -4,8 +4,10 @@ import "../styles/shop.css";
 import "../styles/checkout.css";
 import StepProgress from "../Progressbar/progressbar";
 import { BackButton, NextButton, SubmitButton } from "../assets/buttons/custombutton";
+import { useNavigate } from "react-router-dom";
 
 export default function Checkout() {
+  const navigate = useNavigate();
   const [country, setCountry] = useState("Denmark");
   const [zip, setZip] = useState("");
   const [city, setCity] = useState("");
@@ -29,7 +31,7 @@ export default function Checkout() {
     if (
       isValidZip &&
         isValidEmail &&
-        isValidVatNumber &&
+     //   isValidVatNumber &&
         name.length != 0 &&
         isPhoneValid &&
         terms
@@ -257,8 +259,9 @@ export default function Checkout() {
               }else{
                 var fill = document.getElementById("fill") as HTMLInputElement
                 fill.innerHTML = ""
+                navigate("/payment");
               }
-            }}>Submit</button>
+            }}>Submit </button>
 
             <p id="fill"></p>
           </form>
