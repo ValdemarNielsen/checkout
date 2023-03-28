@@ -1,4 +1,5 @@
 import React from "react";
+import { BackButton, NextButton } from "../assets/buttons/custombutton";
 import StepProgress from "../Progressbar/progressbar";
 
 const Payment = () => {
@@ -6,6 +7,11 @@ const Payment = () => {
     <>
       <h1>Payment</h1>
       <StepProgress />
+
+      <div>
+        <BackButton disabled={false} />
+        <NextButton disabled={false} />
+      </div>
     </>
   );
 };

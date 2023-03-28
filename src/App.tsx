@@ -12,8 +12,6 @@ import Confirmation from "./pages/confirmation";
 import Payment from "./pages/payment";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <html lang="en">
       <link href="shop.css" rel="stylesheet" />

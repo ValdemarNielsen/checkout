@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import "../styles/shop.css";
 import "../styles/checkout.css";
 import StepProgress from "../Progressbar/progressbar";
+import { BackButton, NextButton } from "../assets/buttons/custombutton";
 
 export default function Checkout() {
   const [country, setCountry] = useState("Denmark");
@@ -121,6 +122,10 @@ export default function Checkout() {
       <StepProgress />
 
       <h1>Checkout page</h1>
+      <div>
+        <BackButton disabled={false} />
+        <NextButton disabled={false} />
+      </div>
 
       <form
         onSubmit={handleSubmit}

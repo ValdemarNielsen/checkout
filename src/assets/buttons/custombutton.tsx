@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 interface CustomButtonProps {
   label: string;
@@ -17,10 +17,23 @@ const CustomButton = ({ label, disabled, onClick }: CustomButtonProps) => {
 
 export const NextButton = ({ disabled }: { disabled: boolean }) => {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleOnClick = () => {
     if (!disabled) {
-      navigate("/payment");
+      switch (location.pathname) {
+        case "/":
+          navigate("/checkout");
+          break;
+        case "/checkout":
+          navigate("/payment");
+          break;
+        case "/payment":
+          navigate("/confirmation");
+          break;
+        default:
+          break;
+      }
     }
   };
 
@@ -35,10 +48,23 @@ export const NextButton = ({ disabled }: { disabled: boolean }) => {
 
 export const BackButton = ({ disabled }: { disabled: boolean }) => {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleOnClick = () => {
     if (!disabled) {
-      navigate("/");
+      switch (location.pathname) {
+        case "/checkout":
+          navigate("/");
+          break;
+        case "/payment":
+          navigate("/checkout");
+          break;
+        case "/confirmation":
+          navigate("/payment");
+          break;
+        default:
+          break;
+      }
     }
   };
 

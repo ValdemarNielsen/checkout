@@ -10,6 +10,7 @@ import StepButtons from "../Progressbar/progressbutton";
 import StepProgress from "../Progressbar/progressbar";
 import { BackButton, NextButton } from "../assets/buttons/custombutton";
 import DeleteButton from "../assets/buttons/DeleteButton";
+import EmailForm from "../assets/EmailWelcome";
 
 export default function Shop() {
   const [basket, setBasket] = useState<BasketItems[]>([
@@ -88,6 +89,7 @@ export default function Shop() {
       <h1 className="shopstyle">Welcome to the House of Protein</h1>
       <h3 className="secondTitle">Choose your gains wheysely</h3>
       <StepProgress />
+      <EmailForm />
 
       <div className="row">
         <div className="col-1">
@@ -169,6 +171,7 @@ export default function Shop() {
         </div>
         <div className="col-2">
           <div>{discountBox()}</div>
+          {/* Insert rebateText function */}
           <p>You save = {rebateAmount(basket)},- DKK</p>
           <p>Total amount = {totalPriceWRebate(basket)},- DKK</p>
         </div>
@@ -291,4 +294,26 @@ function discountBox() {
       )}
     </div>
   );
+}
+
+//Function which displays only text based the amount of product quantity the user has left to get the rebate.
+function rebateText(basket: BasketItems[]) {
+  basket.forEach((item) => {
+    if (item.quantity >= item.rebateQuantity) {
+      return (
+        <div>
+          <p>You have reached the rebate quantity</p>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <p>
+            You need to buy {item.rebateQuantity - item.quantity} more of this
+            product to get the rebate
+          </p>
+        </div>
+      );
+    }
+  }, []);
 }
