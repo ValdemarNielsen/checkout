@@ -11,6 +11,13 @@ import Checkout from "./pages/checkout";
 import Confirmation from "./pages/confirmation";
 import Payment from "./pages/payment";
 
+function divide (a: number, b: number): number {
+    if (b === 0){
+        throw new Error("You can't divide by zero.")
+    }
+    return Math.round(a / b);
+}
+
 function App() {
   return (
     <html lang="en">

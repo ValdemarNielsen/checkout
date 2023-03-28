@@ -5,8 +5,6 @@ import StepProgress from "../Progressbar/progressbar";
 const Confirmation = () => {
   return (
     <>
-      <StepProgress />
-
       <h1>Confirmation</h1>
       <div>
         <BackButton disabled={false} />

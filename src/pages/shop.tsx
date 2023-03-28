@@ -1,5 +1,5 @@
 //Description: This is the shop page, where the user chooses which items they want to proceed to checkout with.
-import React from "react";
+import React, { useEffect } from "react";
 import products, { BasketItems, itemDict } from "../assets/products";
 import { useState } from "react";
 import "../styles/shop.css";
@@ -84,8 +84,22 @@ export default function Shop() {
     return true;
   };
 
+  const pushData = () => {
+    const headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    const options: RequestInit = {
+      method: "POST",
+      headers,
+      mode: "cors",
+      body: JSON.stringify(basket),
+    };
+    fetch("https://eowi4vrof5hf7m0.m.pipedream.net", options);
+  };
+
   return (
     <div>
+      {/*<LoadingPopup /> */}
       <h1 className="shopstyle">Welcome to the House of Protein</h1>
       <h3 className="secondTitle">Choose your gains wheysely</h3>
       <StepProgress />
@@ -144,6 +158,7 @@ export default function Shop() {
                     display: "flex",
                     flexDirection: "column",
                     justifyItems: "end",
+                    padding: "10px",
                   }}
                 >
                   <p
@@ -185,6 +200,7 @@ export default function Shop() {
       >
         <BackButton disabled={true} />
         <NextButton disabled={false} />
+        <button onClick={pushData}>Submit Order</button>
       </div>
     </div>
   );
@@ -199,7 +215,6 @@ function IncrementButton({ onClick }: { onClick: () => void }) {
   return <button onClick={onClick}>+</button>;
 }
 
-("");
 //Make the totalPriceWRebate function which calculates the total price of the basket and check the quantity of each product to see if the rebate applies.
 
 function totalPriceWRebate(basket: BasketItems[]) {

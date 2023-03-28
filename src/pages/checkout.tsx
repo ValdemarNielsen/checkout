@@ -3,9 +3,10 @@ import React, { useState } from "react";
 import "../styles/shop.css";
 import "../styles/checkout.css";
 import StepProgress from "../Progressbar/progressbar";
-import { BackButton, NextButton } from "../assets/buttons/custombutton";
+import { useNavigate } from "react-router-dom";
 
 export default function Checkout() {
+  const navigate = useNavigate();
   const [country, setCountry] = useState("Denmark");
   const [zip, setZip] = useState("");
   const [city, setCity] = useState("");
@@ -22,18 +23,21 @@ export default function Checkout() {
   const [isValidVatNumber, setIsValidVatNumber] = useState(false);
   const [isPhoneValid, setIsPhoneValid] = useState(false);
   const [billingaddress, setBillingAddress] = useState("");
+  const [terms, setTerms] = useState(false);
 
   const validSubmit = () => {
     if (
-      !isValidZip ||
-      !vatNumber ||
-      !isValidEmail ||
-      !isValidVatNumber ||
-      name == ""
+      isValidZip &&
+      isValidEmail &&
+      //   isValidVatNumber &&
+      name.length != 0 &&
+      isPhoneValid &&
+      terms
     ) {
+      return true;
+    } else {
       return false;
     }
-    return true;
   };
 
   const handleZipChange = (e: { target: { value: any } }) => {
@@ -55,15 +59,6 @@ export default function Checkout() {
       //   setCity("");
       setIsValidZip(false);
     }
-  };
-
-  const handleCompanyNameChange = (e: { target: { value: string } }) => {
-    const company = e.target.value;
-    setCompanyName(company);
-    if (company != null) {
-      setIsCompany(true);
-    }
-    setIsCompany(false);
   };
 
   const handleEmailChange = (e: { target: { value: any } }) => {
@@ -88,24 +83,28 @@ export default function Checkout() {
     }
   };
 
-  function handleCompanyName(e: number) {
-    if (e > 0) {
-      return true;
-    }
-    return false;
-  }
-
   const handleVatNumberChange = (e: { target: { value: any } }) => {
     const newVatNumber = e.target.value;
     setVatNumber(newVatNumber);
-
     if (
-      (country === "Denmark" && /^\d{8}$/.test(newVatNumber)) ||
-      companyName.length == 0
+      companyName.length == 0 ||
+      (country == "Denmark" && /^\d{8}$/.test(newVatNumber))
     ) {
       setIsValidVatNumber(true);
     } else {
       setIsValidVatNumber(false);
+    }
+  };
+
+  const handleTerms = () => {
+    const checkbox = document.getElementById(
+      "terms"
+    ) as HTMLInputElement | null;
+
+    if (checkbox?.checked) {
+      setTerms(true);
+    } else {
+      setTerms(false);
     }
   };
 
@@ -115,139 +114,185 @@ export default function Checkout() {
   };
 
   return (
-    <div
-      style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
-      className="shopstyle"
-    >
+    <>
       <StepProgress />
-
-      <h1>Checkout page</h1>
-      <div>
-        <BackButton disabled={false} />
-        <NextButton disabled={false} />
-      </div>
-
-      <form
-        onSubmit={handleSubmit}
-        style={{ display: "flex", flexDirection: "column", width: "300px" }}
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+        className="shopstyle"
       >
-        <h2>Shipping details</h2>
+        <h1>Checkout page</h1>
 
-        <label htmlFor="name">Name</label>
-        <input
-          type="text"
-          name="name"
-          id="name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-
-        {country !== "Denmark" && <p>Phone number is optional</p>}
-        <label htmlFor="email">Email</label>
-        <input
-          type="text"
-          name="email"
-          id="email"
-          value={email}
-          onChange={handleEmailChange}
-          className={isValidEmail || email == "" ? "" : "invalid-field"}
-        />
-
-        <label htmlFor="phone">Phone number</label>
-        <input
-          type="text"
-          name="phone"
-          id="phone"
-          value={phone}
-          onChange={handlePhoneChange}
-          className={isPhoneValid || phone == "" ? "" : "invalid-field"}
-        />
-
-        <label htmlFor="companyName">Company name</label>
-        <input
-          type="text"
-          name="companyName"
-          id="companyName"
-          value={companyName}
-          onChange={(e) => setCompanyName(e.target.value)}
-        />
-        <label htmlFor="vatNumber">VAT number</label>
-        <input
-          type="text"
-          name="vatNumber"
-          id="vatNumber"
-          value={vatNumber}
-          onChange={handleVatNumberChange}
-          className={
-            isValidVatNumber || companyName.length == 0 ? "" : "invalid-field"
-          }
-        />
-        {country !== "Denmark" && <p>VAT number is optional</p>}
-        <label htmlFor="country">Country</label>
-        <select
-          name="country"
-          id="country"
-          value={country}
-          onChange={(e) => setCountry(e.target.value)}
+        <form
+          onSubmit={handleSubmit}
+          style={{ display: "flex", flexDirection: "column", width: "300px" }}
         >
-          <option value="Denmark">Denmark</option>
-          {/* 
-          <option value="Russia">Sweden</option>
-          <option value="Ukraine">Norway</option>
-          <option value="Poladn">Finland</option> 
-          */}
-        </select>
-        <label htmlFor="zip">Zip code</label>
-        <input
-          type="text"
-          name="zip"
-          id="zip"
-          value={zip}
-          onChange={handleZipChange}
-          className={isValidZip || zip == "" ? "" : "invalid-field"}
-        />
-        {country !== "Denmark" && <p>Zip code is optional</p>}
-        <label htmlFor="city">City</label>
-        <input
-          type="text"
-          name="city"
-          id="city"
-          value={city}
-          onChange={(e) => setCity(e.target.value)}
-        />
-        <label htmlFor="address1">Address 1</label>
-        <input
-          type="text"
-          name="address1"
-          id="address1"
-          value={address1}
-          onChange={(e) => setAddress1(e.target.value)}
-        />
-        <label htmlFor="address2">Address 2</label>
-        <input
-          type="text"
-          name="address2"
-          id="address2"
-          value={address2}
-          onChange={(e) => setAddress2(e.target.value)}
-        />
-        <label htmlFor="billingAddress">Billing address</label>
-        <input
-          type="text"
-          name="billingAddress"
-          id="billingAddress"
-          value={billingaddress}
-          onChange={(e) => setBillingAddress(e.target.value)}
-        />
+          <h2>Shipping details</h2>
 
-        {/* If there are any errors/isValid fields that are not true, prompt it to the user */}
+          <label htmlFor="name">Name *</label>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            value={name}
+            className="shippingDetails"
+            onChange={(e) => setName(e.target.value)}
+          />
 
-        {validSubmit() ? (
-          <p>Please fill out all fields</p>
-        ) : (
-          <button type="submit">Submit</button>
-        )}
-      </form>
-    </div>
+          {country !== "Denmark" && <p>Phone number is optional</p>}
+          <label htmlFor="email">Email *</label>
+          <input
+            type="text"
+            name="email"
+            id="email"
+            value={email}
+            onChange={handleEmailChange}
+            className={`shippingDetails ${
+              isValidEmail || email == "" ? "" : "invalid-field"
+            }`}
+          />
+
+          <label htmlFor="phone">Phone number *</label>
+          <input
+            type="text"
+            name="phone"
+            id="phone"
+            value={phone}
+            onChange={handlePhoneChange}
+            className={`shippingDetails ${
+              isPhoneValid || phone == "" ? "" : "invalid-field"
+            }`}
+          />
+
+          <label htmlFor="companyName">Company name</label>
+          <input
+            type="text"
+            name="companyName"
+            id="companyName"
+            value={companyName}
+            className="shippingDetails"
+            onChange={(e) => setCompanyName(e.target.value)}
+          />
+          <label htmlFor="vatNumber">VAT number</label>
+          <input
+            type="text"
+            name="vatNumber"
+            id="vatNumber"
+            value={vatNumber}
+            onChange={handleVatNumberChange}
+            className={`shippingDetails ${
+              isValidVatNumber || companyName.length == 0 ? "" : "invalid-field"
+            }`}
+          />
+          {country !== "Denmark" && <p>VAT number is optional</p>}
+          <label htmlFor="country">Country *</label>
+          <select
+            name="country"
+            id="country"
+            value={country}
+            className="shippingDetails"
+            onChange={(e) => setCountry(e.target.value)}
+          >
+            <option value="Denmark">Denmark</option>
+            {/*
+    <option value="Russia">Sweden</option>
+    <option value="Ukraine">Norway</option>
+    <option value="Poladn">Finland</option>
+    */}
+          </select>
+          <label htmlFor="zip">Zip code *</label>
+          <input
+            type="text"
+            name="zip"
+            id="zip"
+            value={zip}
+            onChange={handleZipChange}
+            className={`shippingDetails ${
+              isValidZip || zip == "" ? "" : "invalid-field"
+            }`}
+          />
+          {country !== "Denmark" && <p>Zip code is optional</p>}
+          <label htmlFor="city">City *</label>
+          <input
+            type="text"
+            name="city"
+            id="city"
+            value={city}
+            className="shippingDetails"
+            onChange={(e) => setCity(e.target.value)}
+          />
+          <label htmlFor="address1">Address 1 *</label>
+          <input
+            type="text"
+            name="address1"
+            id="address1"
+            value={address1}
+            className="shippingDetails"
+            onChange={(e) => setAddress1(e.target.value)}
+          />
+          <label htmlFor="address2">Address 2</label>
+          <input
+            type="text"
+            name="address2"
+            id="address2"
+            value={address2}
+            className="shippingDetails"
+            onChange={(e) => setAddress2(e.target.value)}
+          />
+          <label htmlFor="billingAddress">Billing address</label>
+          <input
+            type="text"
+            name="billingAddress"
+            id="billingAddress"
+            value={billingaddress}
+            className="shippingDetails"
+            onChange={(e) => setBillingAddress(e.target.value)}
+          />
+          <div className="tacbox">
+            <input
+              className="tacinput"
+              id="terms"
+              type="checkbox"
+              onClick={() => handleTerms()}
+            />
+            <label htmlFor="checkbox" className="tacboxtext">
+              {" "}
+              I agree to these <a href="#">Terms and Conditions</a>.
+            </label>
+          </div>
+          <div className="tacbox">
+            <input className="tacinput" id="notification" type="checkbox" />
+            <label htmlFor="checkbox" className="tacboxtext">
+              {" "}
+              I want to receive Emails about great deals and news about House of
+              Protein
+            </label>
+          </div>
+
+          {/* If there are any errors/isValid fields that are not true, prompt it to the user */}
+
+          <button
+            type="submit"
+            onClick={() => {
+              if (!validSubmit()) {
+                var fill = document.getElementById("fill") as HTMLInputElement;
+                fill.innerHTML = "Please fill out all fields";
+              } else {
+                var fill = document.getElementById("fill") as HTMLInputElement;
+                fill.innerHTML = "";
+                navigate("/payment");
+              }
+            }}
+          >
+            Submit{" "}
+          </button>
+
+          <p id="fill"></p>
+        </form>
+      </div>
+    </>
   );
 }

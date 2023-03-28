@@ -40,18 +40,23 @@ img{
     font-size: 20px;
     
 }
+.divProducts {
+    padding-left: 120px;
+}
 body {
     background-color: rgb(167, 204, 237);
     max-width: 100%;
 }
 
 .basketbox {
-    border: 1px solid gray;
+    border: 3px solid #8796e9;
+    border-radius: 10px;
    width: 600px;
     height: 100px;
     background-color: lightblue;
     margin: 20px;
     display: flex;
+
 }
 
 .buttonincrement {
