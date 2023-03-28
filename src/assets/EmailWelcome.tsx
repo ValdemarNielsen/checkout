@@ -1,28 +1,31 @@
 import { SetStateAction, useState } from "react";
-import { ConfirmationModal } from "./ConfirmationModal";
-
+import ConfirmationModal from "./ConfirmationModal";
 function EmailForm() {
   const [showForm, setShowForm] = useState(!localStorage.getItem("email"));
   const [showModal, setShowModal] = useState(false);
   const [email, setEmail] = useState("");
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: { preventDefault: () => void }) => {
     event.preventDefault();
     localStorage.setItem("email", email);
     setEmail("");
     setShowForm(false);
+    setShowModal(false);
   };
 
-  const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleEmailChange = (event: {
+    target: { value: SetStateAction<string> };
+  }) => {
     setEmail(event.target.value);
   };
 
   const handleModalConfirm = () => {
+    setShowForm(true);
     setShowModal(false);
-    localStorage.setItem("email", email);
   };
 
   const handleModalCancel = () => {
+    setShowForm(false);
     setShowModal(false);
   };
 
@@ -39,12 +42,10 @@ function EmailForm() {
       ) : (
         <ConfirmationModal
           show={showModal}
-          message="Please enter your email address:"
           onConfirm={handleModalConfirm}
           onCancel={handleModalCancel}
-        >
-          <p>Please enter your email address:</p>
-        </ConfirmationModal>
+          message="Please enter your email address:"
+        />
       )}
     </div>
   );
