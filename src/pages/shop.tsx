@@ -1,5 +1,5 @@
 //Description: This is the shop page, where the user chooses which items they want to proceed to checkout with.
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import products, { BasketItems, itemDict } from "../assets/products";
 import { useState } from "react";
 import "../styles/shop.css";
@@ -11,30 +11,10 @@ import StepProgress from "../Progressbar/progressbar";
 import { BackButton, NextButton } from "../assets/buttons/custombutton";
 import DeleteButton from "../assets/buttons/DeleteButton";
 import EmailForm from "../assets/EmailWelcome";
+import { BasketContext } from "../App";
 
 export default function Shop() {
-  const [basket, setBasket] = useState<BasketItems[]>([
-    {
-      ...itemDict["clear-whey-100"],
-      quantity: 2,
-      giftWrap: false,
-    },
-    {
-      ...itemDict["valle-protion-whey-100-vanilla"],
-      quantity: 1,
-      giftWrap: true,
-    },
-    {
-      ...itemDict["valle-protein-whey-100-chocolate"],
-      quantity: 2,
-      giftWrap: false,
-    },
-    {
-      ...itemDict["fish-oil-1000-120"],
-      quantity: 1,
-      giftWrap: false,
-    },
-  ] as BasketItems[]);
+  const { basket, setBasket } = useContext(BasketContext);
 
   const incrementBasketItem = (id: string) => {
     const newBasket = basket.map((item) => {
