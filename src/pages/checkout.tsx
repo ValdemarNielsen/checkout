@@ -122,7 +122,7 @@ export default function Checkout() {
           flexDirection: "column",
           alignItems: "center",
         }}
-        className="shopstyle"
+        className="body"
       >
         <h1>Checkout page</h1>
 

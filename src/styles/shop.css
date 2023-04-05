@@ -1,7 +1,7 @@
 /* Styling for shop page */
-/* *{
+/**{
     outline: 1px solid red;
-} */
+}*/
 
 .row{
     display: flex;
@@ -31,9 +31,10 @@ img{
 .shopstyle {
 
     text-align: center;
-    background-color: rgb(99, 173, 242);
+    background-color: #e06e68;
     padding: 20px 0;
     font-size: 30px;
+    border-radius: 20px;
 }
 .secondTitle {
     text-align: center;
@@ -44,55 +45,78 @@ img{
     padding-left: 120px;
 }
 body {
-    background-color: rgb(167, 204, 237);
+    background-color: #E3DED3;
     max-width: 100%;
 }
 
 .basketbox {
-    border: 3px solid #8796e9;
-    border-radius: 10px;
-   width: 600px;
+    border-color: #727171;
+    width: 600px;
     height: 100px;
-    background-color: lightblue;
-    margin: 20px;
+    background-color: white;
     display: flex;
-
+    margin: 1px;
 }
 
 .buttonincrement {
-    margin: 10px;
+    background-color: #e06e68;
+    border-radius: 3px;
+    border: #e06e68;
+    width: 24px;
+    height: 24px;
     font-size: 20px;
-    display: inline-block;
-    outline: 0;
-    cursor: pointer;
-    border: none;
-    border-radius: 10px 10px 10px 10px;
-    background-color: #0070f3;
-    color: white;
-    width: 50px;
+    font-weight: bolder;
 
 }
 
 .buttonincrement:hover {
-    background-color: black;
+    background-color: #bd5951;
 }
 
 .buttondecrement {
-    margin: 10px;
-    width: 50px;
-        font-size: 20px;
-        display: inline-block;
-        outline: 0;
-        cursor: pointer;
-        border: none;
-        border-radius: 10px 10px 10px 10px;
-        background-color: #0070f3;
-        color: white;
-        box-shadow: 0 4px 14px 0 rgba(30, 159, 235, 0.39);
+    background-color: #e06e68;
+    border-radius: 3px;
+    border: #e06e68;
+    width: 24px;
+    height: 24px;
+    font-size: 20px;
+    font-weight: bolder;
+    font-family: monospace;
+
     }
 
 .buttondecrement:hover {
-    background-color: black;
+    background-color: #bd5951;
+}
+
+.buttondelete {
+    background-color: #b0afaf;
+    border: #b0afaf;
+    width: 22px;
+    height: 22px;
+    border-radius: 50% ;
+    font-size: 11px;
+}
+
+.buttondelete:hover{
+    background-color: #727171;
+}
+
+.buttoncontinue{
+    background-color: #e06e68;
+    border-radius: 3px;
+    border: #e06e68;
+}
+
+.buttoncontinue:hover{
+    background-color: #bd5951;
+}
+
+.quanText{
+    padding-right: 5px;
+    padding-left: 5px;
+    font-size: 18px;
+    font-weight: bold;
 }
 
 .itempadding {
@@ -127,15 +151,24 @@ body {
     font-size: 15px;
 }
 
-.removebutton{
-    
-}
+
 
 .invalid-field{
 border-color: red;
 }
 
 .imagepadding {
-    padding-right: 10px;
+    border-radius: 10px 0px 0px 10px;
 }
 
+.itemTextPadding{
+background: white;
+}
+
+.priceCol{
+    width: 100%;
+    padding: 10px;
+}
+.priceText{
+    padding-bottom: 25px;
+}

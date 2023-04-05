@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+
 interface CustomButtonProps {
   label: string;
   disabled?: boolean;
@@ -7,11 +8,19 @@ interface CustomButtonProps {
 }
 const CustomButton = ({ label, disabled, onClick }: CustomButtonProps) => {
   return (
-    <button disabled={disabled} onClick={onClick}>
+    <button className="buttoncontinue" disabled={disabled} onClick={onClick}>
       {label}
     </button>
   );
 };
+
+export const DecrementButton = ({ onClick }: { onClick: () => void }) => {
+  return <button className="buttondecrement" onClick={onClick}>-</button>;
+}
+
+export const IncrementButton = ({ onClick }: { onClick: () => void }) => {
+  return <button className="buttonincrement" onClick={onClick}>+</button>;
+}
 
 export const SubmitButton = ({ disabled }: { disabled: boolean }) => {
   const navigate = useNavigate();

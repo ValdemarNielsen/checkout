@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import ProgressBarOnly from "../Progressbar/progressbaronly";
 import StepButtons from "../Progressbar/progressbutton";
 import StepProgress from "../Progressbar/progressbar";
-import { BackButton, NextButton } from "../assets/buttons/custombutton";
+import {BackButton, DecrementButton, IncrementButton, NextButton} from "../assets/buttons/custombutton";
 import DeleteButton from "../assets/buttons/DeleteButton";
 import EmailForm from "../assets/EmailWelcome";
 import { BasketContext } from "../App";
@@ -98,7 +98,7 @@ export default function Shop() {
                       flexDirection: "column",
                       justifyContent: "space-between",
                       width: "25rem",
-                    }}
+                    }} className=""
                   >
                     <div className="font-link-title">{product.name}</div>
 
@@ -123,29 +123,30 @@ export default function Shop() {
                         <DecrementButton
                           onClick={() => decrementBasketItem(product.id)}
                         />
-                        <span>{product.quantity}</span>
+                        <span className="quanText">{product.quantity}</span>
                         <IncrementButton
                           onClick={() => incrementBasketItem(product.id)}
                         />
+
                       </div>
                     </div>
                   </div>
                 </div>
                 <div
-                  className="price"
+                  className="priceCol"
                   style={{
-                    width: "100%",
                     display: "flex",
                     flexDirection: "column",
-                    justifyItems: "end",
-                    padding: "10px",
+                    justifyItems: "end"
                   }}
                 >
                   <p
+                    className="priceText"
                     style={{
                       display: "flex",
                       flexDirection: "row",
                       justifyContent: "end",
+
                     }}
                   >
                     {product.price} {product.currency}
@@ -169,6 +170,7 @@ export default function Shop() {
           {/* Insert rebateText function */}
           <p>You save = {rebateAmount(basket)},- DKK</p>
           <p>Total amount = {totalPriceWRebate(basket)},- DKK</p>
+          <NextButton disabled={false} />
         </div>
       </div>
       <div
@@ -178,8 +180,6 @@ export default function Shop() {
           justifyContent: "space-between",
         }}
       >
-        <BackButton disabled={true} />
-        <NextButton disabled={false} />
         <button onClick={pushData}>Submit Order</button>
       </div>
     </div>
@@ -187,13 +187,10 @@ export default function Shop() {
 }
 
 //Use useState to update the quantity of the products when using decrement and increment buttons.
-function DecrementButton({ onClick }: { onClick: () => void }) {
-  return <button onClick={onClick}>-</button>;
-}
 
-function IncrementButton({ onClick }: { onClick: () => void }) {
-  return <button onClick={onClick}>+</button>;
-}
+
+
+
 
 //Make the totalPriceWRebate function which calculates the total price of the basket and check the quantity of each product to see if the rebate applies.
 
