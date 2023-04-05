@@ -1,7 +1,8 @@
 /* Styling for shop page */
 /**{
     outline: 1px solid red;
-}*/
+}
+*/
 
 .row{
     display: flex;
@@ -21,6 +22,8 @@
     text-align: right;
     flex-wrap: wrap;
     flex-direction: column;
+
+
 }
 
 img{
@@ -102,6 +105,7 @@ body {
 }
 
 .buttoncontinue{
+    height: 2rem;
     background-color: #e06e68;
     border-radius: 3px;
     border: #e06e68;
@@ -170,4 +174,25 @@ background: white;
 }
 .priceText{
     padding-bottom: 25px;
+}
+
+.applyDiscount{
+    height: 37px;
+    background-color: #e06e68;
+    border-radius: 0px 5px 5px 0px;
+    border: #e06e68;
+}
+.applyDiscount:hover{
+    background-color: #bd5951;
+}
+
+.discountField{
+    height: 35px;
+    border-radius: 5px 0px 0px 5px;
+    border: black;
+}
+.discountbox{
+    width: 17rem;
+    border-width: 2px;
+    border-color: #1a1a1a;
 }
