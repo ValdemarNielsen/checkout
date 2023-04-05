@@ -3,16 +3,17 @@ import React, { useEffect } from "react";
 import products, { BasketItems, itemDict } from "../assets/products";
 import { useState } from "react";
 import "../styles/shop.css";
-import { Link, Navigate, Routes } from "react-router-dom";
+import { Link, Navigate, NavigateFunction, Routes } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import ProgressBarOnly from "../Progressbar/progressbaronly";
-import StepButtons from "../Progressbar/progressbutton";
-import StepProgress from "../Progressbar/progressbar";
-import {BackButton, DecrementButton, IncrementButton, NextButton} from "../assets/buttons/custombutton";
 import DeleteButton from "../assets/buttons/DeleteButton";
 import EmailForm from "../assets/EmailWelcome";
+import {DecrementButton, IncrementButton} from "../assets/buttons/custombutton";
 
-export default function Shop() {
+type ShopProps = {
+  navigate: (newPage: string) => void;
+};
+
+function Shop(props: ShopProps) {
   const [basket, setBasket] = useState<BasketItems[]>([
     {
       ...itemDict["clear-whey-100"],
@@ -70,13 +71,6 @@ export default function Shop() {
     setBasket(newBasket);
   };
 
-  const navigate = useNavigate();
-  const handleOnClick = () => {
-    if (isNotEmpty()) {
-      navigate("/checkout");
-    }
-  };
-
   const isNotEmpty = () => {
     if (basket.length == 0) {
       return false;
@@ -102,9 +96,6 @@ export default function Shop() {
       {/*<LoadingPopup /> */}
       <h1 className="shopstyle">Welcome to the House of Protein</h1>
       <h3 className="secondTitle">Choose your gains wheysely</h3>
-      <StepProgress />
-      <EmailForm />
-
       <div className="row">
         <div className="col-1">
           {basket.map((product) => (
@@ -118,7 +109,7 @@ export default function Shop() {
                       flexDirection: "column",
                       justifyContent: "space-between",
                       width: "25rem",
-                    }} className=""
+                    }}
                   >
                     <div className="font-link-title">{product.name}</div>
 
@@ -147,7 +138,6 @@ export default function Shop() {
                         <IncrementButton
                           onClick={() => incrementBasketItem(product.id)}
                         />
-
                       </div>
                     </div>
                   </div>
@@ -166,7 +156,6 @@ export default function Shop() {
                       display: "flex",
                       flexDirection: "row",
                       justifyContent: "end",
-
                     }}
                   >
                     {product.price} {product.currency}
@@ -190,7 +179,6 @@ export default function Shop() {
           {/* Insert rebateText function */}
           <p>You save = {rebateAmount(basket)},- DKK</p>
           <p>Total amount = {totalPriceWRebate(basket)},- DKK</p>
-          <NextButton disabled={false} />
         </div>
       </div>
       <div
@@ -200,6 +188,7 @@ export default function Shop() {
           justifyContent: "space-between",
         }}
       >
+        <button onClick={() => props.navigate("checkout")}>Checkout</button>
         <button onClick={pushData}>Submit Order</button>
       </div>
     </div>
@@ -329,3 +318,5 @@ function rebateText(basket: BasketItems[]) {
     }
   }, []);
 }
+
+export default Shop;

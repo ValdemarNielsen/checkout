@@ -1,31 +1,49 @@
-// Link to webpage: https://checkoutgrp10.netlify.app/
-
-import { createContext, FormEvent, useState } from "react";
-
-// import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import reactLogo from "./assets/react.svg";
-import "./styles/App.css";
+import { useState, useEffect } from "react";
 import Shop from "./pages/shop";
-import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Checkout from "./pages/checkout";
 import Confirmation from "./pages/confirmation";
 import Payment from "./pages/payment";
 
 function App() {
+  const [page, setPage] = useState("shop");
+  const [navigating, setNavigating] = useState(true);
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const pageParam = urlParams.get("page");
+    setPage(pageParam || "shop");
+    window.history.replaceState(null, "", window.location.pathname);
+  }, []);
+
+  useEffect(() => {
+    window.history.pushState(null, "", `?page=${page}`);
+  }, [page]);
+
+  function navigate(newPage: string, updateUrl = true) {
+    setPage(newPage);
+    if (updateUrl) {
+      history.pushState({}, "", `?page=${newPage}`);
+      dispatchEvent(new PopStateEvent("popstate"));
+    } else {
+      setNavigating(true);
+    }
+  }
+
+  let pageContent;
+  if (page === "checkout") {
+    pageContent = <Checkout navigate={navigate} />;
+  } else if (page === "payment") {
+    pageContent = <Payment navigate={navigate} />;
+  } else if (page === "confirmation") {
+    pageContent = <Confirmation navigate={navigate} />;
+  } else {
+    pageContent = <Shop navigate={navigate} />;
+  }
+
   return (
-    <html lang="en">
-      <link href="shop.css" rel="stylesheet" />
-      <div className="App">
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Shop />} />
-            <Route path="/checkout" element={<Checkout />} />
-            <Route path="/payment" element={<Payment />} />
-            <Route path="/confirmation" element={<Confirmation />} />
-          </Routes>
-        </BrowserRouter>
-      </div>
-    </html>
+    <div className="App">
+      <main>{pageContent}</main>
+    </div>
   );
 }
 
