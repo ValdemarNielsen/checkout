@@ -6,7 +6,6 @@ import Payment from "./pages/payment";
 
 function App() {
   const [page, setPage] = useState("shop");
-  const [navigating, setNavigating] = useState(true);
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -22,12 +21,22 @@ function App() {
   function navigate(newPage: string, updateUrl = true) {
     setPage(newPage);
     if (updateUrl) {
-      history.pushState({}, "", `?page=${newPage}`);
-      dispatchEvent(new PopStateEvent("popstate"));
-    } else {
-      setNavigating(true);
+      window.history.pushState(null, "", `?page=${newPage}`);
     }
   }
+
+  function handlePopState() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const pageParam = urlParams.get("page");
+    setPage(pageParam || "shop");
+  }
+
+  useEffect(() => {
+    window.addEventListener("popstate", handlePopState);
+    return () => {
+      window.removeEventListener("popstate", handlePopState);
+    };
+  }, []);
 
   let pageContent;
   if (page === "checkout") {
