@@ -1,72 +1,52 @@
-/* Style for progress bar container */
 .progress-bar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
-  }
-  
-  /* Style for each step container */
-  .step {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: calc(100% / 4);
-    position: relative;
-  }
-  
-  /* Style for active step */
-  .step.active .circle {
-    background-color: #4caf50;
-  }
-  
-  /* Style for circle container */
-  .circle {
-    width: 2.5rem;
-    height: 2.5rem;
-    border-radius: 50%;
-    border: 2px solid #4caf50;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 0.5rem;
-    font-weight: bold;
-    color: white;
-  }
-  
-  /* Style for active circle */
-  .circle.active {
-    background-color: #4caf50;
-    color: #fff;
-  }
-  
-  /* Style for label */
- .progress-bar .label {
-    font-size: 0.875rem;
-    text-align: center;
-  }
-  
-  /* Style for button container */
- .progress-bar .buttons {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  /* Style for button */
-.progress-bar .button {
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 0.25rem;
-    background-color: #4caf50;
-    color: #fff;
-    font-size: 1rem;
-    font-weight: bold;
-    cursor: pointer;
-  }
-  
-  /* Style for disabled button */
-.progress-bar .button[disabled] {
-    background-color: #ccc;
-    cursor: not-allowed;
-  }
-  
+  width: 100%;
+  max-width: 600px;
+  height: 20px;
+  background-color: #e5e5e5;
+  border-radius: 10px;
+  position: relative;
+}
+
+.progress-bar .progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  border-radius: 10px;
+  background-color: #4caf50;
+  transition: width 0.3s ease-in-out;
+}
+
+.progress-bar .step {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  cursor: pointer;
+}
+
+.progress-bar .step.completed {
+  color: #4caf50;
+}
+
+.progress-bar .step.active {
+  color: #fff;
+}
+
+.progress-bar .step:not(:first-child) {
+  left: calc(25% * var(--step-index));
+  transform: translateY(-50%) translateX(-50%);
+}
+
+.progress-bar .step:first-child {
+  left: 0;
+  transform: translateY(-50%);
+}
+
+.progress-bar .step:last-child {
+  right: 0;
+  transform: translateY(-50%);
+}

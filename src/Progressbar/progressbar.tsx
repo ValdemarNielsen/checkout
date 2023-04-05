@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import "../styles/progressbar.css";
 
 const StepProgress = () => {
@@ -17,36 +17,23 @@ const StepProgress = () => {
     (step) => step.path === location.pathname
   );
 
-  const handleBack = () => {
-    const prevStep = steps[currentStep - 1];
-    if (prevStep) {
-      navigate(prevStep.path);
-    }
-  };
-
-  const handleNext = () => {
-    const nextStep = steps[currentStep + 1];
-    if (nextStep) {
-      navigate(nextStep.path);
-    }
-  };
-
   return (
-    <div className="step-progress">
-      <div className="progress-bar">
-        {steps.map((step, index) => (
-          <div
-            key={index}
-            className={`step ${index <= currentStep ? "active" : ""}`}
-            onClick={() => navigate(step.path)}
-          >
-            <div className={`circle ${index === currentStep ? "active" : ""}`}>
-              {index + 1}
-            </div>
-            <div className="label">{step.label}</div>
-          </div>
-        ))}
-      </div>
+    <div className="progress-bar">
+      <div
+        className="progress"
+        style={{ width: `${(currentStep + 1) * 25}%` }}
+      />
+      {steps.map((step, index) => (
+        <div
+          key={index}
+          className={`step ${index === currentStep ? "active" : ""} ${
+            index < currentStep ? "completed" : ""
+          }`}
+          onClick={() => navigate(step.path)}
+        >
+          {step.label}
+        </div>
+      ))}
     </div>
   );
 };
