@@ -59,7 +59,7 @@ function App() {
 
   return (
     <div className="App">
-      <ProgressBar progressPoints={progressPoints} />
+      <ProgressBar />
       <main>{pageContent}</main>
     </div>
   );

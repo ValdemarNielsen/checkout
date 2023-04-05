@@ -103,7 +103,7 @@ function Shop(props: ShopProps) {
 
   return (
     <div>
-      <ProgressBar progressPoints={progressPoints} />
+      <ProgressBar />
       {/*<LoadingPopup /> */}
       <h1 className="shopstyle">Welcome to the House of Protein</h1>
       <h3 className="secondTitle">Choose your gains wheysely</h3>
@@ -190,7 +190,12 @@ function Shop(props: ShopProps) {
           {/* Insert rebateText function */}
           <p>You save = {rebateAmount(basket)},- DKK</p>
           <p>Total amount = {totalPriceWRebate(basket)},- DKK</p>
-          <button className="buttoncontinue" onClick={() => props.navigate("checkout")}>Checkout</button>
+          <button
+            className="buttoncontinue"
+            onClick={() => props.navigate("checkout")}
+          >
+            Checkout
+          </button>
         </div>
       </div>
       <div
@@ -286,12 +291,15 @@ function discountBox() {
           <div>
             <p>Discount code</p>
             <input
-              className = "discountField"
+              className="discountField"
               type="text"
               placeholder="Enter discount code"
               onChange={(e) => setDiscountCode(e.target.value)}
             />
-            <button className="applyDiscount" onClick={() => applyDiscount(discountCode)}>
+            <button
+              className="applyDiscount"
+              onClick={() => applyDiscount(discountCode)}
+            >
               Apply discount
             </button>
           </div>
