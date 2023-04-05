@@ -2,20 +2,21 @@
 import React, { useState } from "react";
 import "../styles/shop.css";
 import "../styles/checkout.css";
-import { NavigateFunction } from "react-router-dom";
-
+import StepProgress from "../Progressbar/progressbar";
+import { useNavigate } from "react-router-dom";
 type CheckoutProps = {
   navigate: (newPage: string) => void;
 };
 
 function Checkout(props: CheckoutProps) {
-  const { navigate } = props;
+  const navigate = useNavigate();
   const [country, setCountry] = useState("Denmark");
   const [zip, setZip] = useState("");
   const [city, setCity] = useState("");
   const [address1, setAddress1] = useState("");
   const [address2, setAddress2] = useState("");
-  const [name, setName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [companyName, setCompanyName] = useState("");
   const [phone, setPhone] = useState("");
@@ -33,7 +34,8 @@ function Checkout(props: CheckoutProps) {
       isValidZip &&
       isValidEmail &&
       //   isValidVatNumber &&
-      name.length != 0 &&
+      firstName.length != 0 &&
+      lastName.length != 0 &&
       isPhoneValid &&
       terms
     ) {
@@ -126,28 +128,16 @@ function Checkout(props: CheckoutProps) {
         }}
       >
         <h2>Checkout page</h2>
-
         <form
           onSubmit={handleSubmit}
-          style={{ display: "flex", flexDirection: "column", width: "300px" }}
+          style={{ display: "flex", flexDirection: "column", width: "350px" }}
         >
-          <h2>Shipping details</h2>
-
-          <label htmlFor="name">Name *</label>
-          <input
-            type="text"
-            name="name"
-            id="name"
-            value={name}
-            className="shippingDetails"
-            onChange={(e) => setName(e.target.value)}
-          />
-
-          {country !== "Denmark" && <p>Phone number is optional</p>}
-          <label htmlFor="email">Email *</label>
+          <h2>Contact information</h2>
+          <label htmlFor="email"></label>
           <input
             type="text"
             name="email"
+            placeholder="Email *"
             id="email"
             value={email}
             onChange={handleEmailChange}
@@ -155,11 +145,11 @@ function Checkout(props: CheckoutProps) {
               isValidEmail || email == "" ? "" : "invalid-field"
             }`}
           />
-
-          <label htmlFor="phone">Phone number *</label>
+          <label htmlFor="phone"></label>
           <input
             type="text"
             name="phone"
+            placeholder="Phone Number *"
             id="phone"
             value={phone}
             onChange={handlePhoneChange}
@@ -167,21 +157,59 @@ function Checkout(props: CheckoutProps) {
               isPhoneValid || phone == "" ? "" : "invalid-field"
             }`}
           />
+          <div className="tacbox">
+            <input className="tacinput" id="notification" type="checkbox" />
+            <label htmlFor="checkbox" className="tacboxtext">
+              {" "}
+              Keep me up to date on news and exclusive offers
+            </label>
+          </div>
+          <div></div>
+          <h2>Shipping details</h2>
+          <div className="form-row">
+            <div className="form-group">
+              <label htmlFor="name"></label>
+              <input
+                type="text"
+                name="firstName"
+                id="name"
+                placeholder="First Name *"
+                value={firstName}
+                className="shippingDetails"
+                onChange={(e) => setFirstName(e.target.value)}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="name"></label>
+              <input
+                type="text"
+                name="lastName"
+                placeholder="Last Name *"
+                id="name"
+                value={lastName}
+                className="shippingDetails"
+                onChange={(e) => setLastName(e.target.value)}
+              />
+            </div>
+          </div>
 
-          <label htmlFor="companyName">Company name</label>
+          {country !== "Denmark" && <p>Phone number is optional</p>}
+          <label htmlFor="companyName"></label>
           <input
             type="text"
             name="companyName"
             id="companyName"
+            placeholder="Company Name"
             value={companyName}
             className="shippingDetails"
             onChange={(e) => setCompanyName(e.target.value)}
           />
-          <label htmlFor="vatNumber">VAT number</label>
+          <label htmlFor="vatNumber"></label>
           <input
             type="text"
             name="vatNumber"
             id="vatNumber"
+            placeholder="VAT Number"
             value={vatNumber}
             onChange={handleVatNumberChange}
             className={`shippingDetails ${
@@ -189,10 +217,11 @@ function Checkout(props: CheckoutProps) {
             }`}
           />
           {country !== "Denmark" && <p>VAT number is optional</p>}
-          <label htmlFor="country">Country *</label>
+          <label htmlFor="country"></label>
           <select
             name="country"
             id="country"
+            placeholder="Country"
             value={country}
             className="shippingDetails"
             onChange={(e) => setCountry(e.target.value)}
@@ -204,10 +233,11 @@ function Checkout(props: CheckoutProps) {
     <option value="Poladn">Finland</option>
     */}
           </select>
-          <label htmlFor="zip">Zip code *</label>
+          <label htmlFor="zip"></label>
           <input
             type="text"
             name="zip"
+            placeholder="Zip Code *"
             id="zip"
             value={zip}
             onChange={handleZipChange}
@@ -216,38 +246,42 @@ function Checkout(props: CheckoutProps) {
             }`}
           />
           {country !== "Denmark" && <p>Zip code is optional</p>}
-          <label htmlFor="city">City *</label>
+          <label htmlFor="city"></label>
           <input
             type="text"
             name="city"
             id="city"
+            placeholder="City *"
             value={city}
             className="shippingDetails"
             onChange={(e) => setCity(e.target.value)}
           />
-          <label htmlFor="address1">Address 1 *</label>
+          <label htmlFor="address1"></label>
           <input
             type="text"
             name="address1"
             id="address1"
+            placeholder="Address 1 *"
             value={address1}
             className="shippingDetails"
             onChange={(e) => setAddress1(e.target.value)}
           />
-          <label htmlFor="address2">Address 2</label>
+          <label htmlFor="address2"></label>
           <input
             type="text"
             name="address2"
             id="address2"
+            placeholder="Address 2"
             value={address2}
             className="shippingDetails"
             onChange={(e) => setAddress2(e.target.value)}
           />
-          <label htmlFor="billingAddress">Billing address</label>
+          <label htmlFor="billingAddress"></label>
           <input
             type="text"
             name="billingAddress"
             id="billingAddress"
+            placeholder="Billing Address"
             value={billingaddress}
             className="shippingDetails"
             onChange={(e) => setBillingAddress(e.target.value)}
@@ -262,14 +296,6 @@ function Checkout(props: CheckoutProps) {
             <label htmlFor="checkbox" className="tacboxtext">
               {" "}
               I agree to these <a href="#">Terms and Conditions</a>.
-            </label>
-          </div>
-          <div className="tacbox">
-            <input className="tacinput" id="notification" type="checkbox" />
-            <label htmlFor="checkbox" className="tacboxtext">
-              {" "}
-              I want to receive Emails about great deals and news about House of
-              Protein
             </label>
           </div>
 
