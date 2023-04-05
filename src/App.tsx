@@ -3,6 +3,7 @@ import Shop from "./pages/shop";
 import Checkout from "./pages/checkout";
 import Confirmation from "./pages/confirmation";
 import Payment from "./pages/payment";
+import ProgressBar from "./Progressbar/progressbar";
 
 function App() {
   const [page, setPage] = useState("shop");
@@ -49,8 +50,16 @@ function App() {
     pageContent = <Shop navigate={navigate} />;
   }
 
+  const progressPoints = [
+    { id: 0, label: "Shopping", path: "/" },
+    { id: 1, label: "Checkout", path: "/checkout" },
+    { id: 2, label: "Payment", path: "/payment" },
+    { id: 3, label: "Confirmation", path: "/confirmation" },
+  ];
+
   return (
     <div className="App">
+      <ProgressBar />
       <main>{pageContent}</main>
     </div>
   );

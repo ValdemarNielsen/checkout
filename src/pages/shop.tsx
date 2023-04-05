@@ -7,7 +7,11 @@ import { Link, Navigate, NavigateFunction, Routes } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import DeleteButton from "../assets/buttons/DeleteButton";
 import EmailForm from "../assets/EmailWelcome";
-import {DecrementButton, IncrementButton} from "../assets/buttons/custombutton";
+import {
+  DecrementButton,
+  IncrementButton,
+} from "../assets/buttons/custombutton";
+import ProgressBar from "../Progressbar/progressbar";
 
 type ShopProps = {
   navigate: (newPage: string) => void;
@@ -90,9 +94,16 @@ function Shop(props: ShopProps) {
     };
     fetch("https://eowi4vrof5hf7m0.m.pipedream.net", options);
   };
+  const progressPoints = [
+    { id: 1, label: "Shop", path: "/shop" },
+    { id: 2, label: "Checkout", path: "/checkout" },
+    { id: 3, label: "Payment", path: "/payment" },
+    { id: 4, label: "Confirmation", path: "/confirmation" },
+  ];
 
   return (
     <div>
+      <ProgressBar />
       {/*<LoadingPopup /> */}
       <h1 className="shopstyle">Welcome to the House of Protein</h1>
       <h3 className="secondTitle">Choose your gains wheysely</h3>
@@ -147,7 +158,7 @@ function Shop(props: ShopProps) {
                   style={{
                     display: "flex",
                     flexDirection: "column",
-                    justifyItems: "end"
+                    justifyItems: "end",
                   }}
                 >
                   <p
@@ -179,7 +190,12 @@ function Shop(props: ShopProps) {
           {/* Insert rebateText function */}
           <p>You save = {rebateAmount(basket)},- DKK</p>
           <p>Total amount = {totalPriceWRebate(basket)},- DKK</p>
-          <button className="buttoncontinue" onClick={() => props.navigate("checkout")}>Checkout</button>
+          <button
+            className="buttoncontinue"
+            onClick={() => props.navigate("checkout")}
+          >
+            Checkout
+          </button>
         </div>
       </div>
       <div
@@ -196,10 +212,6 @@ function Shop(props: ShopProps) {
 }
 
 //Use useState to update the quantity of the products when using decrement and increment buttons.
-
-
-
-
 
 //Make the totalPriceWRebate function which calculates the total price of the basket and check the quantity of each product to see if the rebate applies.
 
@@ -279,12 +291,15 @@ function discountBox() {
           <div>
             <p>Discount code</p>
             <input
-              className = "discountField"
+              className="discountField"
               type="text"
               placeholder="Enter discount code"
               onChange={(e) => setDiscountCode(e.target.value)}
             />
-            <button className="applyDiscount" onClick={() => applyDiscount(discountCode)}>
+            <button
+              className="applyDiscount"
+              onClick={() => applyDiscount(discountCode)}
+            >
               Apply discount
             </button>
           </div>
