@@ -48,7 +48,7 @@ function DeleteButton({ onClick }: { onClick: () => void }) {
 
   return (
     <div style={{ display: "flex", alignItems: "center" }}>
-      <button onClick={() => setIsModalOpen(true)}>Remove</button>
+      <button className="buttondelete" onClick={() => setIsModalOpen(true)}>X</button>
       <ConfirmationModal
         isOpen={isModalOpen}
         title="Confirm Deletion"

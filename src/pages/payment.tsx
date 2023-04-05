@@ -1,17 +1,12 @@
-import StepProgress from "../Progressbar/progressbar";
 import { useState } from "react";
 import "../styles/shop.css";
-
-import {
-  BackButton,
-  NextButton,
-  SubmitButton,
-  ConfirmButton,
-} from "../assets/buttons/custombutton";
-
 function MobilepayNumber() {}
 
-export default function Payment() {
+type PaymentProps = {
+  navigate: (page: string) => void;
+};
+
+function Payment(props: PaymentProps) {
   const [phone, setPhone] = useState("");
   const [isPhoneValid, setIsPhoneValid] = useState(false);
 
@@ -28,7 +23,6 @@ export default function Payment() {
   return (
     <>
       <div>
-        <StepProgress />
         <h2 className="title">Payment</h2>
         <div style={{ alignItems: "center" }} className="shopstyle">
           <div className="row">
@@ -57,7 +51,6 @@ export default function Payment() {
                 Optional order comment:
                 <input type="text" />
               </div>
-              <ConfirmButton disabled={false} />
             </div>
           </div>
         </div>
@@ -65,3 +58,5 @@ export default function Payment() {
     </>
   );
 }
+
+export default Payment;
