@@ -190,6 +190,7 @@ function Shop(props: ShopProps) {
           {/* Insert rebateText function */}
           <p>You save = {rebateAmount(basket)},- DKK</p>
           <p>Total amount = {totalPriceWRebate(basket)},- DKK</p>
+          <button className="buttoncontinue" onClick={() => props.navigate("checkout")}>Checkout</button>
         </div>
       </div>
       <div
@@ -199,7 +200,6 @@ function Shop(props: ShopProps) {
           justifyContent: "space-between",
         }}
       >
-        <button onClick={() => props.navigate("checkout")}>Checkout</button>
         <button onClick={pushData}>Submit Order</button>
       </div>
     </div>
@@ -283,14 +283,15 @@ function discountBox() {
     <div>
       {discountCodes.length > 0 ? (
         <div>
-          <div className="discountbox">
+          <div>
             <p>Discount code</p>
             <input
+              className = "discountField"
               type="text"
               placeholder="Enter discount code"
               onChange={(e) => setDiscountCode(e.target.value)}
             />
-            <button onClick={() => applyDiscount(discountCode)}>
+            <button className="applyDiscount" onClick={() => applyDiscount(discountCode)}>
               Apply discount
             </button>
           </div>

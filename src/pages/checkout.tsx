@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import "../styles/shop.css";
 import "../styles/checkout.css";
 import { useNavigate } from "react-router-dom";
-import ProgressBar from "../Progressbar/progressbar";
 
 type CheckoutProps = {
   navigate: (newPage: string) => void;
@@ -117,217 +116,231 @@ function Checkout(props: CheckoutProps) {
     e.preventDefault();
     console.log("Submitted - console.log");
   };
-  const progressPoints = [
-    { id: 1, label: "Shop", path: "/shop" },
-    { id: 2, label: "Checkout", path: "/checkout" },
-    { id: 3, label: "Payment", path: "/payment" },
-    { id: 4, label: "Confirmation", path: "/confirmation" },
-  ];
 
   return (
     <>
-      <ProgressBar progressPoints={progressPoints} />
-
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-        }}
-      >
-        <h2>Checkout page</h2>
-        <form
-          onSubmit={handleSubmit}
-          style={{ display: "flex", flexDirection: "column", width: "350px" }}
-        >
-          <h2>Contact information</h2>
-          <label htmlFor="email"></label>
-          <input
-            type="text"
-            name="email"
-            placeholder="Email *"
-            id="email"
-            value={email}
-            onChange={handleEmailChange}
-            className={`shippingDetails ${
-              isValidEmail || email == "" ? "" : "invalid-field"
-            }`}
-          />
-          <label htmlFor="phone"></label>
-          <input
-            type="text"
-            name="phone"
-            placeholder="Phone Number *"
-            id="phone"
-            value={phone}
-            onChange={handlePhoneChange}
-            className={`shippingDetails ${
-              isPhoneValid || phone == "" ? "" : "invalid-field"
-            }`}
-          />
-          <div className="tacbox">
-            <input className="tacinput" id="notification" type="checkbox" />
-            <label htmlFor="checkbox" className="tacboxtext">
-              {" "}
-              Keep me up to date on news and exclusive offers
-            </label>
-          </div>
-          <div></div>
-          <h2>Shipping details</h2>
-          <div className="form-row">
-            <div className="form-group">
-              <label htmlFor="name"></label>
-              <input
-                type="text"
-                name="firstName"
-                id="name"
-                placeholder="First Name *"
-                value={firstName}
-                className="shippingDetails"
-                onChange={(e) => setFirstName(e.target.value)}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="name"></label>
-              <input
-                type="text"
-                name="lastName"
-                placeholder="Last Name *"
-                id="name"
-                value={lastName}
-                className="shippingDetails"
-                onChange={(e) => setLastName(e.target.value)}
-              />
-            </div>
-          </div>
-
-          {country !== "Denmark" && <p>Phone number is optional</p>}
-          <label htmlFor="companyName"></label>
-          <input
-            type="text"
-            name="companyName"
-            id="companyName"
-            placeholder="Company Name"
-            value={companyName}
-            className="shippingDetails"
-            onChange={(e) => setCompanyName(e.target.value)}
-          />
-          <label htmlFor="vatNumber"></label>
-          <input
-            type="text"
-            name="vatNumber"
-            id="vatNumber"
-            placeholder="VAT Number"
-            value={vatNumber}
-            onChange={handleVatNumberChange}
-            className={`shippingDetails ${
-              isValidVatNumber || companyName.length == 0 ? "" : "invalid-field"
-            }`}
-          />
-          {country !== "Denmark" && <p>VAT number is optional</p>}
-          <label htmlFor="country"></label>
-          <select
-            name="country"
-            id="country"
-            placeholder="Country"
-            value={country}
-            className="shippingDetails"
-            onChange={(e) => setCountry(e.target.value)}
+      <h2>Checkout page</h2>
+      <div className="row">
+        <div className="columnleft">
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
           >
-            <option value="Denmark">Denmark</option>
-            {/*
+            <form
+              onSubmit={handleSubmit}
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                width: "350px",
+              }}
+            >
+              <h2>Contact information</h2>
+              <label htmlFor="email"></label>
+              <input
+                type="text"
+                name="email"
+                placeholder="Email *"
+                id="email"
+                value={email}
+                onChange={handleEmailChange}
+                className={`shippingDetails ${
+                  isValidEmail || email == "" ? "" : "invalid-field"
+                }`}
+              />
+              <label htmlFor="phone"></label>
+              <input
+                type="text"
+                name="phone"
+                placeholder="Phone Number *"
+                id="phone"
+                value={phone}
+                onChange={handlePhoneChange}
+                className={`shippingDetails ${
+                  isPhoneValid || phone == "" ? "" : "invalid-field"
+                }`}
+              />
+              <div className="tacbox">
+                <input className="tacinput" id="notification" type="checkbox" />
+                <label htmlFor="checkbox" className="tacboxtext">
+                  {" "}
+                  Keep me up to date on news and exclusive offers
+                </label>
+              </div>
+              <div></div>
+              <h2>Shipping details</h2>
+              <div className="form-row">
+                <div className="form-group">
+                  <label htmlFor="name"></label>
+                  <input
+                    type="text"
+                    name="firstName"
+                    id="name"
+                    placeholder="First Name *"
+                    value={firstName}
+                    className="shippingDetails"
+                    onChange={(e) => setFirstName(e.target.value)}
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="name"></label>
+                  <input
+                    type="text"
+                    name="lastName"
+                    placeholder="Last Name *"
+                    id="name"
+                    value={lastName}
+                    className="shippingDetails"
+                    onChange={(e) => setLastName(e.target.value)}
+                  />
+                </div>
+              </div>
+
+              {country !== "Denmark" && <p>Phone number is optional</p>}
+              <label htmlFor="companyName"></label>
+              <input
+                type="text"
+                name="companyName"
+                id="companyName"
+                placeholder="Company Name"
+                value={companyName}
+                className="shippingDetails"
+                onChange={(e) => setCompanyName(e.target.value)}
+              />
+              <label htmlFor="vatNumber"></label>
+              <input
+                type="text"
+                name="vatNumber"
+                id="vatNumber"
+                placeholder="VAT Number"
+                value={vatNumber}
+                onChange={handleVatNumberChange}
+                className={`shippingDetails ${
+                  isValidVatNumber || companyName.length == 0
+                    ? ""
+                    : "invalid-field"
+                }`}
+              />
+              {country !== "Denmark" && <p>VAT number is optional</p>}
+              <label htmlFor="country"></label>
+              <select
+                name="country"
+                id="country"
+                placeholder="Country"
+                value={country}
+                className="shippingDetails"
+                onChange={(e) => setCountry(e.target.value)}
+              >
+                <option value="Denmark">Denmark</option>
+                {/*
     <option value="Russia">Sweden</option>
     <option value="Ukraine">Norway</option>
     <option value="Poladn">Finland</option>
     */}
-          </select>
-          <label htmlFor="zip"></label>
-          <input
-            type="text"
-            name="zip"
-            placeholder="Zip Code *"
-            id="zip"
-            value={zip}
-            onChange={handleZipChange}
-            className={`shippingDetails ${
-              isValidZip || zip == "" ? "" : "invalid-field"
-            }`}
-          />
-          {country !== "Denmark" && <p>Zip code is optional</p>}
-          <label htmlFor="city"></label>
-          <input
-            type="text"
-            name="city"
-            id="city"
-            placeholder="City *"
-            value={city}
-            className="shippingDetails"
-            onChange={(e) => setCity(e.target.value)}
-          />
-          <label htmlFor="address1"></label>
-          <input
-            type="text"
-            name="address1"
-            id="address1"
-            placeholder="Address 1 *"
-            value={address1}
-            className="shippingDetails"
-            onChange={(e) => setAddress1(e.target.value)}
-          />
-          <label htmlFor="address2"></label>
-          <input
-            type="text"
-            name="address2"
-            id="address2"
-            placeholder="Address 2"
-            value={address2}
-            className="shippingDetails"
-            onChange={(e) => setAddress2(e.target.value)}
-          />
-          <label htmlFor="billingAddress"></label>
-          <input
-            type="text"
-            name="billingAddress"
-            id="billingAddress"
-            placeholder="Billing Address"
-            value={billingaddress}
-            className="shippingDetails"
-            onChange={(e) => setBillingAddress(e.target.value)}
-          />
-          <div className="tacbox">
-            <input
-              className="tacinput"
-              id="terms"
-              type="checkbox"
-              onClick={() => handleTerms()}
-            />
-            <label htmlFor="checkbox" className="tacboxtext">
-              {" "}
-              I agree to these <a href="#">Terms and Conditions</a>.
-            </label>
+              </select>
+              <div className="form-row">
+                <div className="form-group">
+                  <label htmlFor="zip"></label>
+                  <input
+                    type="text"
+                    name="zip"
+                    placeholder="Zip Code *"
+                    id="zip"
+                    value={zip}
+                    onChange={handleZipChange}
+                    className={`shippingDetails ${
+                      isValidZip || zip == "" ? "" : "invalid-field"
+                    }`}
+                  />
+                </div>
+                {country !== "Denmark" && <p>Zip code is optional</p>}
+                <div className="form-group">
+                  <label htmlFor="city"></label>
+                  <input
+                    type="text"
+                    name="city"
+                    id="city"
+                    placeholder="City *"
+                    value={city}
+                    className="shippingDetails"
+                    onChange={(e) => setCity(e.target.value)}
+                  />
+                </div>
+              </div>
+              <label htmlFor="address1"></label>
+              <input
+                type="text"
+                name="address1"
+                id="address1"
+                placeholder="Address 1 *"
+                value={address1}
+                className="shippingDetails"
+                onChange={(e) => setAddress1(e.target.value)}
+              />
+              <label htmlFor="address2"></label>
+              <input
+                type="text"
+                name="address2"
+                id="address2"
+                placeholder="Address 2"
+                value={address2}
+                className="shippingDetails"
+                onChange={(e) => setAddress2(e.target.value)}
+              />
+              <label htmlFor="billingAddress"></label>
+              <input
+                type="text"
+                name="billingAddress"
+                id="billingAddress"
+                placeholder="Billing Address"
+                value={billingaddress}
+                className="shippingDetails"
+                onChange={(e) => setBillingAddress(e.target.value)}
+              />
+              <div className="tacbox">
+                <input
+                  className="tacinput"
+                  id="terms"
+                  type="checkbox"
+                  onClick={() => handleTerms()}
+                />
+                <label htmlFor="checkbox" className="tacboxtext">
+                  {" "}
+                  I agree to these <a href="#">Terms and Conditions</a>.
+                </label>
+              </div>
+
+              {/* If there are any errors/isValid fields that are not true, prompt it to the user */}
+
+              <button
+                type="submit"
+                onClick={() => {
+                  if (!validSubmit()) {
+                    var fill = document.getElementById(
+                      "fill"
+                    ) as HTMLInputElement;
+                    fill.innerHTML = "Please fill out all fields";
+                  } else {
+                    var fill = document.getElementById(
+                      "fill"
+                    ) as HTMLInputElement;
+                    fill.innerHTML = "";
+                    //Insert navigation to next page
+                    props.navigate("payment");
+                  }
+                }}
+              >
+                Submit{" "}
+              </button>
+              <p id="fill"></p>
+            </form>
           </div>
-
-          {/* If there are any errors/isValid fields that are not true, prompt it to the user */}
-
-          <button
-            type="submit"
-            onClick={() => {
-              if (!validSubmit()) {
-                var fill = document.getElementById("fill") as HTMLInputElement;
-                fill.innerHTML = "Please fill out all fields";
-              } else {
-                var fill = document.getElementById("fill") as HTMLInputElement;
-                fill.innerHTML = "";
-                //Insert navigation to next page
-                props.navigate("payment");
-              }
-            }}
-          >
-            Submit{" "}
-          </button>
-
-          <p id="fill"></p>
-        </form>
+        </div>
+        <div className="columnright">
+          <p>hello</p>
+        </div>
       </div>
     </>
   );
