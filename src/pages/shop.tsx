@@ -7,7 +7,11 @@ import { Link, Navigate, NavigateFunction, Routes } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import DeleteButton from "../assets/buttons/DeleteButton";
 import EmailForm from "../assets/EmailWelcome";
-import {DecrementButton, IncrementButton} from "../assets/buttons/custombutton";
+import {
+  DecrementButton,
+  IncrementButton,
+} from "../assets/buttons/custombutton";
+import ProgressBar from "../Progressbar/progressbar";
 
 type ShopProps = {
   navigate: (newPage: string) => void;
@@ -90,9 +94,16 @@ function Shop(props: ShopProps) {
     };
     fetch("https://eowi4vrof5hf7m0.m.pipedream.net", options);
   };
+  const progressPoints = [
+    { id: 1, label: "Shop", path: "/shop" },
+    { id: 2, label: "Checkout", path: "/checkout" },
+    { id: 3, label: "Payment", path: "/payment" },
+    { id: 4, label: "Confirmation", path: "/confirmation" },
+  ];
 
   return (
     <div>
+      <ProgressBar progressPoints={progressPoints} />
       {/*<LoadingPopup /> */}
       <h1 className="shopstyle">Welcome to the House of Protein</h1>
       <h3 className="secondTitle">Choose your gains wheysely</h3>
@@ -147,7 +158,7 @@ function Shop(props: ShopProps) {
                   style={{
                     display: "flex",
                     flexDirection: "column",
-                    justifyItems: "end"
+                    justifyItems: "end",
                   }}
                 >
                   <p
@@ -196,10 +207,6 @@ function Shop(props: ShopProps) {
 }
 
 //Use useState to update the quantity of the products when using decrement and increment buttons.
-
-
-
-
 
 //Make the totalPriceWRebate function which calculates the total price of the basket and check the quantity of each product to see if the rebate applies.
 

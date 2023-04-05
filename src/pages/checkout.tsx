@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import "../styles/shop.css";
 import "../styles/checkout.css";
 import { useNavigate } from "react-router-dom";
+import ProgressBar from "../Progressbar/progressbar";
 
 type CheckoutProps = {
   navigate: (newPage: string) => void;
@@ -116,9 +117,17 @@ function Checkout(props: CheckoutProps) {
     e.preventDefault();
     console.log("Submitted - console.log");
   };
+  const progressPoints = [
+    { id: 1, label: "Shop", path: "/shop" },
+    { id: 2, label: "Checkout", path: "/checkout" },
+    { id: 3, label: "Payment", path: "/payment" },
+    { id: 4, label: "Confirmation", path: "/confirmation" },
+  ];
 
   return (
     <>
+      <ProgressBar progressPoints={progressPoints} />
+
       <div
         style={{
           display: "flex",
