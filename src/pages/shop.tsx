@@ -3,15 +3,12 @@ import React, { useContext, useEffect } from "react";
 import products, { BasketItems, itemDict } from "../assets/products";
 import { useState } from "react";
 import "../styles/shop.css";
-import { Link, Navigate, Routes } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import ProgressBarOnly from "../Progressbar/progressbaronly";
-import StepButtons from "../Progressbar/progressbutton";
-import StepProgress from "../Progressbar/progressbar";
 import { BackButton, NextButton } from "../assets/buttons/custombutton";
 import DeleteButton from "../assets/buttons/DeleteButton";
 import EmailForm from "../assets/EmailWelcome";
 import { BasketContext } from "../App";
+import StepProgress from "../Progressbar/progressbar";
 
 export default function Shop() {
   const { basket, setBasket } = useContext(BasketContext);

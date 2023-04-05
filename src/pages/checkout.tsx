@@ -115,16 +115,15 @@ export default function Checkout() {
 
   return (
     <>
-      <StepProgress />
       <div
         style={{
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
         }}
-        className="shopstyle"
       >
-        <h1>Checkout page</h1>
+        <h2>Checkout page</h2>
+        <StepProgress />
 
         <form
           onSubmit={handleSubmit}
