@@ -59,7 +59,6 @@ function App() {
 
   return (
     <div className="App">
-      <ProgressBar />
       <main>{pageContent}</main>
     </div>
   );

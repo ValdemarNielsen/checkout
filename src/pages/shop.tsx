@@ -103,7 +103,6 @@ function Shop(props: ShopProps) {
 
   return (
     <div>
-      <ProgressBar />
       {/*<LoadingPopup /> */}
       <h1 className="shopstyle">Welcome to the House of Protein</h1>
       <h3 className="secondTitle">Choose your gains wheysely</h3>
