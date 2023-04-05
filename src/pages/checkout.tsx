@@ -2,14 +2,13 @@
 import React, { useState } from "react";
 import "../styles/shop.css";
 import "../styles/checkout.css";
-import StepProgress from "../Progressbar/progressbar";
 import { useNavigate } from "react-router-dom";
+
 type CheckoutProps = {
   navigate: (newPage: string) => void;
 };
 
 function Checkout(props: CheckoutProps) {
-  const navigate = useNavigate();
   const [country, setCountry] = useState("Denmark");
   const [zip, setZip] = useState("");
   const [city, setCity] = useState("");

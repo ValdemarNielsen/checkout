@@ -5,10 +5,8 @@ import { useState } from "react";
 import "../styles/shop.css";
 import { Link, Navigate, NavigateFunction, Routes } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { BackButton, NextButton } from "../assets/buttons/custombutton";
 import DeleteButton from "../assets/buttons/DeleteButton";
 import EmailForm from "../assets/EmailWelcome";
-import StepProgress from "../Progressbar/progressbar";
 
 type ShopProps = {
   navigate: (newPage: string) => void;
@@ -97,8 +95,6 @@ function Shop(props: ShopProps) {
       {/*<LoadingPopup /> */}
       <h1 className="shopstyle">Welcome to the House of Protein</h1>
       <h3 className="secondTitle">Choose your gains wheysely</h3>
-      <EmailForm />
-
       <div className="row">
         <div className="col-1">
           {basket.map((product) => (
@@ -193,7 +189,6 @@ function Shop(props: ShopProps) {
         }}
       >
         <button onClick={() => props.navigate("checkout")}>Checkout</button>
-
         <button onClick={pushData}>Submit Order</button>
       </div>
     </div>
