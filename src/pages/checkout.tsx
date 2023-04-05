@@ -334,7 +334,12 @@ function Checkout(props: CheckoutProps) {
 
                 </div>
                 <div className="columnright">
-                    <p>hello</p>
+                    <p>*insert basket items here without option to add or remove items*</p>
+                    <p>*here is located total price of your basket*</p>
+                    <p>Have the option to use a discount code? </p>
+                    <p>All of this should be located in a "white-ish" box near the right side of the screen </p>
+                       <p> where the personal information to the left, should be located in the "middle"</p>
+                    <p>https://www.google.com/search?q=checkout+website&tbm=isch&ved=2ahUKEwjq-ueO4pL-AhUNvyoKHe4OBEgQ2-cCegQIABAA#imgrc=vDeQpMwWxWkk7M</p>
 
                 </div>
             </div>
