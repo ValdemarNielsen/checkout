@@ -3,16 +3,18 @@ import React, { useEffect } from "react";
 import products, { BasketItems, itemDict } from "../assets/products";
 import { useState } from "react";
 import "../styles/shop.css";
-import { Link, Navigate, Routes } from "react-router-dom";
+import { Link, Navigate, NavigateFunction, Routes } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import ProgressBarOnly from "../Progressbar/progressbaronly";
-import StepButtons from "../Progressbar/progressbutton";
-import StepProgress from "../Progressbar/progressbar";
 import { BackButton, NextButton } from "../assets/buttons/custombutton";
 import DeleteButton from "../assets/buttons/DeleteButton";
 import EmailForm from "../assets/EmailWelcome";
+import StepProgress from "../Progressbar/progressbar";
 
-export default function Shop() {
+type ShopProps = {
+  navigate: (newPage: string) => void;
+};
+
+function Shop(props: ShopProps) {
   const [basket, setBasket] = useState<BasketItems[]>([
     {
       ...itemDict["clear-whey-100"],
@@ -70,13 +72,6 @@ export default function Shop() {
     setBasket(newBasket);
   };
 
-  const navigate = useNavigate();
-  const handleOnClick = () => {
-    if (isNotEmpty()) {
-      navigate("/checkout");
-    }
-  };
-
   const isNotEmpty = () => {
     if (basket.length == 0) {
       return false;
@@ -102,7 +97,6 @@ export default function Shop() {
       {/*<LoadingPopup /> */}
       <h1 className="shopstyle">Welcome to the House of Protein</h1>
       <h3 className="secondTitle">Choose your gains wheysely</h3>
-      <StepProgress />
       <EmailForm />
 
       <div className="row">
@@ -198,8 +192,8 @@ export default function Shop() {
           justifyContent: "space-between",
         }}
       >
-        <BackButton disabled={true} />
-        <NextButton disabled={false} />
+        <button onClick={() => props.navigate("checkout")}>Checkout</button>
+
         <button onClick={pushData}>Submit Order</button>
       </div>
     </div>
@@ -332,3 +326,5 @@ function rebateText(basket: BasketItems[]) {
     }
   }, []);
 }
+
+export default Shop;

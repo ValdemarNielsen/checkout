@@ -2,11 +2,14 @@
 import React, { useState } from "react";
 import "../styles/shop.css";
 import "../styles/checkout.css";
-import StepProgress from "../Progressbar/progressbar";
-import { useNavigate } from "react-router-dom";
+import { NavigateFunction } from "react-router-dom";
 
-export default function Checkout() {
-  const navigate = useNavigate();
+type CheckoutProps = {
+  navigate: (newPage: string) => void;
+};
+
+function Checkout(props: CheckoutProps) {
+  const { navigate } = props;
   const [country, setCountry] = useState("Denmark");
   const [zip, setZip] = useState("");
   const [city, setCity] = useState("");
@@ -123,7 +126,6 @@ export default function Checkout() {
         }}
       >
         <h2>Checkout page</h2>
-        <StepProgress />
 
         <form
           onSubmit={handleSubmit}
@@ -282,7 +284,8 @@ export default function Checkout() {
               } else {
                 var fill = document.getElementById("fill") as HTMLInputElement;
                 fill.innerHTML = "";
-                navigate("/payment");
+                //Insert navigation to next page
+                props.navigate("payment");
               }
             }}
           >
@@ -295,3 +298,5 @@ export default function Checkout() {
     </>
   );
 }
+
+export default Checkout;
