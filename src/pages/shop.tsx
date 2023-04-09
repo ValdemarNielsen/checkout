@@ -1,17 +1,14 @@
 //Description: This is the shop page, where the user chooses which items they want to proceed to checkout with.
-import React, { useEffect } from "react";
-import products, { BasketItems, itemDict } from "../assets/products";
+import { BasketItems, itemDict } from "../assets/products";
 import { useState } from "react";
 import "../styles/shop.css";
-import { Link, Navigate, NavigateFunction, Routes } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+
 import DeleteButton from "../assets/buttons/DeleteButton";
-import EmailForm from "../assets/EmailWelcome";
 import {
   DecrementButton,
   IncrementButton,
 } from "../assets/buttons/custombutton";
-import ProgressBar from "../Progressbar/progressbar";
+import EmailWelcome from "../assets/EmailWelcome";
 
 type ShopProps = {
   navigate: (newPage: string) => void;
@@ -104,6 +101,7 @@ function Shop(props: ShopProps) {
   return (
     <div>
       {/*<LoadingPopup /> */}
+      <EmailWelcome />
       <h1 className="shopstyle">Welcome to the House of Protein</h1>
       <h3 className="secondTitle">Choose your gains wheysely</h3>
       <div className="row">
