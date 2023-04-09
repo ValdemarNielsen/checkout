@@ -42,6 +42,7 @@ function EmailWelcome() {
               <form onSubmit={handleSubmit}>
                 <input
                   type="email"
+                  placeholder="Enter your email"
                   value={email}
                   onChange={(event) => setEmail(event.target.value)}
                   required
