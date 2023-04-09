@@ -1,18 +1,26 @@
 import React, { useState, useEffect } from "react";
 import "../styles/EmailWelcome.css";
-
 function EmailWelcome() {
   const [show, setShow] = useState(false);
   const [email, setEmail] = useState("");
 
   useEffect(() => {
-    const timer = setTimeout(() => setShow(true), 5000);
-    return () => clearTimeout(timer);
+    const hasTakenAction = localStorage.getItem("hasTakenAction");
+    if (!hasTakenAction) {
+      const timer = setTimeout(() => setShow(true), 5000);
+      return () => clearTimeout(timer);
+    }
   }, []);
 
   const handleSubmit = (event: { preventDefault: () => void }) => {
     event.preventDefault();
-    //Her kan vi kalde eventet fx som API hvis vi vil have brugerens svar :D
+    // Here can we call the action if needed ;))
+    localStorage.setItem("hasTakenAction", true.toString());
+    setShow(false);
+  };
+
+  const handleNoThanks = () => {
+    localStorage.setItem("hasTakenAction", true.toString());
     setShow(false);
   };
 
@@ -23,14 +31,13 @@ function EmailWelcome() {
           <div className="modal-content">
             <div className="modal-header">
               <h3 className="modal-title">
-                Subscribe to our newsletter and recieve a 10% OFF coupon code!
+                Subscribe to our newsletter and recieve 10% COUPON CODE!
               </h3>
             </div>
             <div className="modal-body">
               <p>
-                Thanks for visiting our website! If you want to subscribe to our
-                newsletter and get the latest updates, please enter your email
-                address below.
+                Be the first to know about our latest products, exclusive offers
+                and much more!
               </p>
               <form onSubmit={handleSubmit}>
                 <input
@@ -39,10 +46,10 @@ function EmailWelcome() {
                   onChange={(event) => setEmail(event.target.value)}
                   required
                 />
-                <button type="submit">Yes, I would like discount</button>
+                <button type="submit">Sign me up!</button>
               </form>
-              <button className="close-btn" onClick={() => setShow(false)}>
-                No, I dont want discount
+              <button className="close-btn" onClick={handleNoThanks}>
+                No thanks
               </button>
             </div>
           </div>
