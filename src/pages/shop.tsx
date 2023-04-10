@@ -99,100 +99,114 @@ function Shop(props: ShopProps) {
   ];
 
   return (
-    <div>
+    <>
       {/*<LoadingPopup /> */}
       <EmailWelcome />
-      <h1 className="shopstyle">Welcome to the House of Protein</h1>
+      <div className="headerstyle">
+        THE PROTEIN STORE
+        <div>
+          <ul>
+            <li>
+              <a>Store</a>
+              <a>Checkout</a>
+              <a href="">About</a>
+              <a href="">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
       <h3 className="secondTitle">Choose your gains wheysely</h3>
-      <div className="row">
-        <div className="col-1">
-          {basket.map((product) => (
-            <div>
-              <div key={product.id} className="basketbox itempadding">
-                <div style={{ display: "flex", flexDirection: "row" }}>
-                  <img src={product.image} className="imagepadding" />
-                  <div
-                    style={{
-                      display: "flex",
-                      flexDirection: "column",
-                      justifyContent: "space-between",
-                      width: "25rem",
-                    }}
-                  >
-                    <div className="font-link-title">{product.name}</div>
-
+      <div className="layoutMaster container">
+        <div className="row">
+          <div className="col-1">
+            {basket.map((product) => (
+              <div>
+                <div key={product.id} className="basketbox itempadding">
+                  <div style={{ display: "flex", flexDirection: "row" }}>
+                    <img src={product.image} className="imagepadding" />
                     <div
                       style={{
                         display: "flex",
-                        flexDirection: "row",
-                        justifyContent: "start",
+                        flexDirection: "column",
+                        justifyContent: "space-between",
+                        width: "25rem",
                       }}
                     >
-                      <div className="smallpadding font-link-quantity">
-                        <span>QUANTITY: </span>
-                      </div>
+                      <div className="font-link-title">{product.name}</div>
+
                       <div
                         style={{
                           display: "flex",
                           flexDirection: "row",
-                          justifyContent: "space-evenly",
-                          alignContent: "center",
+                          justifyContent: "start",
                         }}
                       >
-                        <DecrementButton
-                          onClick={() => decrementBasketItem(product.id)}
-                        />
-                        <span className="quanText">{product.quantity}</span>
-                        <IncrementButton
-                          onClick={() => incrementBasketItem(product.id)}
-                        />
+                        <div className="smallpadding font-link-quantity">
+                          <span>QUANTITY: </span>
+                        </div>
+                        <div
+                          style={{
+                            display: "flex",
+                            flexDirection: "row",
+                            justifyContent: "space-evenly",
+                            alignContent: "center",
+                          }}
+                        >
+                          <DecrementButton
+                            onClick={() => decrementBasketItem(product.id)}
+                          />
+                          <span className="quanText">{product.quantity}</span>
+                          <IncrementButton
+                            onClick={() => incrementBasketItem(product.id)}
+                          />
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-                <div
-                  className="priceCol"
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyItems: "end",
-                  }}
-                >
-                  <p
-                    className="priceText"
-                    style={{
-                      display: "flex",
-                      flexDirection: "row",
-                      justifyContent: "end",
-                    }}
-                  >
-                    {product.price} {product.currency}
-                  </p>
                   <div
+                    className="priceCol"
                     style={{
                       display: "flex",
-                      flexDirection: "row",
-                      justifyContent: "end",
+                      flexDirection: "column",
+                      justifyItems: "end",
                     }}
                   >
-                    <DeleteButton onClick={() => removeItem(product.id)} />
+                    <p
+                      className="priceText"
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        justifyContent: "end",
+                      }}
+                    >
+                      {product.price} {product.currency}
+                    </p>
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        justifyContent: "end",
+                      }}
+                    >
+                      <DeleteButton onClick={() => removeItem(product.id)} />
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
-        <div className="col-2">
-          <div>{discountBox()}</div>
-          {/* Insert rebateText function */}
-          <p>You save = {rebateAmount(basket)},- DKK</p>
-          <p>Total amount = {totalPriceWRebate(basket)},- DKK</p>
-          <button
-            className="buttoncontinue"
-            onClick={() => props.navigate("checkout")}
-          >
-            Checkout
-          </button>
+            ))}
+          </div>
+          <div className="col-2">
+            <div>{discountBox()}</div>
+            {/* Insert rebateText function */}
+            <p>You save = {rebateAmount(basket)},- DKK</p>
+            <p>Total amount = {totalPriceWRebate(basket)},- DKK</p>
+            <button
+              className="buttoncontinue"
+              onClick={() => props.navigate("checkout")}
+            >
+              Checkout
+            </button>
+          </div>
         </div>
       </div>
       <div
@@ -204,7 +218,7 @@ function Shop(props: ShopProps) {
       >
         <button onClick={pushData}>Submit Order</button>
       </div>
-    </div>
+    </>
   );
 }
 
