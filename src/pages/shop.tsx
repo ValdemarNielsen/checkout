@@ -259,7 +259,7 @@ const [screen, setScreen] = useState(0);
 */
 
 //Function that calculates the amount of rebate the user gets.
-function rebateAmount(basket: BasketItems[]) {
+export function rebateAmount(basket: BasketItems[]) {
   let rebate = 0;
   let totalPrice = 0;
   let rabat = 0;
