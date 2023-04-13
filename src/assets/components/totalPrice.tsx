@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { BasketItems } from "../products";
+import { appliedDiscount } from "./discountCodeBox";
 
 interface TotalPriceProps {
   basket: BasketItems[];
@@ -24,11 +25,11 @@ function TotalPrice(props: TotalPriceProps) {
     });
 
     // Apply discount code
-    if (discountCodeValue === "10PERCENT") {
+    if (appliedDiscount === "10PERCENT") {
       calculatedPrice *= 0.9;
-    } else if (discountCodeValue === "20PERCENT") {
+    } else if (appliedDiscount === "20PERCENT") {
       calculatedPrice *= 0.8;
-    } else if (discountCodeValue === "30PERCENT") {
+    } else if (appliedDiscount === "30PERCENT") {
       calculatedPrice *= 0.7;
     }
 
@@ -40,11 +41,7 @@ function TotalPrice(props: TotalPriceProps) {
     setTotalPrice(calculatedPrice);
   }, [basket, discountCodeValue]);
 
-  return (
-    <div>
-      <h2>Total Price: ${totalPrice.toFixed(2)}</h2>
-    </div>
-  );
+  return <h2>Total Price: ${totalPrice.toFixed(2)}</h2>;
 }
 
 export default TotalPrice;
