@@ -10,6 +10,7 @@
     "test": "vitest"
   },
   "dependencies": {
+    "@emotion/css": "^11.10.6",
     "@fortawesome/fontawesome-svg-core": "^6.3.0",
     "@fortawesome/free-regular-svg-icons": "^6.3.0",
     "@fortawesome/free-solid-svg-icons": "^6.3.0",
@@ -21,7 +22,8 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.8.0",
     "react-navigation": "^4.4.4",
-    "react-router-dom": "^6.10.0"
+    "react-router-dom": "^6.10.0",
+    "react-spinners": "^0.13.8"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.5",
