@@ -9,6 +9,8 @@ import {
   IncrementButton,
 } from "../assets/buttons/custombutton";
 import EmailWelcome from "../assets/EmailWelcome";
+import DiscountBox from "../assets/components/discountCodeBox";
+import TotalPrice from "../assets/components/totalPrice";
 
 type ShopProps = {
   navigate: (newPage: string) => void;
@@ -196,7 +198,9 @@ function Shop(props: ShopProps) {
             ))}
           </div>
           <div className="col-2">
-            <div>{discountBox()}</div>
+            <div>
+              <DiscountBox />
+            </div>
             {/* Insert rebateText function */}
             <p>You save = {rebateAmount(basket)},- DKK</p>
             <p>Total amount = {totalPriceWRebate(basket)},- DKK</p>
@@ -222,8 +226,6 @@ function Shop(props: ShopProps) {
   );
 }
 
-//Use useState to update the quantity of the products when using decrement and increment buttons.
-
 //Make the totalPriceWRebate function which calculates the total price of the basket and check the quantity of each product to see if the rebate applies.
 
 function totalPriceWRebate(basket: BasketItems[]) {
@@ -242,21 +244,6 @@ function totalPriceWRebate(basket: BasketItems[]) {
   // return totalPrice;
   return (Math.round(totalPrice * 100) / 100).toFixed(2);
 }
-
-/*
-// function to change go from "shop" to "checkout"
-function changeSite() {
-const [screen, setScreen] = useState(0);
-    if (useState == 1) {
-        site = "Checkout";
-        state == 0;
-    }
-    if (state == 0) {
-        site = "Shop";
-        state == 1;
-    }
-}
-*/
 
 //Function that calculates the amount of rebate the user gets.
 export function rebateAmount(basket: BasketItems[]) {
@@ -283,67 +270,6 @@ export function rebateAmount(basket: BasketItems[]) {
   }
   // return rebate + extrarabate;
   return (Math.round(rebate + extrarabate * 100) / 100).toFixed(2);
-}
-
-//Function discountBox, shows a box with a button to apply a discount code from one of the different codes in the discountCodes array.
-function discountBox() {
-  const discountCodes = ["10PERCENT", "20PERCENT", "30PERCENT"];
-  const [discountCode, setDiscountCode] = useState<string>("20");
-
-  const applyDiscount = (discountCode: string) => {
-    setDiscountCode(discountCode);
-  };
-
-  return (
-    //If discountCodes then apply the discount code, else show the discount box.
-    <div>
-      {discountCodes.length > 0 ? (
-        <div>
-          <div>
-            <p>Discount code</p>
-            <input
-              className="discountField"
-              type="text"
-              placeholder="Enter discount code"
-              onChange={(e) => setDiscountCode(e.target.value)}
-            />
-            <button
-              className="applyDiscount"
-              onClick={() => applyDiscount(discountCode)}
-            >
-              Apply discount
-            </button>
-          </div>
-        </div>
-      ) : (
-        <div>
-          <p>Discount code applied</p>
-        </div>
-      )}
-    </div>
-  );
-}
-
-//Function which displays only text based the amount of product quantity the user has left to get the rebate.
-function rebateText(basket: BasketItems[]) {
-  basket.forEach((item) => {
-    if (item.quantity >= item.rebateQuantity) {
-      return (
-        <div>
-          <p>You have reached the rebate quantity</p>
-        </div>
-      );
-    } else {
-      return (
-        <div>
-          <p>
-            You need to buy {item.rebateQuantity - item.quantity} more of this
-            product to get the rebate
-          </p>
-        </div>
-      );
-    }
-  }, []);
 }
 
 export default Shop;
