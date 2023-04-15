@@ -29,8 +29,47 @@
     height: 5rem;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
+    list-style-type: none;
 }
+
+.headertitlestyle {
+    font-size: 2rem;
+    font-weight: bold;
+    /* Cool shadow effect */
+    text-shadow: 1px 1px 2px #000000;
+    /* Display it at the left side */
+    text-align: left;
+
+}
+
+.headerlistyle{
+    font-size: 1.2rem;
+    font-weight: normal;
+    /* Display it at the left side */
+    text-align: left;
+    /* Add spacing between list items */
+    margin-right: 1rem;
+
+    
+
+}
+
+a:link{
+    text-decoration: none;
+    color: black;
+}
+
+ul {
+    list-style-type: none;
+  }
+
+    li {
+        display: inline;
+        /* Spacing */
+        margin-right: 1rem;
+        
+    }
 
 img{
     max-height: 100px;

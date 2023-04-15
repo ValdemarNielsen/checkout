@@ -10,7 +10,8 @@ import {
 } from "../assets/buttons/custombutton";
 import EmailWelcome from "../assets/EmailWelcome";
 import DiscountBox from "../assets/components/discountCodeBox";
-import TotalPrice from "../assets/components/totalPrice";
+import TextBanner from "../assets/components/textBannerComponent";
+import BannerSlider from "../assets/components/textBannerComponent";
 
 type ShopProps = {
   navigate: (newPage: string) => void;
@@ -100,24 +101,83 @@ function Shop(props: ShopProps) {
     { id: 4, label: "Confirmation", path: "/confirmation" },
   ];
 
+  const disableLinkOnClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    return false;
+  };
+
   return (
     <>
       {/*<LoadingPopup /> */}
       <EmailWelcome />
       <div className="headerstyle">
-        THE PROTEIN STORE
-        <div>
+        <div className="headertitlestyle">THE PROTEIN STORE</div>
+        <div className="headerlistyle">
           <ul>
             <li>
-              <a>Store</a>
-              <a>Checkout</a>
-              <a href="">About</a>
-              <a href="">Contact</a>
+              <a href="#" onClick={disableLinkOnClick}>
+                STORE
+              </a>
+            </li>
+            <li>
+              <a href="#" onClick={disableLinkOnClick}>
+                NEW ARRIVALS
+              </a>
+            </li>
+            <li>
+              <a href="#" onClick={disableLinkOnClick}>
+                ABOUT
+              </a>
+            </li>
+            <li>
+              <a href="#" onClick={disableLinkOnClick}>
+                CONTACT
+              </a>
             </li>
           </ul>
         </div>
       </div>
-      <h3 className="secondTitle">Choose your gains wheysely</h3>
+      <BannerSlider speed={50} direction="left">
+        <div className="text">
+          <p>
+            Limited time offer: 10% off your first purchase with code
+            "10PERCENT"
+          </p>
+        </div>
+
+        <div className="text">
+          <p>New arrivals: Check out our latest products!</p>
+        </div>
+
+        <div className="text">
+          <p>Sale: Up to 50% off selected items</p>
+        </div>
+
+        <div className="text">
+          <p>
+            Customer review: "I love this product! So glad I found it here!"
+          </p>
+        </div>
+
+        <div className="text">
+          <p>Best sellers: See what everyone is buying</p>
+        </div>
+
+        <div className="text">
+          <p>Flash sale: 24-hour deals on select products</p>
+        </div>
+
+        <div className="text">
+          <p>Trending now: Get the latest suplements</p>
+        </div>
+
+        <div className="text">
+          <p>
+            Exclusive offer: Subscribe to our newsletter for special discounts
+            and promotions
+          </p>
+        </div>
+      </BannerSlider>
       <div className="layoutMaster container">
         <div className="row">
           <div className="col-1">
@@ -198,21 +258,22 @@ function Shop(props: ShopProps) {
             ))}
           </div>
           <div className="col-2">
-            <div>
-              <DiscountBox />
-            </div>
             {/* Insert rebateText function */}
+            <DiscountBox />
             <p>You save = {rebateAmount(basket)},- DKK</p>
-            <p>Total amount = {totalPriceWRebate(basket)},- DKK</p>
-            <button
-              className="buttoncontinue"
-              onClick={() => props.navigate("checkout")}
-            >
-              Checkout
-            </button>
+            <p>Total amount = {totalPriceWRebate("10PERCENT", basket)},- DKK</p>
+            <div>
+              {/* Use the functions: rebateAmountWDiscount and totalPriceWDiscount */}
+            </div>
           </div>
         </div>
       </div>
+      <button
+        className="buttoncontinue"
+        onClick={() => props.navigate("checkout")}
+      >
+        Checkout
+      </button>
       <div
         style={{
           display: "flex",
@@ -228,7 +289,10 @@ function Shop(props: ShopProps) {
 
 //Make the totalPriceWRebate function which calculates the total price of the basket and check the quantity of each product to see if the rebate applies.
 
-function totalPriceWRebate(basket: BasketItems[]) {
+export function totalPriceWRebate(
+  appliedDiscount: string,
+  basket: BasketItems[]
+) {
   let rabatGiven = 0;
   let totalPrice = 0;
   basket.forEach((item) => {
@@ -241,7 +305,13 @@ function totalPriceWRebate(basket: BasketItems[]) {
     totalPrice = totalPrice * 0.9;
     rabatGiven = 1;
   }
-  // return totalPrice;
+  if (appliedDiscount === "10PERCENT") {
+    totalPrice = totalPrice * 0.9;
+  } else if (appliedDiscount === "20PERCENT") {
+    totalPrice = totalPrice * 0.8;
+  } else if (appliedDiscount === "30PERCENT") {
+    totalPrice = totalPrice * 0.7;
+  }
   return (Math.round(totalPrice * 100) / 100).toFixed(2);
 }
 
@@ -273,3 +343,6 @@ export function rebateAmount(basket: BasketItems[]) {
 }
 
 export default Shop;
+function discountapplied() {
+  throw new Error("Function not implemented.");
+}
