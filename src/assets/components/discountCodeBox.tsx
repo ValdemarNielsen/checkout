@@ -40,6 +40,4 @@ function DiscountBox() {
     </div>
   );
 }
-export const [appliedDiscount, setAppliedDiscount] = useState<string>("");
-
 export default DiscountBox;
