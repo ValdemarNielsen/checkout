@@ -1,7 +1,11 @@
 import { useState } from "react";
 
-function DiscountBox() {
-  const discountCodes = ["10PERCENT", "20PERCENT", "30PERCENT"];
+function DiscountBox({
+  onApply,
+}: {
+  onApply: (discountCode: string) => boolean;
+}) {
+  // const discountCodes = ["10PERCENT", "20PERCENT", "30PERCENT"];
   const [discountCode, setDiscountCode] = useState<string>("");
 
   const [appliedDiscount, setAppliedDiscount] = useState<string>("");
@@ -9,13 +13,21 @@ function DiscountBox() {
   const [errorMessage, setErrorMessage] = useState<string>("");
 
   const applyDiscount = () => {
-    if (discountCodes.includes(discountCode)) {
+    const result = onApply(discountCode);
+    if (result) {
       setAppliedDiscount(discountCode);
-      setDiscountCode("");
       setErrorMessage("");
-    } else {
-      setErrorMessage("Invalid discount code");
+      return;
     }
+
+    setErrorMessage("Invalid discount code");
+    // if (discountCodes.includes(discountCode)) {
+    //   setAppliedDiscount(discountCode);
+    //   setDiscountCode("");
+    //   setErrorMessage("");
+    // } else {
+    //   setErrorMessage("Invalid discount code");
+    // }
   };
 
   return (

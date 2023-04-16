@@ -17,6 +17,8 @@ type ShopProps = {
   navigate: (newPage: string) => void;
 };
 
+const discountCodes = [{ code: "10", amount: 0.9 }];
+
 function Shop(props: ShopProps) {
   const [basket, setBasket] = useState<BasketItems[]>([
     {
@@ -40,6 +42,8 @@ function Shop(props: ShopProps) {
       giftWrap: false,
     },
   ] as BasketItems[]);
+
+  const [discountAmount, setDiscountAmount] = useState<number>(1);
 
   const incrementBasketItem = (id: string) => {
     const newBasket = basket.map((item) => {
@@ -105,6 +109,37 @@ function Shop(props: ShopProps) {
     event.preventDefault();
     return false;
   };
+
+  function handleApplyDiscount(discountCode: string) {
+    const discount = discountCodes.find((code) => code.code === discountCode);
+    if (discount) {
+      setDiscountAmount(discount.amount);
+      return true;
+    }
+    setDiscountAmount(1);
+    return false;
+  }
+  //Make the totalPriceWRebate function which calculates the total price of the basket and check the quantity of each product to see if the rebate applies.
+
+  function totalPriceWRebate(basket: BasketItems[]) {
+    let rabatGiven = 0;
+    let totalPrice = 0;
+    basket.forEach((item) => {
+      totalPrice += item.price * item.quantity;
+      if (item.quantity >= item.rebateQuantity) {
+        totalPrice -= (item.price * item.quantity * item.rebatePercent) / 100;
+      }
+    });
+
+    if (totalPrice >= 300 && rabatGiven == 0) {
+      totalPrice = totalPrice * 0.9;
+      rabatGiven = 1;
+    }
+
+    totalPrice = totalPrice * discountAmount;
+
+    return (Math.round(totalPrice * 100) / 100).toFixed(2);
+  }
 
   return (
     <>
@@ -259,9 +294,9 @@ function Shop(props: ShopProps) {
           </div>
           <div className="col-2">
             {/* Insert rebateText function */}
-            <DiscountBox />
+            <DiscountBox onApply={handleApplyDiscount} />
             <p>You save = {rebateAmount(basket)},- DKK</p>
-            <p>Total amount = {totalPriceWRebate("10PERCENT", basket)},- DKK</p>
+            <p>Total amount = {totalPriceWRebate(basket)},- DKK</p>
             <div>
               {/* Use the functions: rebateAmountWDiscount and totalPriceWDiscount */}
             </div>
@@ -285,34 +320,6 @@ function Shop(props: ShopProps) {
       </div>
     </>
   );
-}
-
-//Make the totalPriceWRebate function which calculates the total price of the basket and check the quantity of each product to see if the rebate applies.
-
-export function totalPriceWRebate(
-  appliedDiscount: string,
-  basket: BasketItems[]
-) {
-  let rabatGiven = 0;
-  let totalPrice = 0;
-  basket.forEach((item) => {
-    totalPrice += item.price * item.quantity;
-    if (item.quantity >= item.rebateQuantity) {
-      totalPrice -= (item.price * item.quantity * item.rebatePercent) / 100;
-    }
-  });
-  if (totalPrice >= 300 && rabatGiven == 0) {
-    totalPrice = totalPrice * 0.9;
-    rabatGiven = 1;
-  }
-  if (appliedDiscount === "10PERCENT") {
-    totalPrice = totalPrice * 0.9;
-  } else if (appliedDiscount === "20PERCENT") {
-    totalPrice = totalPrice * 0.8;
-  } else if (appliedDiscount === "30PERCENT") {
-    totalPrice = totalPrice * 0.7;
-  }
-  return (Math.round(totalPrice * 100) / 100).toFixed(2);
 }
 
 //Function that calculates the amount of rebate the user gets.
