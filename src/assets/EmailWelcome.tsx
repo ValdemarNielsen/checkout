@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import css from "@emotion/css";
 import { BeatLoader } from "react-spinners";
 import "../styles/EmailWelcome.css";
 
@@ -86,7 +85,7 @@ function EmailWelcome() {
               )}
               {showText && (
                 <p className="hidden-text">
-                  USE CODE: PROTEIN10 to get 10% off your next order!
+                  USE CODE: NEWCOMMER to get 25% off your next order!
                 </p>
               )}
               {textVisible && (

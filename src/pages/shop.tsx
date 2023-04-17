@@ -18,7 +18,11 @@ type ShopProps = {
   navigate: (newPage: string) => void;
 };
 
-const discountCodes = [{ code: "10", amount: 0.9 }];
+const discountCodes = [
+  { code: "10PERCENT", amount: 0.9 },
+  { code: "20PERCENT", amount: 0.8 },
+  { code: "NEWCOMMER", amount: 0.85 },
+];
 
 function Shop(props: ShopProps) {
   const [basket, setBasket] = useState<BasketItems[]>([
