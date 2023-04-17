@@ -3,7 +3,8 @@ import Shop from "./pages/shop";
 import Checkout from "./pages/checkout";
 import Confirmation from "./pages/confirmation";
 import Payment from "./pages/payment";
-import ProgressBar from "./Progressbar/progressbar";
+import Banner from "./assets/components/Banner";
+import SitemapFooter from "./assets/components/Footer/SitemapFooter";
 
 function App() {
   const [page, setPage] = useState("shop");
@@ -40,14 +41,21 @@ function App() {
   }, []);
 
   let pageContent;
-  if (page === "checkout") {
-    pageContent = <Checkout navigate={navigate} />;
-  } else if (page === "payment") {
-    pageContent = <Payment navigate={navigate} />;
-  } else if (page === "confirmation") {
-    pageContent = <Confirmation navigate={navigate} />;
-  } else {
-    pageContent = <Shop navigate={navigate} />;
+  switch (page) {
+    case "shop":
+      pageContent = <Shop navigate={navigate} />;
+      break;
+    case "checkout":
+      pageContent = <Checkout navigate={navigate} />;
+      break;
+    case "payment":
+      pageContent = <Payment navigate={navigate} />;
+      break;
+    case "confirmation":
+      pageContent = <Confirmation navigate={navigate} />;
+      break;
+    default:
+      pageContent = <Shop navigate={navigate} />;
   }
 
   const progressPoints = [
@@ -57,10 +65,46 @@ function App() {
     { id: 3, label: "Confirmation", path: "/confirmation" },
   ];
 
+  const disableLinkOnClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    return false;
+  };
+
   return (
-    <div className="App">
-      <ProgressBar />
+    <div>
+      <div className="headerstyle">
+        <div className="headertitlestyle">
+          {/* Insert an image */}
+          THE PROTEIN STORE
+        </div>
+        <div className="headerlistyle">
+          <ul>
+            <li>
+              <a href="#" onClick={disableLinkOnClick}>
+                STORE
+              </a>
+            </li>
+            <li>
+              <a href="#" onClick={disableLinkOnClick}>
+                NEW ARRIVALS
+              </a>
+            </li>
+            <li>
+              <a href="#" onClick={disableLinkOnClick}>
+                ABOUT
+              </a>
+            </li>
+            <li>
+              <a href="#" onClick={disableLinkOnClick}>
+                CONTACT
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <Banner />
       <main>{pageContent}</main>
+      <SitemapFooter />
     </div>
   );
 }

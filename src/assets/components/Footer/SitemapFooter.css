@@ -1,0 +1,51 @@
+/* Sitemap Footer Styles */
+.footer {
+  background-color: #222;
+  color: #fff;
+  padding: 60px 0;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-section {
+  width: 25%;
+  margin-bottom: 30px;
+}
+
+.footer-section h4 {
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+.footer-section p {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.footer-section ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.footer-section li {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.footer-bottom {
+  background-color: #111;
+  text-align: center;
+  padding: 20px 0;
+  font-size: 14px;
+}
+
+.footer-bottom p {
+  margin: 0;
+}

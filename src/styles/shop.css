@@ -1,30 +1,75 @@
 /* Styling for shop page */
-/**{
+/* *{
     outline: 1px solid red;
-}
-*/
+} */
+
 
 .row{
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    width: 100%;
 
 }
 
 .col-1{
-    flex: 1;
-    flex-wrap: wrap;
+    width: 2/3;
     flex-direction: column;
 }
 
 .col-2{
-    flex: 2;
+    width: 1/3;
     text-align: right;
-    flex-wrap: wrap;
     flex-direction: column;
+}
 
+.headerstyle {
+    background-color: white;
+    border-bottom-width: 2px;
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    list-style-type: none;
+}
+
+.headertitlestyle {
+    font-size: 2rem;
+    font-weight: bold;
+    /* Cool shadow effect */
+    text-shadow: 1px 1px 2px #000000;
+    /* Display it at the left side */
+    text-align: left;
 
 }
+
+.headerlistyle{
+    font-size: 1.2rem;
+    font-weight: normal;
+    /* Display it at the left side */
+    text-align: left;
+    /* Add spacing between list items */
+    margin-right: 1rem;
+
+    
+
+}
+
+a:link{
+    text-decoration: none;
+    color: black;
+}
+
+ul {
+    list-style-type: none;
+  }
+
+    li {
+        display: inline;
+        /* Spacing */
+        margin-right: 1rem;
+        
+    }
 
 img{
     max-height: 100px;
@@ -47,8 +92,8 @@ img{
     padding-left: 120px;
 }
 body {
-    background-color: #E3DED3;
-    max-width: 100%;
+    background-color: rgb(244, 244, 245);
+    margin: 0;
 }
 
 .basketbox {
@@ -195,4 +240,23 @@ background: white;
     width: 17rem;
     border-width: 2px;
     border-color: #1a1a1a;
+}
+
+.container {
+    background-color: white;
+    border-width: 1px;
+    --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+    width: 100%;
+    padding: 1rem;
+    border-radius: 0.75rem;    
+}
+
+.layoutMaster {
+    max-width: 80rem;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+
 }

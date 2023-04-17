@@ -1,21 +1,24 @@
 //Description: This is the shop page, where the user chooses which items they want to proceed to checkout with.
-import React, { useEffect } from "react";
-import products, { BasketItems, itemDict } from "../assets/products";
+import { BasketItems, itemDict } from "../assets/products";
 import { useState } from "react";
 import "../styles/shop.css";
-import { Link, Navigate, NavigateFunction, Routes } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+
 import DeleteButton from "../assets/buttons/DeleteButton";
-import EmailForm from "../assets/EmailWelcome";
 import {
   DecrementButton,
   IncrementButton,
 } from "../assets/buttons/custombutton";
-import ProgressBar from "../Progressbar/progressbar";
+import EmailWelcome from "../assets/EmailWelcome";
+import DiscountBox from "../assets/components/discountCodeBox";
+import TextBanner from "../assets/components/textBannerComponent";
+import BannerSlider from "../assets/components/textBannerComponent";
+import Banner from "../assets/components/Banner";
 
 type ShopProps = {
   navigate: (newPage: string) => void;
 };
+
+const discountCodes = [{ code: "10", amount: 0.9 }];
 
 function Shop(props: ShopProps) {
   const [basket, setBasket] = useState<BasketItems[]>([
@@ -40,6 +43,8 @@ function Shop(props: ShopProps) {
       giftWrap: false,
     },
   ] as BasketItems[]);
+
+  const [discountAmount, setDiscountAmount] = useState<number>(1);
 
   const incrementBasketItem = (id: string) => {
     const newBasket = basket.map((item) => {
@@ -101,103 +106,137 @@ function Shop(props: ShopProps) {
     { id: 4, label: "Confirmation", path: "/confirmation" },
   ];
 
-  return (
-    <div>
-      <ProgressBar />
-      {/*<LoadingPopup /> */}
-      <h1 className="shopstyle">Welcome to the House of Protein</h1>
-      <h3 className="secondTitle">Choose your gains wheysely</h3>
-      <div className="row">
-        <div className="col-1">
-          {basket.map((product) => (
-            <div>
-              <div key={product.id} className="basketbox itempadding">
-                <div style={{ display: "flex", flexDirection: "row" }}>
-                  <img src={product.image} className="imagepadding" />
-                  <div
-                    style={{
-                      display: "flex",
-                      flexDirection: "column",
-                      justifyContent: "space-between",
-                      width: "25rem",
-                    }}
-                  >
-                    <div className="font-link-title">{product.name}</div>
+  function handleApplyDiscount(discountCode: string) {
+    const discount = discountCodes.find((code) => code.code === discountCode);
+    if (discount) {
+      setDiscountAmount(discount.amount);
+      return true;
+    }
+    setDiscountAmount(1);
+    return false;
+  }
+  //Make the totalPriceWRebate function which calculates the total price of the basket and check the quantity of each product to see if the rebate applies.
 
+  function totalPriceWRebate(basket: BasketItems[]) {
+    let rabatGiven = 0;
+    let totalPrice = 0;
+    basket.forEach((item) => {
+      totalPrice += item.price * item.quantity;
+      if (item.quantity >= item.rebateQuantity) {
+        totalPrice -= (item.price * item.quantity * item.rebatePercent) / 100;
+      }
+    });
+
+    if (totalPrice >= 300 && rabatGiven == 0) {
+      totalPrice = totalPrice * 0.9;
+      rabatGiven = 1;
+    }
+
+    totalPrice = totalPrice * discountAmount;
+
+    return (Math.round(totalPrice * 100) / 100).toFixed(2);
+  }
+
+  return (
+    <>
+      {/*<LoadingPopup /> */}
+      <EmailWelcome />
+      <div className="layoutMaster container">
+        <div className="row">
+          <div className="col-1">
+            {basket.map((product) => (
+              <div>
+                <div key={product.id} className="basketbox itempadding">
+                  <div style={{ display: "flex", flexDirection: "row" }}>
+                    <img src={product.image} className="imagepadding" />
                     <div
                       style={{
                         display: "flex",
-                        flexDirection: "row",
-                        justifyContent: "start",
+                        flexDirection: "column",
+                        justifyContent: "space-between",
+                        width: "25rem",
                       }}
                     >
-                      <div className="smallpadding font-link-quantity">
-                        <span>QUANTITY: </span>
-                      </div>
+                      <div className="font-link-title">{product.name}</div>
+
                       <div
                         style={{
                           display: "flex",
                           flexDirection: "row",
-                          justifyContent: "space-evenly",
-                          alignContent: "center",
+                          justifyContent: "start",
                         }}
                       >
-                        <DecrementButton
-                          onClick={() => decrementBasketItem(product.id)}
-                        />
-                        <span className="quanText">{product.quantity}</span>
-                        <IncrementButton
-                          onClick={() => incrementBasketItem(product.id)}
-                        />
+                        <div className="smallpadding font-link-quantity">
+                          <span>QUANTITY: </span>
+                        </div>
+                        <div
+                          style={{
+                            display: "flex",
+                            flexDirection: "row",
+                            justifyContent: "space-evenly",
+                            alignContent: "center",
+                          }}
+                        >
+                          <DecrementButton
+                            onClick={() => decrementBasketItem(product.id)}
+                          />
+                          <span className="quanText">{product.quantity}</span>
+                          <IncrementButton
+                            onClick={() => incrementBasketItem(product.id)}
+                          />
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-                <div
-                  className="priceCol"
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyItems: "end",
-                  }}
-                >
-                  <p
-                    className="priceText"
-                    style={{
-                      display: "flex",
-                      flexDirection: "row",
-                      justifyContent: "end",
-                    }}
-                  >
-                    {product.price} {product.currency}
-                  </p>
                   <div
+                    className="priceCol"
                     style={{
                       display: "flex",
-                      flexDirection: "row",
-                      justifyContent: "end",
+                      flexDirection: "column",
+                      justifyItems: "end",
                     }}
                   >
-                    <DeleteButton onClick={() => removeItem(product.id)} />
+                    <p
+                      className="priceText"
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        justifyContent: "end",
+                      }}
+                    >
+                      {product.price} {product.currency}
+                    </p>
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        justifyContent: "end",
+                      }}
+                    >
+                      <DeleteButton onClick={() => removeItem(product.id)} />
+                    </div>
                   </div>
                 </div>
               </div>
+            ))}
+          </div>
+          <div className="col-2">
+            {/* Insert rebateText function */}
+            <DiscountBox onApply={handleApplyDiscount} />
+            <p>You save = {rebateAmount(basket)},- DKK</p>
+            <p>Total amount = {totalPriceWRebate(basket)},- DKK</p>
+            <div>
+              {/* Use the functions: rebateAmountWDiscount and totalPriceWDiscount */}
             </div>
-          ))}
-        </div>
-        <div className="col-2">
-          <div>{discountBox()}</div>
-          {/* Insert rebateText function */}
-          <p>You save = {rebateAmount(basket)},- DKK</p>
-          <p>Total amount = {totalPriceWRebate(basket)},- DKK</p>
-          <button
-            className="buttoncontinue"
-            onClick={() => props.navigate("checkout")}
-          >
-            Checkout
-          </button>
+          </div>
         </div>
       </div>
+      <button
+        className="buttoncontinue"
+        onClick={() => props.navigate("checkout")}
+      >
+        Checkout
+      </button>
       <div
         style={{
           display: "flex",
@@ -207,48 +246,12 @@ function Shop(props: ShopProps) {
       >
         <button onClick={pushData}>Submit Order</button>
       </div>
-    </div>
+    </>
   );
 }
 
-//Use useState to update the quantity of the products when using decrement and increment buttons.
-
-//Make the totalPriceWRebate function which calculates the total price of the basket and check the quantity of each product to see if the rebate applies.
-
-function totalPriceWRebate(basket: BasketItems[]) {
-  let rabatGiven = 0;
-  let totalPrice = 0;
-  basket.forEach((item) => {
-    totalPrice += item.price * item.quantity;
-    if (item.quantity >= item.rebateQuantity) {
-      totalPrice -= (item.price * item.quantity * item.rebatePercent) / 100;
-    }
-  });
-  if (totalPrice >= 300 && rabatGiven == 0) {
-    totalPrice = totalPrice * 0.9;
-    rabatGiven = 1;
-  }
-  // return totalPrice;
-  return (Math.round(totalPrice * 100) / 100).toFixed(2);
-}
-
-/*
-// function to change go from "shop" to "checkout"
-function changeSite() {
-const [screen, setScreen] = useState(0);
-    if (useState == 1) {
-        site = "Checkout";
-        state == 0;
-    }
-    if (state == 0) {
-        site = "Shop";
-        state == 1;
-    }
-}
-*/
-
 //Function that calculates the amount of rebate the user gets.
-function rebateAmount(basket: BasketItems[]) {
+export function rebateAmount(basket: BasketItems[]) {
   let rebate = 0;
   let totalPrice = 0;
   let rabat = 0;
@@ -274,65 +277,7 @@ function rebateAmount(basket: BasketItems[]) {
   return (Math.round(rebate + extrarabate * 100) / 100).toFixed(2);
 }
 
-//Function discountBox, shows a box with a button to apply a discount code from one of the different codes in the discountCodes array.
-function discountBox() {
-  const discountCodes = ["10PERCENT", "20PERCENT", "30PERCENT"];
-  const [discountCode, setDiscountCode] = useState<string>("20");
-
-  const applyDiscount = (discountCode: string) => {
-    setDiscountCode(discountCode);
-  };
-
-  return (
-    //If discountCodes then apply the discount code, else show the discount box.
-    <div>
-      {discountCodes.length > 0 ? (
-        <div>
-          <div>
-            <p>Discount code</p>
-            <input
-              className="discountField"
-              type="text"
-              placeholder="Enter discount code"
-              onChange={(e) => setDiscountCode(e.target.value)}
-            />
-            <button
-              className="applyDiscount"
-              onClick={() => applyDiscount(discountCode)}
-            >
-              Apply discount
-            </button>
-          </div>
-        </div>
-      ) : (
-        <div>
-          <p>Discount code applied</p>
-        </div>
-      )}
-    </div>
-  );
-}
-
-//Function which displays only text based the amount of product quantity the user has left to get the rebate.
-function rebateText(basket: BasketItems[]) {
-  basket.forEach((item) => {
-    if (item.quantity >= item.rebateQuantity) {
-      return (
-        <div>
-          <p>You have reached the rebate quantity</p>
-        </div>
-      );
-    } else {
-      return (
-        <div>
-          <p>
-            You need to buy {item.rebateQuantity - item.quantity} more of this
-            product to get the rebate
-          </p>
-        </div>
-      );
-    }
-  }, []);
-}
-
 export default Shop;
+function discountapplied() {
+  throw new Error("Function not implemented.");
+}
