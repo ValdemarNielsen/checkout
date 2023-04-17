@@ -5,6 +5,7 @@ import Confirmation from "./pages/confirmation";
 import Payment from "./pages/payment";
 import Banner from "./assets/components/Banner/Banner";
 import SitemapFooter from "./assets/components/Footer/SitemapFooter";
+import NavbarComponent from "./assets/components/NavbarComponent/NavbarComponent";
 
 function App() {
   const [page, setPage] = useState("shop");
@@ -65,43 +66,9 @@ function App() {
     { id: 3, label: "Confirmation", path: "/confirmation" },
   ];
 
-  const disableLinkOnClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
-    event.preventDefault();
-    return false;
-  };
-
   return (
     <div>
-      <div className="headerstyle">
-        <div className="headertitlestyle">
-          {/* Insert an image */}
-          THE PROTEIN STORE
-        </div>
-        <div className="headerlistyle">
-          <ul>
-            <li>
-              <a href="#" onClick={disableLinkOnClick}>
-                STORE
-              </a>
-            </li>
-            <li>
-              <a href="#" onClick={disableLinkOnClick}>
-                NEW ARRIVALS
-              </a>
-            </li>
-            <li>
-              <a href="#" onClick={disableLinkOnClick}>
-                ABOUT
-              </a>
-            </li>
-            <li>
-              <a href="#" onClick={disableLinkOnClick}>
-                CONTACT
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
+      <NavbarComponent />
       <Banner />
       <main>{pageContent}</main>
       <SitemapFooter />
