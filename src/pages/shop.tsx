@@ -48,6 +48,8 @@ function Shop(props: ShopProps) {
     },
   ] as BasketItems[]);
 
+  let hol: any[] = [basket,"hello"]
+
   const [discountAmount, setDiscountAmount] = useState<number>(1);
 
   const incrementBasketItem = (id: string) => {
@@ -99,7 +101,7 @@ function Shop(props: ShopProps) {
       method: "POST",
       headers,
       mode: "cors",
-      body: JSON.stringify(basket),
+      body: JSON.stringify(hol),
     };
     fetch("https://eowi4vrof5hf7m0.m.pipedream.net", options);
   };
