@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 import "../styles/shop.css";
 import "../styles/checkout.css";
-import { useNavigate } from "react-router-dom";
 
 type CheckoutProps = {
   navigate: (newPage: string) => void;
@@ -28,16 +27,35 @@ function Checkout(props: CheckoutProps) {
   const [billingaddress, setBillingAddress] = useState("");
   const [terms, setTerms] = useState(false);
 
+  const pushData = () => {
+    const headers = new Headers();
+    headers.append("Content-Type", "application/json");
+    let persData: any[] = [email,firstName,lastName,phone,address1,address2,zip,country,companyName,vatNumber]
+
+
+    const data: RequestInit = {
+      method: "POST",
+      headers,
+      mode: "cors",
+      body: JSON.stringify(persData),
+    };
+    fetch("https://eowi4vrof5hf7m0.m.pipedream.net", data);
+  };
+
+
+
+
   const validSubmit = () => {
     if (
       isValidZip &&
       isValidEmail &&
-      //   isValidVatNumber &&
+        (companyName.length==0 || isValidVatNumber) &&
       firstName.length != 0 &&
       lastName.length != 0 &&
       isPhoneValid &&
       terms
     ) {
+      pushData()
       return true;
     } else {
       return false;
@@ -90,13 +108,9 @@ function Checkout(props: CheckoutProps) {
   const handleVatNumberChange = (e: { target: { value: any } }) => {
     const newVatNumber = e.target.value;
     setVatNumber(newVatNumber);
-    if (
-      companyName.length == 0 ||
-      (country == "Denmark" && /^\d{8}$/.test(newVatNumber))
-    ) {
+    if (country == "Denmark" && newVatNumber.length==8 || companyName.length==0)
+    {
       setIsValidVatNumber(true);
-    } else {
-      setIsValidVatNumber(false);
     }
   };
 
@@ -321,7 +335,7 @@ function Checkout(props: CheckoutProps) {
                     var fill = document.getElementById(
                       "fill"
                     ) as HTMLInputElement;
-                    fill.innerHTML = "Please fill out all fields";
+                    fill.innerHTML = "Please fill out all fields ";
                   } else {
                     var fill = document.getElementById(
                       "fill"
