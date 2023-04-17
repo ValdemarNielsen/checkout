@@ -12,6 +12,7 @@ import EmailWelcome from "../assets/EmailWelcome";
 import DiscountBox from "../assets/components/discountCodeBox";
 import TextBanner from "../assets/components/textBannerComponent";
 import BannerSlider from "../assets/components/textBannerComponent";
+import Banner from "../assets/components/Banner";
 
 type ShopProps = {
   navigate: (newPage: string) => void;
@@ -105,11 +106,6 @@ function Shop(props: ShopProps) {
     { id: 4, label: "Confirmation", path: "/confirmation" },
   ];
 
-  const disableLinkOnClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
-    event.preventDefault();
-    return false;
-  };
-
   function handleApplyDiscount(discountCode: string) {
     const discount = discountCodes.find((code) => code.code === discountCode);
     if (discount) {
@@ -145,74 +141,6 @@ function Shop(props: ShopProps) {
     <>
       {/*<LoadingPopup /> */}
       <EmailWelcome />
-      <div className="headerstyle">
-        <div className="headertitlestyle">THE PROTEIN STORE</div>
-        <div className="headerlistyle">
-          <ul>
-            <li>
-              <a href="#" onClick={disableLinkOnClick}>
-                STORE
-              </a>
-            </li>
-            <li>
-              <a href="#" onClick={disableLinkOnClick}>
-                NEW ARRIVALS
-              </a>
-            </li>
-            <li>
-              <a href="#" onClick={disableLinkOnClick}>
-                ABOUT
-              </a>
-            </li>
-            <li>
-              <a href="#" onClick={disableLinkOnClick}>
-                CONTACT
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <BannerSlider speed={50} direction="left">
-        <div className="text">
-          <p>
-            Limited time offer: 10% off your first purchase with code
-            "10PERCENT"
-          </p>
-        </div>
-
-        <div className="text">
-          <p>New arrivals: Check out our latest products!</p>
-        </div>
-
-        <div className="text">
-          <p>Sale: Up to 50% off selected items</p>
-        </div>
-
-        <div className="text">
-          <p>
-            Customer review: "I love this product! So glad I found it here!"
-          </p>
-        </div>
-
-        <div className="text">
-          <p>Best sellers: See what everyone is buying</p>
-        </div>
-
-        <div className="text">
-          <p>Flash sale: 24-hour deals on select products</p>
-        </div>
-
-        <div className="text">
-          <p>Trending now: Get the latest suplements</p>
-        </div>
-
-        <div className="text">
-          <p>
-            Exclusive offer: Subscribe to our newsletter for special discounts
-            and promotions
-          </p>
-        </div>
-      </BannerSlider>
       <div className="layoutMaster container">
         <div className="row">
           <div className="col-1">
