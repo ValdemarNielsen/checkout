@@ -10,9 +10,9 @@ import {
 } from "../assets/buttons/custombutton";
 import EmailWelcome from "../assets/EmailWelcome";
 import DiscountBox from "../assets/components/discountCodeBox";
-import TextBanner from "../assets/components/textBannerComponent";
-import BannerSlider from "../assets/components/textBannerComponent";
-import Banner from "../assets/components/Banner";
+import TextBanner from "../assets/components/Banner/textBannerComponent";
+import BannerSlider from "../assets/components/Banner/textBannerComponent";
+import Banner from "../assets/components/Banner/Banner";
 
 type ShopProps = {
   navigate: (newPage: string) => void;

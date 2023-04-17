@@ -2,7 +2,9 @@
 .footer {
   background-color: #222;
   color: #fff;
-  padding: 60px 0;
+  padding: 30px 0;
+  background: linear-gradient(0deg, #57aefa, #75b5f4);
+
 }
 
 .footer-container {
@@ -40,9 +42,9 @@
 }
 
 .footer-bottom {
-  background-color: #111;
+  background: linear-gradient(0deg, #40a2f8, #67acf2);
   text-align: center;
-  padding: 20px 0;
+  padding: 10px 0;
   font-size: 14px;
 }
 
