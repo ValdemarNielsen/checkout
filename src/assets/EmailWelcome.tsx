@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import css from "@emotion/css";
 import { BeatLoader } from "react-spinners";
 import "../styles/EmailWelcome.css";
 
