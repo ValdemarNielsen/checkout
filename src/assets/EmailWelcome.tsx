@@ -85,7 +85,7 @@ function EmailWelcome() {
               )}
               {showText && (
                 <p className="hidden-text">
-                  USE CODE: PROTEIN10 to get 10% off your next order!
+                  USE CODE: NEWCOMMER to get 25% off your next order!
                 </p>
               )}
               {textVisible && (
