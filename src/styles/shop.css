@@ -1,5 +1,5 @@
 /* Styling for shop page */
-/* *{
+ /* *{
     outline: 1px solid red;
 } */
 
@@ -154,6 +154,10 @@ body {
     background-color: #e06e68;
     border-radius: 3px;
     border: #e06e68;
+    /* Size */
+    width: 40%;
+    
+
 }
 
 .buttoncontinue:hover{

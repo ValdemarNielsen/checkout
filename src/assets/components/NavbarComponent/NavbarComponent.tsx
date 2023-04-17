@@ -11,7 +11,10 @@ function NavbarComponent() {
     <div className="headerstyle">
       <div className="headertitlestyle">
         {/* Insert an image */}
-        <img src="public/favicon.ico" className="logo-image" />
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/563/563777.png"
+          className="logo-image"
+        />
         THE PROTEIN STORE
       </div>
       <div className="headerlistyle">
