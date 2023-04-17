@@ -1,6 +1,7 @@
 import React from "react";
 import "./SitemapFooter.css";
 
+// Auto generated text examples from Google
 function SitemapFooter() {
   return (
     <div className="footer">

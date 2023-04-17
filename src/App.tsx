@@ -3,7 +3,7 @@ import Shop from "./pages/shop";
 import Checkout from "./pages/checkout";
 import Confirmation from "./pages/confirmation";
 import Payment from "./pages/payment";
-import Banner from "./assets/components/Banner";
+import Banner from "./assets/components/Banner/Banner";
 import SitemapFooter from "./assets/components/Footer/SitemapFooter";
 
 function App() {
