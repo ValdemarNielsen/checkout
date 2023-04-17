@@ -4,7 +4,7 @@ import BannerSlider from "./textBannerComponent";
 function Banner() {
   return (
     <div>
-      <BannerSlider speed={50} direction="left">
+      <BannerSlider speed={70} direction="left">
         <div className="text">
           <p>
             Limited time offer: 10% off your first purchase with code

@@ -142,7 +142,6 @@ function Checkout(props: CheckoutProps) {
 
   return (
     <>
-      <h2>Checkout page</h2>
       <div className="layoutMaster">
         <div className="container">
           <div className="row">
@@ -368,7 +367,8 @@ function Checkout(props: CheckoutProps) {
               </div>
             </div>
             <div className="columnright">
-              <p>hello</p>
+              {/* Display the basket items */}
+              <h2>Order Summary</h2>
             </div>
           </div>
         </div>
