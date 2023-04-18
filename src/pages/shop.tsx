@@ -1,6 +1,6 @@
 //Description: This is the shop page, where the user chooses which items they want to proceed to checkout with.
 import { BasketItems, itemDict } from "../assets/products";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "../styles/shop.css";
 
 import DeleteButton from "../assets/buttons/DeleteButton";
@@ -10,9 +10,7 @@ import {
 } from "../assets/buttons/custombutton";
 import EmailWelcome from "../assets/EmailWelcome";
 import DiscountBox from "../assets/components/discountCodeBox";
-import TextBanner from "../assets/components/Banner/textBannerComponent";
-import BannerSlider from "../assets/components/Banner/textBannerComponent";
-import Banner from "../assets/components/Banner/Banner";
+import { BasketContext } from "../App";
 
 type ShopProps = {
   navigate: (newPage: string) => void;
@@ -25,34 +23,15 @@ const discountCodes = [
 ];
 
 function Shop(props: ShopProps) {
-  const [basket, setBasket] = useState<BasketItems[]>([
-    {
-      ...itemDict["clear-whey-100"],
-      quantity: 2,
-      giftWrap: false,
-    },
-    {
-      ...itemDict["valle-protion-whey-100-vanilla"],
-      quantity: 1,
-      giftWrap: true,
-    },
-    {
-      ...itemDict["valle-protein-whey-100-chocolate"],
-      quantity: 2,
-      giftWrap: false,
-    },
-    {
-      ...itemDict["fish-oil-1000-120"],
-      quantity: 1,
-      giftWrap: false,
-    },
-  ] as BasketItems[]);
+  const { basket, setBasket } = useContext(BasketContext);
 
-  let hol: any[] = [basket,"hello"]
+  const rebate = rebateAmount(basket);
+
+  let hol: any[] = [basket, "hello"];
 
   const [discountAmount, setDiscountAmount] = useState<number>(1);
 
-  const incrementBasketItem = (id: string) => {
+  const incrementBasketItem = (id: String) => {
     const newBasket = basket.map((item) => {
       if (item.id === id) {
         return {
@@ -65,7 +44,7 @@ function Shop(props: ShopProps) {
     setBasket(newBasket);
   };
 
-  const decrementBasketItem = (id: string) => {
+  const decrementBasketItem = (id: String) => {
     const newBasket = basket.map((item) => {
       if (item.id === id) {
         if (item.quantity >= 2) {
@@ -81,16 +60,9 @@ function Shop(props: ShopProps) {
   };
 
   //Remove a product from the basket
-  const removeItem = (id: string) => {
+  const removeItem = (id: String) => {
     const newBasket = basket.filter((item) => item.id !== id); //filter out the item with the id
     setBasket(newBasket);
-  };
-
-  const isNotEmpty = () => {
-    if (basket.length == 0) {
-      return false;
-    }
-    return true;
   };
 
   const pushData = () => {
@@ -105,12 +77,6 @@ function Shop(props: ShopProps) {
     };
     fetch("https://eowi4vrof5hf7m0.m.pipedream.net", options);
   };
-  const progressPoints = [
-    { id: 1, label: "Shop", path: "/shop" },
-    { id: 2, label: "Checkout", path: "/checkout" },
-    { id: 3, label: "Payment", path: "/payment" },
-    { id: 4, label: "Confirmation", path: "/confirmation" },
-  ];
 
   function handleApplyDiscount(discountCode: string) {
     const discount = discountCodes.find((code) => code.code === discountCode);
@@ -123,7 +89,7 @@ function Shop(props: ShopProps) {
   }
   //Make the totalPriceWRebate function which calculates the total price of the basket and check the quantity of each product to see if the rebate applies.
 
-  function totalPriceWRebate(basket: BasketItems[]) {
+  function totalPriceWRebate(BasketContext: BasketItems[]) {
     let rabatGiven = 0;
     let totalPrice = 0;
     basket.forEach((item) => {
@@ -258,18 +224,20 @@ function Shop(props: ShopProps) {
 }
 
 //Function that calculates the amount of rebate the user gets.
-export function rebateAmount(basket: BasketItems[]) {
+function rebateAmount(basket: BasketItems[]) {
   let rebate = 0;
   let totalPrice = 0;
   let rabat = 0;
   let extrarabate = 0;
   basket.forEach((item) => {
+    // Use BasketContext instead of basket
     if (item.quantity >= item.rebateQuantity) {
       rebate += (item.price * item.quantity * item.rebatePercent) / 100;
     }
   });
 
   basket.forEach((item) => {
+    // Use BasketContext instead of basket
     totalPrice += item.price * item.quantity;
     if (item.quantity >= item.rebateQuantity) {
       totalPrice -= (item.price * item.quantity * item.rebatePercent) / 100;
@@ -280,7 +248,6 @@ export function rebateAmount(basket: BasketItems[]) {
     extrarabate = totalPrice - totalPrice * 0.9;
     rabat = 1;
   }
-  // return rebate + extrarabate;
   return (Math.round(rebate + extrarabate * 100) / 100).toFixed(2);
 }
 
