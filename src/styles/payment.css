@@ -6,3 +6,17 @@
     height: 30px;
     width: 30px;
 }
+
+.left{
+    text-align: left;
+    align-content: start;
+}
+
+
+.paymentStyle {
+
+    text-align: center;
+    background-color: #ffffff;
+    padding: 20px 0;
+    font-size: 30px;
+}

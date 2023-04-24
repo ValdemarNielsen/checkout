@@ -1,5 +1,11 @@
-import { useState } from "react";
+import {useContext, useState} from "react";
 import "../styles/shop.css";
+import "../styles/payment.css";
+import { BasketContext, } from "../App";
+import {rebateAmount} from "./shop"
+
+
+
 function MobilepayNumber() {}
 
 type PaymentProps = {
@@ -9,6 +15,7 @@ type PaymentProps = {
 function Payment(props: PaymentProps) {
   const [phone, setPhone] = useState("");
   const [isPhoneValid, setIsPhoneValid] = useState(false);
+  const { basket, setBasket } = useContext(BasketContext);
 
   const handlePhoneChange = (e: { target: { value: any } }) => {
     const newPhone = e.target.value;
@@ -22,13 +29,13 @@ function Payment(props: PaymentProps) {
 
   return (
     <>
-      <div>
+      <div className="layoutMaster container row col-1">
         <h2 className="title">Payment</h2>
-        <div style={{ alignItems: "center" }} className="shopstyle">
+        <div style={{ alignItems: "center" }} className="paymentStyle">
           <div className="row">
             <div className="col-1">
               <p> Chose a payment method below</p>
-              <div>
+              <div className="left">
                 Mobilepay
                 <input type="checkbox" className="checkboxSize" />
               </div>
@@ -40,12 +47,12 @@ function Payment(props: PaymentProps) {
                 id="phone"
                 value={phone}
                 onChange={handlePhoneChange}
-                className={isPhoneValid || phone == "" ? "" : "invalid-field"}
+                className={"left" && isPhoneValid || phone == "" ? "" : "invalid-field"}
               />
             </div>
-            <div className="col-2">
-              <p>You have saved = 0 DKK</p>
-              <p>Total payment amount = 0 DKK</p>
+            <div className="col-1">
+              <p>You have saved = {rebateAmount(basket)} DKK</p>
+              <p>Total payment amount = {} DKK</p>
 
               <div>
                 Optional order comment:

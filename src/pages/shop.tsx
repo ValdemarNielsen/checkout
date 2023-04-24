@@ -22,14 +22,32 @@ const discountCodes = [
   { code: "NEWCOMMER", amount: 0.85 },
 ];
 
+
 function Shop(props: ShopProps) {
   const { basket, setBasket } = useContext(BasketContext);
-
+  const [discountAmount, setDiscountAmount] = useState<number>(1);
   const rebate = rebateAmount(basket);
 
   let hol: any[] = [basket, "hello"];
+  function totalPriceWRebate(basket: BasketItems[]) {
+    let rabatGiven = 0;
+    let totalPrice = 0;
+    basket.forEach((item) => {
+      totalPrice += item.price * item.quantity;
+      if (item.quantity >= item.rebateQuantity) {
+        totalPrice -= (item.price * item.quantity * item.rebatePercent) / 100;
+      }
+    });
 
-  const [discountAmount, setDiscountAmount] = useState<number>(1);
+    if (totalPrice >= 300 && rabatGiven == 0) {
+      totalPrice = totalPrice * 0.9;
+      rabatGiven = 1;
+    }
+
+    totalPrice = totalPrice * discountAmount;
+
+    return (Math.round(totalPrice * 100) / 100).toFixed(2);
+  }
 
   const incrementBasketItem = (id: String) => {
     const newBasket = basket.map((item) => {
@@ -65,19 +83,6 @@ function Shop(props: ShopProps) {
     setBasket(newBasket);
   };
 
-  const pushData = () => {
-    const headers = new Headers();
-    headers.append("Content-Type", "application/json");
-
-    const options: RequestInit = {
-      method: "POST",
-      headers,
-      mode: "cors",
-      body: JSON.stringify(hol),
-    };
-    fetch("https://eowi4vrof5hf7m0.m.pipedream.net", options);
-  };
-
   function handleApplyDiscount(discountCode: string) {
     const discount = discountCodes.find((code) => code.code === discountCode);
     if (discount) {
@@ -89,25 +94,7 @@ function Shop(props: ShopProps) {
   }
   //Make the totalPriceWRebate function which calculates the total price of the basket and check the quantity of each product to see if the rebate applies.
 
-  function totalPriceWRebate(BasketContext: BasketItems[]) {
-    let rabatGiven = 0;
-    let totalPrice = 0;
-    basket.forEach((item) => {
-      totalPrice += item.price * item.quantity;
-      if (item.quantity >= item.rebateQuantity) {
-        totalPrice -= (item.price * item.quantity * item.rebatePercent) / 100;
-      }
-    });
 
-    if (totalPrice >= 300 && rabatGiven == 0) {
-      totalPrice = totalPrice * 0.9;
-      rabatGiven = 1;
-    }
-
-    totalPrice = totalPrice * discountAmount;
-
-    return (Math.round(totalPrice * 100) / 100).toFixed(2);
-  }
 
   return (
     <>
@@ -223,8 +210,9 @@ function Shop(props: ShopProps) {
   );
 }
 
+
 //Function that calculates the amount of rebate the user gets.
-function rebateAmount(basket: BasketItems[]) {
+export function rebateAmount(basket: BasketItems[]) {
   let rebate = 0;
   let totalPrice = 0;
   let rabat = 0;

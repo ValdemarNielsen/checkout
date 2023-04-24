@@ -1,5 +1,5 @@
 //Description: This is the checkout page, where the user corrects/verifies chosen items and proceeds to checkout.
-import React, { useState } from "react";
+import React, {useContext, useState} from "react";
 import "../styles/shop.css";
 import "../styles/checkout.css";
 
@@ -40,7 +40,7 @@ function Checkout(props: CheckoutProps) {
       zip,
       country,
       companyName,
-      vatNumber,
+      vatNumber
     ];
 
     const data: RequestInit = {
@@ -355,6 +355,7 @@ function Checkout(props: CheckoutProps) {
                           "fill"
                         ) as HTMLInputElement;
                         fill.innerHTML = "";
+
                         //Insert navigation to next page
                         props.navigate("payment");
                       }
@@ -369,6 +370,7 @@ function Checkout(props: CheckoutProps) {
             <div className="columnright">
               {/* Display the basket items */}
               <h2>Order Summary</h2>
+
             </div>
           </div>
         </div>
