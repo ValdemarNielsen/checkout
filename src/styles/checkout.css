@@ -121,3 +121,10 @@ input:focus {
     display: flex;
 
 }
+
+.columnright{
+    width: 50%;
+    text-align: start;
+    justify-content: space-evenly;
+
+}

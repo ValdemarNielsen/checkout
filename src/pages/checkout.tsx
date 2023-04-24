@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import "../styles/shop.css";
 import "../styles/checkout.css";
+import OrderSummary from "../assets/components/OrderSummary.tsx/orderSummary";
 
 type CheckoutProps = {
   navigate: (newPage: string) => void;
@@ -368,11 +369,9 @@ function Checkout(props: CheckoutProps) {
             </div>
             <div className="columnright">
               {/* Display the basket items */}
-              <h2>Order Summary</h2>
-              <span>
-                Here the items in the basket will be displayed, and the total
-                sum of the order
-              </span>
+              <div>
+                <OrderSummary />
+              </div>
             </div>
           </div>
         </div>
