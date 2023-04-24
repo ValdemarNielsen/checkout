@@ -4,14 +4,11 @@ type ConfirmationProps = {
   navigate: (page: string) => void;
 };
 
-const Confirmation: React.FC<ConfirmationProps> = ({ navigate }) => {
-  const handlePaymentClick = () => {
-    navigate("payment");
-  };
+function Confirmation(props: ConfirmationProps) {
   return (
     <>
       <h1>Confirmation</h1>
     </>
   );
-};
+}
 export default Confirmation;
