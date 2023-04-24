@@ -15,6 +15,8 @@ function OrderSummary() {
     <div style={{ display: "flex", flexDirection: "column" }}>
       <h2>Order Summary</h2>
       <p>You have {basket.length} in your basket:</p>
+
+        <div className="basketContainer">
       <div style={{ display: "flex", flexDirection: "column" }}>
         {basket.map((item) => (
           <li key={item.id}>
@@ -22,8 +24,14 @@ function OrderSummary() {
             {item.quantity} x {item.name}
           </li>
         ))}
-        {totalPriceWRebate(basket, discountAmount)}
       </div>
+      </div>
+
+        <div>
+          <p >Total price: {totalPriceWRebate(basket, discountAmount)} kr,-</p>
+    </div>
+
+
     </div>
   );
 }
