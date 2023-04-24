@@ -2,8 +2,6 @@ import React, {useContext, useState} from "react";
 import "../styles/shop.css";
 import "../styles/payment.css";
 import {BasketContext, PriceContext, PersDataContext} from "../App";
-import {NavigationActions} from "react-navigation";
-import navigate = NavigationActions.navigate;
 
 
 type PaymentProps = {
@@ -79,44 +77,60 @@ function Payment(props: PaymentProps) {
 
   return (
     <>
-      <div className="layoutMaster container row col-1">
-        <h2 className="title">Payment</h2>
+      <div className="layoutMaster container row container">
+
         <div style={{ alignItems: "center" }} className="paymentStyle">
           <div className="row">
-            <div className="col-1">
-              <p> Chose a payment method below</p>
-              <div className="left">
-                Mobilepay
-                <input type="checkbox" className="checkboxSize" />
-              </div>
-              <p></p>
-              <label htmlFor="phonee">Phone number </label>
-              <input
-                type="text"
-                name="phone"
-                id="phone"
-                value={phone}
-                onChange={handlePhoneChange}
-                className={"left" && isPhoneValid || phonee == "" ? "" : "invalid-field"}
-              />
-            </div>
-            <div className="col-1">
-              <p>Total payment amount = {totalPriceWRebate(basket,discountAmount)} DKK</p>
+            <div className="form">
+              <h1 className="left payment">Payment:</h1>
 
-              <div>
-                Optional order comment:
-                <input type="text" />
-                <button
-                    type="submit"
-                    onClick={() =>
-                      props.navigate("confirmation")
-                    }
-                >
-                  Submit{" "}
-                </button>
+              <div className="col left">
+              <h3> Chose a payment method below</h3>
+              <div className="inputbox">
+                <span className="row">Cards accepted :</span>
+                <img className="creditCard" src="../../public/creditcard.jpg"/>
               </div>
+              <div className="inputbox">
+                <span className="left">Name on card :</span>
+                <input type="text" placeholder="mr. frank borck"/>
+              </div>
+              <div className="inputbox">
+                <span className="left">Credit card number :</span>
+                <input type="number" placeholder="1111-2222-3333-4444"/>
+              </div>
+              <div className="flex">
+                <div className="inputbox">
+                  <span className="left">Exp date :</span>
+                  <input type="month" placeholder="january"/>
+                </div>
+              </div>
+              <div className="inputbox">
+                <span className="left">CVV :</span>
+                <input type="number" placeholder="1234"/>
+              </div>
+
+
             </div>
           </div>
+            <div className="form col-3">
+              <h3 className="">Total payment amount = {totalPriceWRebate(basket,discountAmount)} DKK</h3>
+
+              <div className="left">
+                Optional order comment:
+                <textarea placeholder="type your message" maxLength="180" cols="25" rows="6" wrap="hard">
+                </textarea>
+              </div>
+
+              <button
+                  type="submit"
+                  onClick={() =>{
+                    pushData()
+                  }}
+              >
+                Place Order{" "}
+              </button>
+            </div>
+        </div>
         </div>
       </div>
     </>
