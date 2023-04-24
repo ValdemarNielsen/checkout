@@ -22,9 +22,13 @@ const discountCodes = [
   { code: "NEWCOMMER", amount: 0.85 },
 ];
 
+
+
+
+
 function Shop(props: ShopProps) {
   const { basket, setBasket } = useContext(BasketContext);
-
+  const totalPriceFinish = totalPriceWRebate(basket);
   const rebate = rebateAmount(basket);
 
   let hol: any[] = [basket, "hello"];
@@ -89,7 +93,7 @@ function Shop(props: ShopProps) {
   }
   //Make the totalPriceWRebate function which calculates the total price of the basket and check the quantity of each product to see if the rebate applies.
 
-  function totalPriceWRebate(BasketContext: BasketItems[]) {
+ function totalPriceWRebate(BasketContext: BasketItems[]) {
     let rabatGiven = 0;
     let totalPrice = 0;
     basket.forEach((item) => {
