@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import "../styles/shop.css";
 import "../styles/checkout.css";
+import { BasketContext } from "../App"
 
 type CheckoutProps = {
   navigate: (newPage: string) => void;
@@ -134,15 +135,10 @@ function Checkout(props: CheckoutProps) {
   return (
     <>
       <h2>Checkout page</h2>
-      <div className="row">
-        <div className="columnleft">
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          >
+      <div className="layoutMaster">
+        <div className="container">
+          <div className="row">
+            <div className="col-1">
             <form
               onSubmit={handleSubmit}
               style={{
@@ -351,10 +347,12 @@ function Checkout(props: CheckoutProps) {
               <p id="fill"></p>
             </form>
           </div>
+            <div className="col-2">
+              <p>Basket</p>
+            </div>
         </div>
-        <div className="columnright">
-          <p>hello</p>
-        </div>
+
+      </div>
       </div>
     </>
   );
