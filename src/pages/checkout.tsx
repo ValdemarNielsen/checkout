@@ -369,6 +369,10 @@ function Checkout(props: CheckoutProps) {
             <div className="columnright">
               {/* Display the basket items */}
               <h2>Order Summary</h2>
+              <span>
+                Here the items in the basket will be displayed, and the total
+                sum of the order
+              </span>
             </div>
           </div>
         </div>
