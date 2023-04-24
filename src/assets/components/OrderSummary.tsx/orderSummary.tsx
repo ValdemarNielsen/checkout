@@ -11,7 +11,8 @@ function OrderSummary() {
       <div style={{ display: "flex", flexDirection: "column" }}>
         {basket.map((item) => (
           <li key={item.id}>
-            {item.name} x {item.quantity}
+            <img src={item.image} className="imagepadding" />
+            {item.quantity} x {item.name}
           </li>
         ))}
       </div>
