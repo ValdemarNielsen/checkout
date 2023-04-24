@@ -1,8 +1,15 @@
 import React, { useContext } from "react";
-import { BasketContext } from "../../../App";
+import { BasketContext, PriceContext } from "../../../App";
 
 function OrderSummary() {
   const { basket, setBasket } = useContext(BasketContext);
+  const {
+    totalPrice,
+    setTotalPrice,
+    totalPriceWRebate,
+    discountAmount,
+    setDiscountAmount,
+  } = useContext(PriceContext);
 
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
@@ -15,6 +22,7 @@ function OrderSummary() {
             {item.quantity} x {item.name}
           </li>
         ))}
+        {totalPriceWRebate(basket, discountAmount)}
       </div>
     </div>
   );
