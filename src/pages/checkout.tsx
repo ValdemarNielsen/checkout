@@ -1,8 +1,8 @@
 //Description: This is the checkout page, where the user corrects/verifies chosen items and proceeds to checkout.
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import "../styles/shop.css";
 import "../styles/checkout.css";
-import { BasketContext } from "../App"
+import OrderSummary from "../assets/components/OrderSummary.tsx/orderSummary";
 
 type CheckoutProps = {
   navigate: (newPage: string) => void;
@@ -27,7 +27,6 @@ function Checkout(props: CheckoutProps) {
   const [isPhoneValid, setIsPhoneValid] = useState(false);
   const [billingaddress, setBillingAddress] = useState("");
   const [terms, setTerms] = useState(false);
-  const { basket, setBasket } = useContext(BasketContext);
 
   const pushData = () => {
     const headers = new Headers();
@@ -370,75 +369,9 @@ function Checkout(props: CheckoutProps) {
             </div>
             <div className="columnright">
               {/* Display the basket items */}
-              <h2>Order Summary</h2>
-              {basket.map((product) => (
-                  <div>
-                    <div key={product.id} className="basketbox itempadding">
-                      <div style={{ display: "flex", flexDirection: "row" }}>
-                        <img src={product.image} className="imagepadding" />
-                        <div
-                            style={{
-                              display: "flex",
-                              flexDirection: "column",
-                              justifyContent: "space-between",
-                              width: "25rem",
-                            }}
-                        >
-                          <div className="font-link-title">{product.name}</div>
-
-                          <div
-                              style={{
-                                display: "flex",
-                                flexDirection: "row",
-                                justifyContent: "start",
-                              }}
-                          >
-                            <div className="smallpadding font-link-quantity">
-                              <span>QUANTITY: </span>
-                            </div>
-                            <div
-                                style={{
-                                  display: "flex",
-                                  flexDirection: "row",
-                                  justifyContent: "space-evenly",
-                                  alignContent: "center",
-                                }}
-                            >
-                              <span className="quanText">{product.quantity}</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div
-                          className="priceCol"
-                          style={{
-                            display: "flex",
-                            flexDirection: "column",
-                            justifyItems: "end",
-                          }}
-                      >
-                        <p
-                            className="priceText"
-                            style={{
-                              display: "flex",
-                              flexDirection: "row",
-                              justifyContent: "end",
-                            }}
-                        >
-                          {product.price} {product.currency}
-                        </p>
-                        <div
-                            style={{
-                              display: "flex",
-                              flexDirection: "row",
-                              justifyContent: "end",
-                            }}
-                        >
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-              ))}
+              <div>
+                <OrderSummary />
+              </div>
             </div>
           </div>
         </div>
