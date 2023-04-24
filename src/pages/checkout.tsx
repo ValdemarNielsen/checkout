@@ -3,6 +3,9 @@ import React, {useContext, useState} from "react";
 import "../styles/shop.css";
 import "../styles/checkout.css";
 import OrderSummary from "../assets/components/OrderSummary.tsx/orderSummary";
+import {a} from "vitest/dist/types-fafda418";
+
+
 
 type CheckoutProps = {
   navigate: (newPage: string) => void;
@@ -27,6 +30,9 @@ function Checkout(props: CheckoutProps) {
   const [isPhoneValid, setIsPhoneValid] = useState(false);
   const [billingaddress, setBillingAddress] = useState("");
   const [terms, setTerms] = useState(false);
+
+
+
 
   const pushData = () => {
     const headers = new Headers();

@@ -211,7 +211,7 @@ function Shop(props: ShopProps) {
 }
 
 //Function that calculates the amount of rebate the user gets.
-function rebateAmount(basket: BasketItems[]) {
+export function rebateAmount(basket: BasketItems[]) {
   let rebate = 0;
   let totalPrice = 0;
   let rabat = 0;

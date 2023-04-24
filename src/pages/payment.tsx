@@ -1,19 +1,67 @@
-import {useContext, useState} from "react";
+import React, {useContext, useState} from "react";
 import "../styles/shop.css";
 import "../styles/payment.css";
-import { BasketContext, } from "../App";
-import {rebateAmount} from "./shop"
+import {BasketContext, PriceContext, PersDataContext} from "../App";
+import {NavigationActions} from "react-navigation";
+import navigate = NavigationActions.navigate;
 
 
+type PaymentProps = {
+  navigate: (newPage: string) => void;
+}
 
 function MobilepayNumber() {}
 
-type PaymentProps = {
-  navigate: (page: string) => void;
-};
 
 function Payment(props: PaymentProps) {
-  const [phone, setPhone] = useState("");
+    const {
+      email,
+      firstName,
+      lastName,
+      phone,
+      address1,
+      address2,
+      zip,
+      country,
+      companyName,
+      vatNumber
+    } = useContext(PersDataContext)
+
+  const {
+    totalPrice,
+    setTotalPrice,
+    discountAmount,
+    setDiscountAmount,
+    totalPriceWRebate,
+  } = useContext(PriceContext);
+
+    const pushData = () => {
+    const headers = new Headers();
+    headers.append("Content-Type", "application/json");
+    let persData: any[] = [
+      email,
+      firstName,
+      lastName,
+      phone,
+      address1,
+      address2,
+      zip,
+      country,
+      companyName,
+      vatNumber,
+      basket
+    ];
+
+    const data: RequestInit = {
+      method: "POST",
+      headers,
+      mode: "cors",
+      body: JSON.stringify(persData),
+    };
+    fetch("https://eowi4vrof5hf7m0.m.pipedream.net", data);
+  };
+
+  const [phonee, setPhone] = useState("");
   const [isPhoneValid, setIsPhoneValid] = useState(false);
   const { basket, setBasket } = useContext(BasketContext);
 
@@ -26,6 +74,8 @@ function Payment(props: PaymentProps) {
       setIsPhoneValid(false);
     }
   };
+  
+
 
   return (
     <>
@@ -40,23 +90,30 @@ function Payment(props: PaymentProps) {
                 <input type="checkbox" className="checkboxSize" />
               </div>
               <p></p>
-              <label htmlFor="phone">Phone number </label>
+              <label htmlFor="phonee">Phone number </label>
               <input
                 type="text"
                 name="phone"
                 id="phone"
                 value={phone}
                 onChange={handlePhoneChange}
-                className={"left" && isPhoneValid || phone == "" ? "" : "invalid-field"}
+                className={"left" && isPhoneValid || phonee == "" ? "" : "invalid-field"}
               />
             </div>
             <div className="col-1">
-              <p>You have saved = {rebateAmount(basket)} DKK</p>
-              <p>Total payment amount = {} DKK</p>
+              <p>Total payment amount = {totalPriceWRebate(basket,discountAmount)} DKK</p>
 
               <div>
                 Optional order comment:
                 <input type="text" />
+                <button
+                    type="submit"
+                    onClick={() =>
+                      props.navigate("confirmation")
+                    }
+                >
+                  Submit{" "}
+                </button>
               </div>
             </div>
           </div>
