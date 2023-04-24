@@ -10,7 +10,7 @@ import {
 } from "../assets/buttons/custombutton";
 import EmailWelcome from "../assets/EmailWelcome";
 import DiscountBox from "../assets/components/discountCodeBox";
-import { BasketContext } from "../App";
+import { BasketContext, PriceContext } from "../App";
 
 type ShopProps = {
   navigate: (newPage: string) => void;
@@ -24,12 +24,17 @@ const discountCodes = [
 
 function Shop(props: ShopProps) {
   const { basket, setBasket } = useContext(BasketContext);
+  const {
+    totalPrice,
+    setTotalPrice,
+    discountAmount,
+    setDiscountAmount,
+    totalPriceWRebate,
+  } = useContext(PriceContext);
 
   const rebate = rebateAmount(basket);
 
   let hol: any[] = [basket, "hello"];
-
-  const [discountAmount, setDiscountAmount] = useState<number>(1);
 
   const incrementBasketItem = (id: String) => {
     const newBasket = basket.map((item) => {
@@ -86,27 +91,6 @@ function Shop(props: ShopProps) {
     }
     setDiscountAmount(1);
     return false;
-  }
-  //Make the totalPriceWRebate function which calculates the total price of the basket and check the quantity of each product to see if the rebate applies.
-
-  function totalPriceWRebate(BasketContext: BasketItems[]) {
-    let rabatGiven = 0;
-    let totalPrice = 0;
-    basket.forEach((item) => {
-      totalPrice += item.price * item.quantity;
-      if (item.quantity >= item.rebateQuantity) {
-        totalPrice -= (item.price * item.quantity * item.rebatePercent) / 100;
-      }
-    });
-
-    if (totalPrice >= 300 && rabatGiven == 0) {
-      totalPrice = totalPrice * 0.9;
-      rabatGiven = 1;
-    }
-
-    totalPrice = totalPrice * discountAmount;
-
-    return (Math.round(totalPrice * 100) / 100).toFixed(2);
   }
 
   return (
@@ -205,7 +189,10 @@ function Shop(props: ShopProps) {
                 {/* Insert rebateText function */}
                 <DiscountBox onApply={handleApplyDiscount} />
                 <p>You save = {rebateAmount(basket)},- DKK</p>
-                <p>Total amount = {totalPriceWRebate(basket)},- DKK</p>
+                <p>
+                  Total amount = {totalPriceWRebate(basket, discountAmount)},-
+                  DKK
+                </p>
               </div>
               <div style={{ justifyContent: "end" }}>
                 <button
