@@ -2,6 +2,7 @@
 import React, {useContext, useState} from "react";
 import "../styles/shop.css";
 import "../styles/checkout.css";
+import OrderSummary from "../assets/components/OrderSummary.tsx/orderSummary";
 
 type CheckoutProps = {
   navigate: (newPage: string) => void;
@@ -355,7 +356,6 @@ function Checkout(props: CheckoutProps) {
                           "fill"
                         ) as HTMLInputElement;
                         fill.innerHTML = "";
-
                         //Insert navigation to next page
                         props.navigate("payment");
                       }
@@ -369,8 +369,9 @@ function Checkout(props: CheckoutProps) {
             </div>
             <div className="columnright">
               {/* Display the basket items */}
-              <h2>Order Summary</h2>
-
+              <div>
+                <OrderSummary />
+              </div>
             </div>
           </div>
         </div>

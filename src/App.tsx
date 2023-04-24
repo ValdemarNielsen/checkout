@@ -87,9 +87,52 @@ type BasketContextType = {
   setBasket: React.Dispatch<React.SetStateAction<BasketItems[]>>;
 };
 
+export const PriceContext = React.createContext<PriceContextType>({
+  totalPrice: 0,
+  setTotalPrice: () => {},
+  discountAmount: 0,
+  setDiscountAmount: () => {},
+  totalPriceWRebate: totalPriceWRebate,
+});
+
+type PriceContextType = {
+  totalPrice: number;
+  setTotalPrice: React.Dispatch<React.SetStateAction<number>>;
+  discountAmount: number;
+  setDiscountAmount: React.Dispatch<React.SetStateAction<number>>;
+  totalPriceWRebate: (
+    BasketContext: BasketItems[],
+    discountAmount: number
+  ) => string;
+};
+export function totalPriceWRebate(
+  BasketContext: BasketItems[],
+  discountAmount: number
+) {
+  let rabatGiven = 0;
+  let totalPrice = 0;
+  BasketContext.forEach((item) => {
+    totalPrice += item.price * item.quantity;
+    if (item.quantity >= item.rebateQuantity) {
+      totalPrice -= (item.price * item.quantity * item.rebatePercent) / 100;
+    }
+  });
+
+  if (totalPrice >= 300 && rabatGiven == 0) {
+    totalPrice = totalPrice * 0.9;
+    rabatGiven = 1;
+  }
+
+  totalPrice = totalPrice * discountAmount;
+
+  return (Math.round(totalPrice * 100) / 100).toFixed(2);
+}
+
 function App() {
   const [page, setPage] = useState("shop");
   const [basket, setBasket] = useState<BasketItems[]>(initialBasketItems);
+  const [totalPrice, setTotalPrice] = useState<number>(0);
+  const [discountAmount, setDiscountAmount] = useState<number>(1);
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -143,10 +186,20 @@ function App() {
   return (
     <div>
       <BasketContext.Provider value={{ basket, setBasket }}>
-        <NavbarComponent />
-        <Banner />
-        <main>{pageContent}</main>
-        <SitemapFooter />
+        <PriceContext.Provider
+          value={{
+            totalPrice,
+            setTotalPrice,
+            discountAmount,
+            setDiscountAmount,
+            totalPriceWRebate,
+          }}
+        >
+          <NavbarComponent />
+          <Banner />
+          <main>{pageContent}</main>
+          <SitemapFooter />
+        </PriceContext.Provider>
       </BasketContext.Provider>
     </div>
   );

@@ -10,7 +10,7 @@ import {
 } from "../assets/buttons/custombutton";
 import EmailWelcome from "../assets/EmailWelcome";
 import DiscountBox from "../assets/components/discountCodeBox";
-import { BasketContext } from "../App";
+import { BasketContext, PriceContext } from "../App";
 
 type ShopProps = {
   navigate: (newPage: string) => void;
@@ -22,32 +22,19 @@ const discountCodes = [
   { code: "NEWCOMMER", amount: 0.85 },
 ];
 
-
 function Shop(props: ShopProps) {
   const { basket, setBasket } = useContext(BasketContext);
-  const [discountAmount, setDiscountAmount] = useState<number>(1);
+  const {
+    totalPrice,
+    setTotalPrice,
+    discountAmount,
+    setDiscountAmount,
+    totalPriceWRebate,
+  } = useContext(PriceContext);
+
   const rebate = rebateAmount(basket);
 
   let hol: any[] = [basket, "hello"];
-  function totalPriceWRebate(basket: BasketItems[]) {
-    let rabatGiven = 0;
-    let totalPrice = 0;
-    basket.forEach((item) => {
-      totalPrice += item.price * item.quantity;
-      if (item.quantity >= item.rebateQuantity) {
-        totalPrice -= (item.price * item.quantity * item.rebatePercent) / 100;
-      }
-    });
-
-    if (totalPrice >= 300 && rabatGiven == 0) {
-      totalPrice = totalPrice * 0.9;
-      rabatGiven = 1;
-    }
-
-    totalPrice = totalPrice * discountAmount;
-
-    return (Math.round(totalPrice * 100) / 100).toFixed(2);
-  }
 
   const incrementBasketItem = (id: String) => {
     const newBasket = basket.map((item) => {
@@ -83,6 +70,19 @@ function Shop(props: ShopProps) {
     setBasket(newBasket);
   };
 
+  const pushData = () => {
+    const headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    const options: RequestInit = {
+      method: "POST",
+      headers,
+      mode: "cors",
+      body: JSON.stringify(hol),
+    };
+    fetch("https://eowi4vrof5hf7m0.m.pipedream.net", options);
+  };
+
   function handleApplyDiscount(discountCode: string) {
     const discount = discountCodes.find((code) => code.code === discountCode);
     if (discount) {
@@ -92,9 +92,6 @@ function Shop(props: ShopProps) {
     setDiscountAmount(1);
     return false;
   }
-  //Make the totalPriceWRebate function which calculates the total price of the basket and check the quantity of each product to see if the rebate applies.
-
-
 
   return (
     <>
@@ -192,7 +189,10 @@ function Shop(props: ShopProps) {
                 {/* Insert rebateText function */}
                 <DiscountBox onApply={handleApplyDiscount} />
                 <p>You save = {rebateAmount(basket)},- DKK</p>
-                <p>Total amount = {totalPriceWRebate(basket)},- DKK</p>
+                <p>
+                  Total amount = {totalPriceWRebate(basket, discountAmount)},-
+                  DKK
+                </p>
               </div>
               <div style={{ justifyContent: "end" }}>
                 <button
@@ -210,9 +210,8 @@ function Shop(props: ShopProps) {
   );
 }
 
-
 //Function that calculates the amount of rebate the user gets.
-export function rebateAmount(basket: BasketItems[]) {
+function rebateAmount(basket: BasketItems[]) {
   let rebate = 0;
   let totalPrice = 0;
   let rabat = 0;
