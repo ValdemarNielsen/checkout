@@ -366,13 +366,21 @@ function Checkout(props: CheckoutProps) {
                         props.navigate("payment");
                       }
                     }}
+                    className="buttoncontinue"
                   >
-                    Submit{" "}
+                    Go to payment
                   </button>
                   <p id="fill"></p>
                 </form>
               </div>
+              <button
+                className="buttoncontinue"
+                onClick={() => props.navigate("shop")}
+              >
+                Go back
+              </button>
             </div>
+
             <div className="columnright">
               {/* Display the basket items */}
               <div>
