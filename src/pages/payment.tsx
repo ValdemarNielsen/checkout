@@ -117,7 +117,7 @@ function Payment(props: PaymentProps) {
 
               <div className="left">
                 Optional order comment:
-                <textarea placeholder="type your message" maxLength="180" cols="25" rows="6" wrap="hard">
+                <textarea placeholder="type your message" maxLength={180} cols={25} rows={6} wrap="hard">
                 </textarea>
               </div>
 
