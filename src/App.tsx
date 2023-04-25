@@ -75,6 +75,34 @@ const initialBasketItems: BasketItems[] = [
   },
 ];
 
+export const PersDataContext = React.createContext<PersDataType>({
+  email: "",
+  firstName: "",
+  lastName: "",
+  phone: 0,
+  address1: "",
+  address2: "",
+  zip: 0,
+  country: "",
+  companyName: "",
+  vatNumber: 0,
+  basket: []
+});
+type PersDataType = {
+  email: string
+  firstName: string
+  lastName: string
+  phone: number
+  address1: string
+  address2: string
+  zip: number
+  country: string
+  companyName: string
+  vatNumber: number
+  basket: BasketItems[]
+}
+
+
 // Create a context
 export const BasketContext = React.createContext<BasketContextType>({
   basket: [],

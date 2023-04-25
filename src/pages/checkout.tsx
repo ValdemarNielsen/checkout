@@ -1,8 +1,11 @@
 //Description: This is the checkout page, where the user corrects/verifies chosen items and proceeds to checkout.
-import React, { useState } from "react";
+import React, {useContext, useState} from "react";
 import "../styles/shop.css";
 import "../styles/checkout.css";
 import OrderSummary from "../assets/components/OrderSummary.tsx/orderSummary";
+import {a} from "vitest/dist/types-fafda418";
+
+
 
 type CheckoutProps = {
   navigate: (newPage: string) => void;
@@ -28,6 +31,9 @@ function Checkout(props: CheckoutProps) {
   const [billingaddress, setBillingAddress] = useState("");
   const [terms, setTerms] = useState(false);
 
+
+
+
   const pushData = () => {
     const headers = new Headers();
     headers.append("Content-Type", "application/json");
@@ -41,7 +47,7 @@ function Checkout(props: CheckoutProps) {
       zip,
       country,
       companyName,
-      vatNumber,
+      vatNumber
     ];
 
     const data: RequestInit = {

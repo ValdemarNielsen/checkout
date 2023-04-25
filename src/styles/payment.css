@@ -3,6 +3,55 @@
 }
 
 .checkboxSize {
-    height: 30px;
-    width: 30px;
+    height: 15px;
+    width: 15px;
+}
+
+.payment{
+   font-size: larger;
+    text-decoration: underline;
+}
+
+.left{
+    text-align: left;
+}
+*{
+    font-family: 'Poppons', sans-serif; font-size: medium;
+    margin:0; padding: 3px;
+    box-sizing: border-box;
+    text-transform: capitalize;
+    transition: all .2s linear;
+
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+}
+
+
+
+.right{
+    text-align: right;
+}
+
+.paymentStyle {
+
+    text-align: center;
+    background-color: #ffffff;
+    padding: 20px 0;
+    font-size: 30px;
+}
+
+.col-3{
+    padding: 0px 0px 120px 0px;
+    width: 2/3;
+    text-align: right;
+    flex-direction: column;
+}
+
+.creditCard{
+    size: 10px 100px;
 }
