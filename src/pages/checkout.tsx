@@ -368,7 +368,7 @@ function Checkout(props: CheckoutProps) {
                 </form>
               </div>
               <button
-                className="buttoncontinue"
+                className="buttonBack"
                 onClick={() => props.navigate("shop")}
               >
                 Go back

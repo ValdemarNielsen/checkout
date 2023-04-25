@@ -138,3 +138,12 @@ input:focus {
 .priceContainer {
 
 }
+
+.buttonBack {
+    height: 2rem;
+    background-color: lightgrey;
+    border-radius: 3px;
+    border: #e06e68;
+    /* Size */
+    width: 40%;
+}
