@@ -349,27 +349,7 @@ function Checkout(props: CheckoutProps) {
 
                   {/* If there are any errors/isValid fields that are not true, prompt it to the user */}
 
-                  <button
-                    type="submit"
-                    onClick={() => {
-                      if (!validSubmit()) {
-                        var fill = document.getElementById(
-                          "fill"
-                        ) as HTMLInputElement;
-                        fill.innerHTML = "Please fill out all fields ";
-                      } else {
-                        var fill = document.getElementById(
-                          "fill"
-                        ) as HTMLInputElement;
-                        fill.innerHTML = "";
-                        //Insert navigation to next page
-                        props.navigate("payment");
-                      }
-                    }}
-                    className="buttoncontinue"
-                  >
-                    Go to payment
-                  </button>
+
                   <p id="fill"></p>
                 </form>
               </div>
@@ -386,6 +366,27 @@ function Checkout(props: CheckoutProps) {
               <div>
                 <OrderSummary />
               </div>
+              <button
+                  type="submit"
+                  onClick={() => {
+                    if (!validSubmit()) {
+                      var fill = document.getElementById(
+                          "fill"
+                      ) as HTMLInputElement;
+                      fill.innerHTML = "Please fill out all fields ";
+                    } else {
+                      var fill = document.getElementById(
+                          "fill"
+                      ) as HTMLInputElement;
+                      fill.innerHTML = "";
+                      //Insert navigation to next page
+                      props.navigate("payment");
+                    }
+                  }}
+                  className="buttoncontinue"
+              >
+                Go to payment
+              </button>
             </div>
           </div>
         </div>
