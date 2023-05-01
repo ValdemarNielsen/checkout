@@ -11,7 +11,6 @@ import {
 import EmailWelcome from "../assets/EmailWelcome";
 import DiscountBox from "../assets/components/discountCodeBox";
 import { BasketContext, PriceContext } from "../App";
-import SavingsBox from "../assets/components/Pricing/SavingBox";
 import Box from "../assets/components/Pricing/SavingBox";
 
 type ShopProps = {
