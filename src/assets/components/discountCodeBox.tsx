@@ -5,7 +5,6 @@ function DiscountBox({
 }: {
   onApply: (discountCode: string) => boolean;
 }) {
-  // const discountCodes = ["10PERCENT", "20PERCENT", "30PERCENT"];
   const [discountCode, setDiscountCode] = useState<string>("");
 
   const [appliedDiscount, setAppliedDiscount] = useState<string>("");
@@ -32,17 +31,18 @@ function DiscountBox({
 
   return (
     <div>
+      <span className="discount-header">ENTER DISCOUNT</span>
+
       <div>
-        <p>Discount code</p>
         <input
           className="discountField"
           type="text"
-          placeholder="Enter discount code"
+          placeholder="DISCOUNT HERE"
           value={discountCode}
           onChange={(e) => setDiscountCode(e.target.value)}
         />
         <button className="applyDiscount" onClick={applyDiscount}>
-          Apply discount
+          APPLY
         </button>
       </div>
       {errorMessage && <p className="errorMessage">{errorMessage}</p>}

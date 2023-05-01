@@ -8,19 +8,21 @@
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    width: 100%;
+    width: 85%;
 
 }
 
 .col-1{
     width: 2/3;
     flex-direction: column;
+    padding-bottom: 2rem;
 }
 
 .col-2{
     width: 1/3;
     text-align: right;
     flex-direction: column;
+    padding-bottom: 2rem;
 }
 
 .headerstyle {
@@ -226,10 +228,14 @@ background: white;
 }
 
 .applyDiscount{
-    height: 37px;
+    height: 35px;
     background-color: #e06e68;
-    border-radius: 0px 5px 5px 0px;
+    border-radius: 0px 2px 2px 0px solid black;
     border: #e06e68;
+    margin-top: 0.5rem;
+    margin-right: 0.5rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
 }
 .applyDiscount:hover{
     background-color: #bd5951;
@@ -237,13 +243,23 @@ background: white;
 
 .discountField{
     height: 35px;
-    border-radius: 5px 0px 0px 5px;
-    border: black;
+    border-radius: 1px 0px 0px 5px;
+    border: 1px solid black;
+    padding-left: 0.5rem;
 }
 .discountbox{
     width: 17rem;
     border-width: 2px;
     border-color: #1a1a1a;
+}
+
+.discount-header{
+    font-size: 1rem;
+    font-weight: bold;
+    padding-bottom: 0.5rem;
+    /* Center the text */
+    display: flex;
+    justify-content: center;
 }
 
 .container {
@@ -253,8 +269,8 @@ background: white;
     --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
     width: 100%;
-    padding: 1rem;
-    border-radius: 0.75rem;    
+    padding: 2rem;
+    border-radius: 0.75rem;
 }
 
 .layoutMaster {
@@ -262,5 +278,6 @@ background: white;
     margin-left: auto;
     margin-right: auto;
     display: flex;
+    margin-bottom: 14rem;
 
 }

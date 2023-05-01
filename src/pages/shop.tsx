@@ -11,6 +11,8 @@ import {
 import EmailWelcome from "../assets/EmailWelcome";
 import DiscountBox from "../assets/components/discountCodeBox";
 import { BasketContext, PriceContext } from "../App";
+import SavingsBox from "../assets/components/Pricing/SavingBox";
+import Box from "../assets/components/Pricing/SavingBox";
 
 type ShopProps = {
   navigate: (newPage: string) => void;
@@ -188,11 +190,13 @@ function Shop(props: ShopProps) {
               <div>
                 {/* Insert rebateText function */}
                 <DiscountBox onApply={handleApplyDiscount} />
-                <p>You save = {rebateAmount(basket)},- DKK</p>
-                <p>
-                  Total amount = {totalPriceWRebate(basket, discountAmount)},-
-                  DKK
-                </p>
+                <Box>
+                  <span>YOU SAVE:</span> {rebateAmount(basket)} DKK,-
+                </Box>
+                <Box>
+                  <span>TOTAL:</span>
+                  {totalPriceWRebate(basket, discountAmount)} DKK,-
+                </Box>
               </div>
               <div style={{ justifyContent: "end" }}>
                 <button
