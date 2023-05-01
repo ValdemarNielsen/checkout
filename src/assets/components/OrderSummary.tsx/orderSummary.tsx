@@ -17,7 +17,7 @@ function OrderSummary() {
       <p>You have {basket.length} in your basket:</p>
 
         <div className="basketContainer">
-      <div style={{ display: "flex", flexDirection: "column" }}>
+      <div style={{ display: "flex", flexDirection: "column", whiteSpace: "nowrap", paddingBlockStart: "1rem", paddingBlockEnd: "1rem"}}>
         {basket.map((item) => (
           <li key={item.id}>
             <img src={item.image} className="imagepadding" />
