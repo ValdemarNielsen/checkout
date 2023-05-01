@@ -4,7 +4,7 @@ import "./SitemapFooter.css";
 // Auto generated text examples from Google
 function SitemapFooter() {
   return (
-    <div className="footer">
+    <div className="footer enclose">
       <div className="footer-container">
         <div className="footer-section">
           <h4>About Us</h4>
