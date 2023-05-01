@@ -126,7 +126,7 @@ input:focus {
 }
 
 .columnright{
-    width: 50%;
+    width: 60%;
     padding-left: 13rem;
     text-align: start;
     justify-content: center;
@@ -136,6 +136,7 @@ input:focus {
     border: 1px solid;
     padding: 10px;
     border-color: lightgrey;
+    width: 100%;
 
 }
 
