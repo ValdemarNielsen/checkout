@@ -31,7 +31,7 @@ function DiscountBox({
 
   return (
     <div>
-      <span className="discount-header">ENTER DISCOUNT</span>
+      <span className="discount-header">ENTER DISCOUNT </span>
 
       <div>
         <input
