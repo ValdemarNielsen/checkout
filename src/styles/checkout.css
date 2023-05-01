@@ -63,7 +63,7 @@ input:focus {
     border-radius: 10px;
     background-color: #eee;
     width: 335px;
-    text-align: left;
+    text-align: start;
 }
 
 .tacinput {
@@ -74,7 +74,14 @@ input:focus {
 
 .tacboxtext {
     font-size: 11px;
+    align-content: start;
 }
+
+
+.textleft {
+    text-align: left;
+}
+
 
 .shippingDetails {
     /*   border-radius: 2px; */
