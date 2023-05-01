@@ -114,7 +114,6 @@ input:focus {
     padding-left: 40px;
     padding-right: 40px;
     padding-bottom: 5rem;
-    margin-bottom: 2rem;
 }
 
 .layoutMaster {
@@ -122,14 +121,20 @@ input:focus {
     margin-left: auto;
     margin-right: auto;
     display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 
 }
 
-.columnright{
-    width: 60%;
-    padding-left: 13rem;
-    text-align: start;
-    justify-content: center;
+.col-1{
+    width: 1/3;
+    padding-bottom: 2rem;
+}
+
+.col-2{
+    width: 2/3;
+    text-align: right;
+    padding-bottom: 2rem;
 }
 
 .basketContainer {
@@ -140,9 +145,6 @@ input:focus {
 
 }
 
-.priceContainer {
-
-}
 
 .buttonBack {
     height: 2rem;

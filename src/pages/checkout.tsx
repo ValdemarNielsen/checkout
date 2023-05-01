@@ -1,11 +1,8 @@
 //Description: This is the checkout page, where the user corrects/verifies chosen items and proceeds to checkout.
-import React, {useContext, useState} from "react";
+import React, { useContext, useState } from "react";
 import "../styles/shop.css";
 import "../styles/checkout.css";
 import OrderSummary from "../assets/components/OrderSummary.tsx/orderSummary";
-import {a} from "vitest/dist/types-fafda418";
-
-
 
 type CheckoutProps = {
   navigate: (newPage: string) => void;
@@ -31,9 +28,6 @@ function Checkout(props: CheckoutProps) {
   const [billingaddress, setBillingAddress] = useState("");
   const [terms, setTerms] = useState(false);
 
-
-
-
   const pushData = () => {
     const headers = new Headers();
     headers.append("Content-Type", "application/json");
@@ -47,7 +41,7 @@ function Checkout(props: CheckoutProps) {
       zip,
       country,
       companyName,
-      vatNumber
+      vatNumber,
     ];
 
     const data: RequestInit = {
@@ -152,7 +146,14 @@ function Checkout(props: CheckoutProps) {
       <div className="layoutMaster">
         <div className="container">
           <div className="row">
-            <div className="columnleft">
+            <div className="col-1">
+              {/* Display the basket items */}
+              <div>
+                <OrderSummary />
+              </div>
+            </div>
+
+            <div className="col-2">
               <div
                 style={{
                   display: "flex",
@@ -349,45 +350,37 @@ function Checkout(props: CheckoutProps) {
 
                   {/* If there are any errors/isValid fields that are not true, prompt it to the user */}
 
-
                   <p id="fill"></p>
                 </form>
               </div>
               <button
-                className="buttonBack"
-                onClick={() => props.navigate("shop")}
-              >
-                Go back
-              </button>
-            </div>
-
-            <div className="columnright">
-              {/* Display the basket items */}
-              <div>
-                <OrderSummary />
-              </div>
-              <button
-                  type="submit"
-                  onClick={() => {
-                    if (!validSubmit()) {
-                      var fill = document.getElementById(
-                          "fill"
-                      ) as HTMLInputElement;
-                      fill.innerHTML = "Please fill out all fields ";
-                    } else {
-                      var fill = document.getElementById(
-                          "fill"
-                      ) as HTMLInputElement;
-                      fill.innerHTML = "";
-                      //Insert navigation to next page
-                      props.navigate("payment");
-                    }
-                  }}
-                  className="buttoncontinue"
+                type="submit"
+                onClick={() => {
+                  if (!validSubmit()) {
+                    var fill = document.getElementById(
+                      "fill"
+                    ) as HTMLInputElement;
+                    fill.innerHTML = "Please fill out all fields ";
+                  } else {
+                    var fill = document.getElementById(
+                      "fill"
+                    ) as HTMLInputElement;
+                    fill.innerHTML = "";
+                    //Insert navigation to next page
+                    props.navigate("payment");
+                  }
+                }}
+                className="buttoncontinue"
               >
                 Go to payment
               </button>
             </div>
+            <button
+              className="buttonBack"
+              onClick={() => props.navigate("shop")}
+            >
+              Go back
+            </button>
           </div>
         </div>
       </div>
