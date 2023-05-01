@@ -11,6 +11,8 @@
   width: 100%;
   overflow: hidden;
   background: linear-gradient(0deg, #57aefa, #75b5f4);
+  padding-top: 0.8rem;
+  padding-bottom: 0.8rem;
 }
 
 .bannerslidelist {
