@@ -63,6 +63,7 @@ input:focus {
     border-radius: 10px;
     background-color: #eee;
     width: 335px;
+    text-align: left;
 }
 
 .tacinput {
@@ -78,7 +79,6 @@ input:focus {
 .shippingDetails {
     /*   border-radius: 2px; */
     height: 35px;
-
     margin-top: 15px;
 
 
@@ -147,12 +147,13 @@ input:focus {
 
 
 .buttonBack {
+    alignment: bottom;
     height: 2rem;
     background-color: lightgray;
     border-radius: 3px;
     border: #e06e68;
     /* Size */
-    width: 40%;
+   width: 40%;
 
 }
 

@@ -151,6 +151,12 @@ function Checkout(props: CheckoutProps) {
               <div>
                 <OrderSummary />
               </div>
+              <button
+                  className="buttonBack"
+                  onClick={() => props.navigate("shop")}
+              >
+                Go back
+              </button>
             </div>
 
             <div className="col-2">
@@ -375,12 +381,7 @@ function Checkout(props: CheckoutProps) {
                 Go to payment
               </button>
             </div>
-            <button
-              className="buttonBack"
-              onClick={() => props.navigate("shop")}
-            >
-              Go back
-            </button>
+
           </div>
         </div>
       </div>
