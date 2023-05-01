@@ -1,61 +1,54 @@
-
-.headerstyle {
-    background-color: white;
-    border-bottom-width: 2px;
-    height: 5rem;
+.nav {
+    background: white;
+    color: rgb(0, 0, 0);
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    list-style-type: none;
-}
-
-.headertitlestyle {
-    font-size: 2rem;
-    font-weight: bold;
-    /* Cool shadow effect */
-    text-shadow: 1px 1px 2px #000000;
-    /* Display it at the left side */
-    text-align: left;
-
-}
-
-.headerlistyle{
-    font-size: 1.2rem;
-    font-weight: normal;
-    /* Display it at the left side */
-    text-align: left;
-    /* Add spacing between list items */
-    margin-right: 1rem;
-
-    
-
-}
-
-a:link{
-    text-decoration: none;
-    color: black;
-}
-
-ul {
-    list-style-type: none;
+    justify-content: space-between;
+    padding: 0 1rem;
+    height: 5rem;
+  }
+  
+  .nav div {
+    display: flex;
+    align-items: center;
   }
 
-    li {
-        display: inline;
-        /* Spacing */
-        margin-right: 1rem;
-        
+  
+  .nav ul {
+    list-style: none;
+    margin-right: 5rem;
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .nav li {
+    cursor: pointer;
+  }
+  
+  .nav li.active {
+    background-color: rgb(96, 153, 102);
+  }
+  
+  .nav li:hover {
+    background: linear-gradient(0deg, #57aefa, #75b5f4);
+}
+  
+  @media (max-width: 768px) {
+    .nav {
+      flex-direction: column;
+      align-items: flex-start;
+      height: auto;
     }
+    .nav div {
+      margin-bottom: 1rem;
+    }
+  }
 
-img{
-    max-height: 100px;
-    max-width: 100px;
-}
+  .faviconimg {
+    height: 2.5rem;
+    width: 2.5rem;
+    margin-right: 1rem;
+    margin-left: 5rem;
+  }
 
-.logo-image{
-    max-height: clamp(40px, 8vw, 40px);
-    max-width:  clamp(40px, 8vw, 40px);
-    padding: 2px;
-    margin-right: 10px;
-    
-}
+  

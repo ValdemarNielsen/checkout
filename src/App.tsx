@@ -7,6 +7,7 @@ import Banner from "./assets/components/Banner/Banner";
 import SitemapFooter from "./assets/components/Footer/SitemapFooter";
 import NavbarComponent from "./assets/components/NavbarComponent/NavbarComponent";
 import React from "react";
+import Navbar from "./assets/components/NavbarComponent/NavbarComponent";
 
 //Context Provider
 // Define the BasketItems type
@@ -86,22 +87,21 @@ export const PersDataContext = React.createContext<PersDataType>({
   country: "",
   companyName: "",
   vatNumber: 0,
-  basket: []
+  basket: [],
 });
 type PersDataType = {
-  email: string
-  firstName: string
-  lastName: string
-  phone: number
-  address1: string
-  address2: string
-  zip: number
-  country: string
-  companyName: string
-  vatNumber: number
-  basket: BasketItems[]
-}
-
+  email: string;
+  firstName: string;
+  lastName: string;
+  phone: number;
+  address1: string;
+  address2: string;
+  zip: number;
+  country: string;
+  companyName: string;
+  vatNumber: number;
+  basket: BasketItems[];
+};
 
 // Create a context
 export const BasketContext = React.createContext<BasketContextType>({
@@ -223,7 +223,7 @@ function App() {
             totalPriceWRebate,
           }}
         >
-          <NavbarComponent />
+          <Navbar />
           <Banner />
           <main>{pageContent}</main>
           <SitemapFooter />
