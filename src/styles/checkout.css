@@ -78,7 +78,9 @@ input:focus {
 .shippingDetails {
     /*   border-radius: 2px; */
     height: 35px;
+
     margin-top: 15px;
+
 
 }
 
@@ -95,7 +97,7 @@ input:focus {
 }
 
 .form-group {
-    width: 50%;
+    width: 44%;
     align-content: start;
 
 }

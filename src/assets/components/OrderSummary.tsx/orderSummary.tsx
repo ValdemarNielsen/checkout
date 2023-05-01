@@ -14,7 +14,7 @@ function OrderSummary() {
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
       <h2>Order Summary</h2>
-      <p>You have {basket.length} in your basket:</p>
+      <p>You have {basket.length} items in your basket:</p>
 
         <div className="basketContainer">
       <div style={{ display: "flex", flexDirection: "column", whiteSpace: "nowrap", paddingBlockStart: "1rem", paddingBlockEnd: "1rem"}}>
