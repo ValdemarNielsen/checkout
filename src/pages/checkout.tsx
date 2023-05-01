@@ -147,9 +147,19 @@ function Checkout(props: CheckoutProps) {
         <div className="container">
           <div className="row">
             <div className="col-1">
+              <div style={{display:"flex", flexDirection:"column", justifyContent:"end"}}>
               {/* Display the basket items */}
               <div>
                 <OrderSummary />
+              </div>
+               <div>
+              <button
+                  className="buttonBack"
+                  onClick={() => props.navigate("shop")}
+              >
+                Go back
+              </button>
+              </div>
               </div>
             </div>
 
@@ -168,8 +178,9 @@ function Checkout(props: CheckoutProps) {
                     flexDirection: "column",
                     width: "350px",
                   }}
+
                 >
-                  <h2>Contact information</h2>
+                  <h2 style={{textAlign: "start"}}>Contact information</h2>
                   <label htmlFor="email"></label>
                   <input
                     type="text"
@@ -206,7 +217,7 @@ function Checkout(props: CheckoutProps) {
                     </label>
                   </div>
                   <div></div>
-                  <h2>Shipping details</h2>
+                  <h2 style={{textAlign: "start"}}>Shipping details</h2>
                   <div className="form-row">
                     <div className="form-group">
                       <label htmlFor="name"></label>
@@ -375,12 +386,7 @@ function Checkout(props: CheckoutProps) {
                 Go to payment
               </button>
             </div>
-            <button
-              className="buttonBack"
-              onClick={() => props.navigate("shop")}
-            >
-              Go back
-            </button>
+
           </div>
         </div>
       </div>
